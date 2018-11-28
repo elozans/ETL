@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="sa"
+  DTS:DTSID="{FAA9E788-56D4-4B12-A030-382A01E93DC4}"
+  DTS:CreationName="OLEDB">
+  <DTS:PropertyExpression
+    DTS:Name="ConnectionString">@[$Project::Conexion_BBDD_Demografia]</DTS:PropertyExpression>
+  <DTS:PropertyExpression
+    DTS:Name="InitialCatalog">@[$Project::Catalogo]</DTS:PropertyExpression>
+  <DTS:PropertyExpression
+    DTS:Name="Name">@[$Project::Usuario]</DTS:PropertyExpression>
+  <DTS:PropertyExpression
+    DTS:Name="Password">@[$Project::Password_BBDD]</DTS:PropertyExpression>
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=SOLACO;User ID=sa;Initial Catalog=DWH_Demografia;Provider=SQLNCLI11.1;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAlwPRJCNeW0+kJhdKx0DwzwAAAAACAAAAAAAQZgAAAAEAACAAAACeYErCGaf78LUF4Wz0l0RhCB7c1TKJ9+BIIUxA4Ftx7AAAAAAOgAAAAAIAACAAAAD73J8sQjEBhzZ40jFfC/L+BE8xOFCZhh9n525O7rZMoYAAAAChD4NJ99vFMDkyqR3qcug2cbq3TkWIy66S8Cyos+KRxH1qc+4Y6yrFhdSD/Y9xhFjFwvIQx9iS1To/ubaQmxo6IErto/v2Oh0ROKqcFUPHV/+1IperE3Q2kZe7hZ5BL6+H5779nnapUZGAnrP+7NdjdrPeBANAHBTk5c79FdtKPEAAAADbELoD/brnXw6Y781CRKHjTusLNUnfRcpxCPn8GBa76yBNKd8Io9c/Gw1XmLJJ8ow1rnbLDSqsvt6R9Ek5dPRl</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

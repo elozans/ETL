@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="DWH_Economicos"
+  DTS:DTSID="{4006B7E9-9DFB-4184-862D-B28541684AB4}"
+  DTS:CreationName="OLEDB">
+  <DTS:PropertyExpression
+    DTS:Name="ConnectionString">@[$Project::Conexion_BBDD_Economicos]</DTS:PropertyExpression>
+  <DTS:PropertyExpression
+    DTS:Name="InitialCatalog">@[$Project::Catalogo_Economico]</DTS:PropertyExpression>
+  <DTS:PropertyExpression
+    DTS:Name="Password">@[$Project::Password_BBDD]</DTS:PropertyExpression>
+  <DTS:PropertyExpression
+    DTS:Name="UserName">@[$Project::Usuario]</DTS:PropertyExpression>
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=SOLACO;User ID=sa;Initial Catalog=DWH_Economicos;Provider=SQLNCLI11.1;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAlwPRJCNeW0+kJhdKx0DwzwAAAAACAAAAAAAQZgAAAAEAACAAAAALDke9yVXrbMK8fdCBluPtAh3uyyi8A4AsxjHyefJ9IgAAAAAOgAAAAAIAACAAAAAVDOxIm9T9TmGNRHA3buqPAISSPpfqIBh+X/tFJW9MzYAAAAAYghssb+RlQbC3W+gFIb6TRL+mtkZuJXJcAhO5VC4uEvihlEKEvIr8140AxDUAB65ommcfKthXR+RgWfNyVnOJiD3ChQz/76/bpZpAo8Q8xEgZ21GpGm7fUPUjULVKs8XC1606FZNfJG5eHeq8QjaITKS294nsvVmlqx3lwGqRVUAAAACoY8JW/YSDBVWS/kZczd5enfSlwJJtxKkSfAGUCA/rFt3Sv2Vh4nOREjmxORS6kANjTBiLyMmMWpjs08vJx3NI</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

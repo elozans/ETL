@@ -1,0 +1,3077 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/7/2018 12:42:01 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DESKTOP-JEJ8I8L"
+  DTS:CreatorName="DESKTOP-JEJ8I8L\usuario"
+  DTS:DTSID="{0F109B33-58C1-4105-98D3-DF6B64F37AAF}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.6020.0"
+  DTS:LocaleID="3082"
+  DTS:ObjectName="ECI"
+  DTS:PackageType="5"
+  DTS:VersionBuild="62"
+  DTS:VersionGUID="{72C3CECE-768A-4E68-8AC1-33E8A869270C}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Conexion ECI]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{C61DE8DA-B3F0-4F33-ADC4-211F1925AA49}"
+      DTS:ObjectName="Conexion ECI">
+      <DTS:PropertyExpression
+        DTS:Name="ExcelFilePath">@[$Package::PathFichero]+ @[$Package::NombreFichero]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[$Package::PathFichero]+ @[$Package::NombreFichero]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Proyectos\Navarra\Ficheros\ECI.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Conexion Error]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{5E266B32-A93F-48F1-B88E-879778B250DD}"
+      DTS:ObjectName="Conexion Error">
+      <DTS:PropertyExpression
+        DTS:Name="ExcelFilePath">@[$Package::PathFichero]+ @[$Package::FicheroError]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[$Package::PathFichero]+ @[$Package::FicheroError]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Proyectos\Navarra\Ficheros\Error.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:Description="Nombre fichero error"
+      DTS:DTSID="{82E3EC90-6C03-4352-B5B6-EB037BBA12C1}"
+      DTS:ObjectName="FicheroError">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">Error.xlsx</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:Description="Fichero de datos"
+      DTS:DTSID="{C2F1A060-E569-44C1-96B8-1221E71EAED0}"
+      DTS:ObjectName="NombreFichero">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">ECI.xlsx</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:Description="Ruta Fichero ECI"
+      DTS:DTSID="{5EF320CA-152F-4BBF-827C-822B7C1BDB26}"
+      DTS:ObjectName="PathFichero"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">C:\Proyectos\Navarra\Ficheros\</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Flujo Datos ECI"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{0F37EDC5-2B1C-490C-9098-84AFEAD6E79F}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Flujo Datos ECI"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Flujo Datos ECI\Comando de OLE DB"
+              componentClassID="{93FFEC66-CBC8-4C7F-9C6A-CB1C17A7567D}"
+              contactInfo="Comando de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Ejecuta una instrucción SQL para cada fila de un flujo de datos. Por ejemplo, se usa para llamar al procedimiento almacenado de configuración de nuevo empleado para cada fila de la tabla de nuevos empleados. Nota: la ejecución de una instrucción SQL para cada fila de un flujo de datos de gran tamaño puede tardar mucho tiempo."
+              name="Comando de OLE DB"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">UPDATE [ECI].[TECID]
+   SET [FCLIMA_INDUST] = ?
+      ,[FPROD_ACTUAL] = ?
+      ,[FPROD_PREVISTA] = ?
+ WHERE [NAÑO] = ?
+       and [NMES] = ?
+       and [NVAMBITO] = ?
+       and [NVRAMA] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Flujo Datos ECI\Comando de OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="{4006B7E9-9DFB-4184-862D-B28541684AB4}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DWH_Economicos]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Flujo Datos ECI\Comando de OLE DB.Inputs[Entrada de comando de OLE DB]"
+                  errorOrTruncationOperation="Ejecución de comando"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de comando de OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Comando de OLE DB.Inputs[Entrada de comando de OLE DB].Columns[CLIMA _INDUSTRIAL_E]"
+                      cachedDataType="r8"
+                      cachedName="CLIMA _INDUSTRIAL_E"
+                      externalMetadataColumnId="Package\Flujo Datos ECI\Comando de OLE DB.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_0]"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[CLIMA _INDUSTRIAL_E]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Comando de OLE DB.Inputs[Entrada de comando de OLE DB].Columns[PROD_ACTUAL_E]"
+                      cachedDataType="r8"
+                      cachedName="PROD_ACTUAL_E"
+                      externalMetadataColumnId="Package\Flujo Datos ECI\Comando de OLE DB.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_1]"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[PROD_ACTUAL_E]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Comando de OLE DB.Inputs[Entrada de comando de OLE DB].Columns[PROD_PREVISTA_E]"
+                      cachedDataType="r8"
+                      cachedName="PROD_PREVISTA_E"
+                      externalMetadataColumnId="Package\Flujo Datos ECI\Comando de OLE DB.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_2]"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[PROD_PREVISTA_E]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Comando de OLE DB.Inputs[Entrada de comando de OLE DB].Columns[ANNO_E]"
+                      cachedDataType="i4"
+                      cachedName="ANNO_E"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Flujo Datos ECI\Comando de OLE DB.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_3]"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[ANNO_E]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Comando de OLE DB.Inputs[Entrada de comando de OLE DB].Columns[AMBITO_E]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="AMBITO_E"
+                      cachedSortKeyPosition="3"
+                      externalMetadataColumnId="Package\Flujo Datos ECI\Comando de OLE DB.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_5]"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[AMBITO_E]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Comando de OLE DB.Inputs[Entrada de comando de OLE DB].Columns[RAMA_E]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="RAMA_E"
+                      cachedSortKeyPosition="4"
+                      externalMetadataColumnId="Package\Flujo Datos ECI\Comando de OLE DB.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_6]"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[RAMA_E]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Comando de OLE DB.Inputs[Entrada de comando de OLE DB].Columns[MES_E]"
+                      cachedDataType="i4"
+                      cachedName="MES_E"
+                      cachedSortKeyPosition="2"
+                      externalMetadataColumnId="Package\Flujo Datos ECI\Comando de OLE DB.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_4]"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[MES_E]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Flujo Datos ECI\Comando de OLE DB.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_0]"
+                      dataType="r8"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Información de parámetros. Coincide con los valores de DBPARAMFLAGSENUM de OLE DB."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Flujo Datos ECI\Comando de OLE DB.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_1]"
+                      dataType="r8"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Información de parámetros. Coincide con los valores de DBPARAMFLAGSENUM de OLE DB."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Flujo Datos ECI\Comando de OLE DB.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_2]"
+                      dataType="r8"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Información de parámetros. Coincide con los valores de DBPARAMFLAGSENUM de OLE DB."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Flujo Datos ECI\Comando de OLE DB.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_3]"
+                      dataType="i4"
+                      name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Información de parámetros. Coincide con los valores de DBPARAMFLAGSENUM de OLE DB."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Flujo Datos ECI\Comando de OLE DB.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_4]"
+                      dataType="i4"
+                      name="Param_4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Información de parámetros. Coincide con los valores de DBPARAMFLAGSENUM de OLE DB."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Flujo Datos ECI\Comando de OLE DB.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_5]"
+                      dataType="wstr"
+                      length="255"
+                      name="Param_5">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Información de parámetros. Coincide con los valores de DBPARAMFLAGSENUM de OLE DB."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Flujo Datos ECI\Comando de OLE DB.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_6]"
+                      dataType="wstr"
+                      length="255"
+                      name="Param_6">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Información de parámetros. Coincide con los valores de DBPARAMFLAGSENUM de OLE DB."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Flujo Datos ECI\Comando de OLE DB.Outputs[Salida de comando de OLE DB]"
+                  exclusionGroup="1"
+                  name="Salida de comando de OLE DB"
+                  synchronousInputId="Package\Flujo Datos ECI\Comando de OLE DB.Inputs[Entrada de comando de OLE DB]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Flujo Datos ECI\Comando de OLE DB.Outputs[Salida de error de comando de OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de comando de OLE DB"
+                  synchronousInputId="Package\Flujo Datos ECI\Comando de OLE DB.Inputs[Entrada de comando de OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Comando de OLE DB.Outputs[Salida de error de comando de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Flujo Datos ECI\Comando de OLE DB.Outputs[Salida de error de comando de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Comando de OLE DB.Outputs[Salida de error de comando de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Flujo Datos ECI\Comando de OLE DB.Outputs[Salida de error de comando de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Flujo Datos ECI\Data Conversion"
+              componentClassID="{62B1106C-7DB8-4EC8-ADD6-4C664DFFC54A}"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Flujo Datos ECI\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Data Conversion.Inputs[Data Conversion Input].Columns[AÑO]"
+                      cachedDataType="r8"
+                      cachedName="AÑO"
+                      lineageId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].Columns[AÑO]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Data Conversion.Inputs[Data Conversion Input].Columns[AMBITO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="AMBITO"
+                      lineageId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].Columns[AMBITO]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Data Conversion.Inputs[Data Conversion Input].Columns[RAMA]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="RAMA"
+                      lineageId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].Columns[RAMA]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Data Conversion.Inputs[Data Conversion Input].Columns[CLIMA INDUSTRIAL C-T]"
+                      cachedDataType="r8"
+                      cachedName="CLIMA INDUSTRIAL C-T"
+                      lineageId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].Columns[CLIMA INDUSTRIAL C-T]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Data Conversion.Inputs[Data Conversion Input].Columns[PRODUCCIÓN ACTUAL]"
+                      cachedDataType="r8"
+                      cachedName="PRODUCCIÓN ACTUAL"
+                      lineageId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].Columns[PRODUCCIÓN ACTUAL]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Data Conversion.Inputs[Data Conversion Input].Columns[PRODUCCIÓN PREVISTA]"
+                      cachedDataType="r8"
+                      cachedName="PRODUCCIÓN PREVISTA"
+                      lineageId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].Columns[PRODUCCIÓN PREVISTA]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Data Conversion.Inputs[Data Conversion Input].Columns[MES]"
+                      cachedDataType="r8"
+                      cachedName="MES"
+                      lineageId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].Columns[MES]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Flujo Datos ECI\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Flujo Datos ECI\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Data Conversion.Outputs[Data Conversion Output].Columns[ANNO_E]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Flujo Datos ECI\Data Conversion.Outputs[Data Conversion Output].Columns[ANNO_E]"
+                      name="ANNO_E"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].Columns[AÑO]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Data Conversion.Outputs[Data Conversion Output].Columns[AMBITO_E]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\Flujo Datos ECI\Data Conversion.Outputs[Data Conversion Output].Columns[AMBITO_E]"
+                      name="AMBITO_E"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].Columns[AMBITO]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Data Conversion.Outputs[Data Conversion Output].Columns[RAMA_E]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="150"
+                      lineageId="Package\Flujo Datos ECI\Data Conversion.Outputs[Data Conversion Output].Columns[RAMA_E]"
+                      name="RAMA_E"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].Columns[RAMA]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Data Conversion.Outputs[Data Conversion Output].Columns[CLIMA _INDUSTRIAL_E]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Flujo Datos ECI\Data Conversion.Outputs[Data Conversion Output].Columns[CLIMA _INDUSTRIAL_E]"
+                      name="CLIMA _INDUSTRIAL_E"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].Columns[CLIMA INDUSTRIAL C-T]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Data Conversion.Outputs[Data Conversion Output].Columns[PROD_ACTUAL_E]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Flujo Datos ECI\Data Conversion.Outputs[Data Conversion Output].Columns[PROD_ACTUAL_E]"
+                      name="PROD_ACTUAL_E"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].Columns[PRODUCCIÓN ACTUAL]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Data Conversion.Outputs[Data Conversion Output].Columns[PROD_PREVISTA_E]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Flujo Datos ECI\Data Conversion.Outputs[Data Conversion Output].Columns[PROD_PREVISTA_E]"
+                      name="PROD_PREVISTA_E"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].Columns[PRODUCCIÓN PREVISTA]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Data Conversion.Outputs[Data Conversion Output].Columns[MES_E]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Flujo Datos ECI\Data Conversion.Outputs[Data Conversion Output].Columns[MES_E]"
+                      name="MES_E"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].Columns[MES]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Flujo Datos ECI\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Flujo Datos ECI\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Flujo Datos ECI\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Flujo Datos ECI\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Flujo Datos ECI\Error"
+              componentClassID="{1F5D5712-2FBA-4CB9-A95A-86C1F336E1DA}"
+              contactInfo="Excel Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Excel Destination"
+              name="Error"
+              usesDispositions="true">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">ErrorECI$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Flujo Datos ECI\Error.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Conexion Error]"
+                  connectionManagerRefId="Package.ConnectionManagers[Conexion Error]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Flujo Datos ECI\Error.Inputs[Excel Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Excel Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Error.Inputs[Excel Destination Input].Columns[ANNO_E]"
+                      cachedDataType="i4"
+                      cachedName="ANNO_E"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Flujo Datos ECI\Error.Inputs[Excel Destination Input].ExternalColumns[ANNO_E]"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[ANNO_E]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Error.Inputs[Excel Destination Input].Columns[AMBITO_E]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="AMBITO_E"
+                      cachedSortKeyPosition="3"
+                      externalMetadataColumnId="Package\Flujo Datos ECI\Error.Inputs[Excel Destination Input].ExternalColumns[AMBITO_E]"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[AMBITO_E]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Error.Inputs[Excel Destination Input].Columns[RAMA_E]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="RAMA_E"
+                      cachedSortKeyPosition="4"
+                      externalMetadataColumnId="Package\Flujo Datos ECI\Error.Inputs[Excel Destination Input].ExternalColumns[RAMA_E]"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[RAMA_E]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Error.Inputs[Excel Destination Input].Columns[CLIMA _INDUSTRIAL_E]"
+                      cachedDataType="r8"
+                      cachedName="CLIMA _INDUSTRIAL_E"
+                      externalMetadataColumnId="Package\Flujo Datos ECI\Error.Inputs[Excel Destination Input].ExternalColumns[CLIMA _INDUSTRIAL_E]"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[CLIMA _INDUSTRIAL_E]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Error.Inputs[Excel Destination Input].Columns[PROD_ACTUAL_E]"
+                      cachedDataType="r8"
+                      cachedName="PROD_ACTUAL_E"
+                      externalMetadataColumnId="Package\Flujo Datos ECI\Error.Inputs[Excel Destination Input].ExternalColumns[PROD_ACTUAL_E]"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[PROD_ACTUAL_E]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Error.Inputs[Excel Destination Input].Columns[PROD_PREVISTA_E]"
+                      cachedDataType="r8"
+                      cachedName="PROD_PREVISTA_E"
+                      externalMetadataColumnId="Package\Flujo Datos ECI\Error.Inputs[Excel Destination Input].ExternalColumns[PROD_PREVISTA_E]"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[PROD_PREVISTA_E]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Error.Inputs[Excel Destination Input].Columns[ErrorCode]"
+                      cachedDataType="i4"
+                      cachedName="ErrorCode"
+                      externalMetadataColumnId="Package\Flujo Datos ECI\Error.Inputs[Excel Destination Input].ExternalColumns[ErrorCode]"
+                      lineageId="Package\Flujo Datos ECI\Insertar ECI.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Error.Inputs[Excel Destination Input].Columns[ErrorColumn]"
+                      cachedDataType="i4"
+                      cachedName="ErrorColumn"
+                      externalMetadataColumnId="Package\Flujo Datos ECI\Error.Inputs[Excel Destination Input].ExternalColumns[ErrorColumn]"
+                      lineageId="Package\Flujo Datos ECI\Insertar ECI.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Error.Inputs[Excel Destination Input].Columns[MES_E]"
+                      cachedDataType="i4"
+                      cachedName="MES_E"
+                      cachedSortKeyPosition="2"
+                      externalMetadataColumnId="Package\Flujo Datos ECI\Error.Inputs[Excel Destination Input].ExternalColumns[MES_E]"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[MES_E]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Flujo Datos ECI\Error.Inputs[Excel Destination Input].ExternalColumns[ANNO_E]"
+                      dataType="wstr"
+                      length="255"
+                      name="ANNO_E" />
+                    <externalMetadataColumn
+                      refId="Package\Flujo Datos ECI\Error.Inputs[Excel Destination Input].ExternalColumns[AMBITO_E]"
+                      dataType="wstr"
+                      length="255"
+                      name="AMBITO_E" />
+                    <externalMetadataColumn
+                      refId="Package\Flujo Datos ECI\Error.Inputs[Excel Destination Input].ExternalColumns[RAMA_E]"
+                      dataType="wstr"
+                      length="255"
+                      name="RAMA_E" />
+                    <externalMetadataColumn
+                      refId="Package\Flujo Datos ECI\Error.Inputs[Excel Destination Input].ExternalColumns[CLIMA _INDUSTRIAL_E]"
+                      dataType="wstr"
+                      length="255"
+                      name="CLIMA _INDUSTRIAL_E" />
+                    <externalMetadataColumn
+                      refId="Package\Flujo Datos ECI\Error.Inputs[Excel Destination Input].ExternalColumns[PROD_ACTUAL_E]"
+                      dataType="wstr"
+                      length="255"
+                      name="PROD_ACTUAL_E" />
+                    <externalMetadataColumn
+                      refId="Package\Flujo Datos ECI\Error.Inputs[Excel Destination Input].ExternalColumns[PROD_PREVISTA_E]"
+                      dataType="wstr"
+                      length="255"
+                      name="PROD_PREVISTA_E" />
+                    <externalMetadataColumn
+                      refId="Package\Flujo Datos ECI\Error.Inputs[Excel Destination Input].ExternalColumns[ErrorCode]"
+                      dataType="wstr"
+                      length="255"
+                      name="ErrorCode" />
+                    <externalMetadataColumn
+                      refId="Package\Flujo Datos ECI\Error.Inputs[Excel Destination Input].ExternalColumns[ErrorColumn]"
+                      dataType="wstr"
+                      length="255"
+                      name="ErrorColumn" />
+                    <externalMetadataColumn
+                      refId="Package\Flujo Datos ECI\Error.Inputs[Excel Destination Input].ExternalColumns[MES_E]"
+                      dataType="wstr"
+                      length="255"
+                      name="MES_E" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Flujo Datos ECI\Error.Outputs[Excel Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Excel Destination Error Output"
+                  synchronousInputId="Package\Flujo Datos ECI\Error.Inputs[Excel Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Error.Outputs[Excel Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Flujo Datos ECI\Error.Outputs[Excel Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Error.Outputs[Excel Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Flujo Datos ECI\Error.Outputs[Excel Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Flujo Datos ECI\Excel ECI"
+              componentClassID="{8C084929-27D1-479F-9641-ABB7CDADF1AC}"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Excel ECI"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">mensual$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Flujo Datos ECI\Excel ECI.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Conexion ECI]"
+                  connectionManagerRefId="Package.ConnectionManagers[Conexion ECI]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].Columns[AÑO]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].ExternalColumns[AÑO]"
+                      lineageId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].Columns[AÑO]"
+                      name="AÑO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].Columns[MES]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].ExternalColumns[MES]"
+                      lineageId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].Columns[MES]"
+                      name="MES"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].Columns[AMBITO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].ExternalColumns[AMBITO]"
+                      length="255"
+                      lineageId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].Columns[AMBITO]"
+                      name="AMBITO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].Columns[RAMA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].ExternalColumns[RAMA]"
+                      length="50"
+                      lineageId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].Columns[RAMA]"
+                      name="RAMA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].Columns[CLIMA INDUSTRIAL C-T]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].ExternalColumns[CLIMA INDUSTRIAL C-T]"
+                      lineageId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].Columns[CLIMA INDUSTRIAL C-T]"
+                      name="CLIMA INDUSTRIAL C-T"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].Columns[PRODUCCIÓN ACTUAL]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].ExternalColumns[PRODUCCIÓN ACTUAL]"
+                      lineageId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].Columns[PRODUCCIÓN ACTUAL]"
+                      name="PRODUCCIÓN ACTUAL"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].Columns[PRODUCCIÓN PREVISTA]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].ExternalColumns[PRODUCCIÓN PREVISTA]"
+                      lineageId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].Columns[PRODUCCIÓN PREVISTA]"
+                      name="PRODUCCIÓN PREVISTA"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].ExternalColumns[AÑO]"
+                      dataType="r8"
+                      name="AÑO" />
+                    <externalMetadataColumn
+                      refId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].ExternalColumns[MES]"
+                      dataType="r8"
+                      name="MES" />
+                    <externalMetadataColumn
+                      refId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].ExternalColumns[AMBITO]"
+                      dataType="wstr"
+                      length="255"
+                      name="AMBITO" />
+                    <externalMetadataColumn
+                      refId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].ExternalColumns[RAMA]"
+                      dataType="wstr"
+                      length="255"
+                      name="RAMA" />
+                    <externalMetadataColumn
+                      refId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].ExternalColumns[CLIMA INDUSTRIAL C-T]"
+                      dataType="r8"
+                      name="CLIMA INDUSTRIAL C-T" />
+                    <externalMetadataColumn
+                      refId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].ExternalColumns[PRODUCCIÓN ACTUAL]"
+                      dataType="r8"
+                      name="PRODUCCIÓN ACTUAL" />
+                    <externalMetadataColumn
+                      refId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output].ExternalColumns[PRODUCCIÓN PREVISTA]"
+                      dataType="r8"
+                      name="PRODUCCIÓN PREVISTA" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Error Output].Columns[AÑO]"
+                      dataType="r8"
+                      lineageId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Error Output].Columns[AÑO]"
+                      name="AÑO" />
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Error Output].Columns[MES]"
+                      dataType="r8"
+                      lineageId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Error Output].Columns[MES]"
+                      name="MES" />
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Error Output].Columns[AMBITO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Error Output].Columns[AMBITO]"
+                      name="AMBITO" />
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Error Output].Columns[RAMA]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Error Output].Columns[RAMA]"
+                      name="RAMA" />
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Error Output].Columns[CLIMA INDUSTRIAL C-T]"
+                      dataType="r8"
+                      lineageId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Error Output].Columns[CLIMA INDUSTRIAL C-T]"
+                      name="CLIMA INDUSTRIAL C-T" />
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Error Output].Columns[PRODUCCIÓN ACTUAL]"
+                      dataType="r8"
+                      lineageId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Error Output].Columns[PRODUCCIÓN ACTUAL]"
+                      name="PRODUCCIÓN ACTUAL" />
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Error Output].Columns[PRODUCCIÓN PREVISTA]"
+                      dataType="r8"
+                      lineageId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Error Output].Columns[PRODUCCIÓN PREVISTA]"
+                      name="PRODUCCIÓN PREVISTA" />
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Flujo Datos ECI\Insertar ECI"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Insertar ECI"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[ECI].[TECID]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Flujo Datos ECI\Insertar ECI.Connections[OleDbConnection]"
+                  connectionManagerID="{4006B7E9-9DFB-4184-862D-B28541684AB4}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DWH_Economicos]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Flujo Datos ECI\Insertar ECI.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="RedirectRow"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Insertar ECI.Inputs[OLE DB Destination Input].Columns[ANNO_E]"
+                      cachedDataType="i4"
+                      cachedName="ANNO_E"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Flujo Datos ECI\Insertar ECI.Inputs[OLE DB Destination Input].ExternalColumns[NAÑO]"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[ANNO_E]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Insertar ECI.Inputs[OLE DB Destination Input].Columns[AMBITO_E]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="AMBITO_E"
+                      cachedSortKeyPosition="3"
+                      externalMetadataColumnId="Package\Flujo Datos ECI\Insertar ECI.Inputs[OLE DB Destination Input].ExternalColumns[NVAMBITO]"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[AMBITO_E]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Insertar ECI.Inputs[OLE DB Destination Input].Columns[RAMA_E]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="RAMA_E"
+                      cachedSortKeyPosition="4"
+                      externalMetadataColumnId="Package\Flujo Datos ECI\Insertar ECI.Inputs[OLE DB Destination Input].ExternalColumns[NVRAMA]"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[RAMA_E]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Insertar ECI.Inputs[OLE DB Destination Input].Columns[CLIMA _INDUSTRIAL_E]"
+                      cachedDataType="r8"
+                      cachedName="CLIMA _INDUSTRIAL_E"
+                      externalMetadataColumnId="Package\Flujo Datos ECI\Insertar ECI.Inputs[OLE DB Destination Input].ExternalColumns[FCLIMA_INDUST]"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[CLIMA _INDUSTRIAL_E]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Insertar ECI.Inputs[OLE DB Destination Input].Columns[PROD_ACTUAL_E]"
+                      cachedDataType="r8"
+                      cachedName="PROD_ACTUAL_E"
+                      externalMetadataColumnId="Package\Flujo Datos ECI\Insertar ECI.Inputs[OLE DB Destination Input].ExternalColumns[FPROD_ACTUAL]"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[PROD_ACTUAL_E]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Insertar ECI.Inputs[OLE DB Destination Input].Columns[PROD_PREVISTA_E]"
+                      cachedDataType="r8"
+                      cachedName="PROD_PREVISTA_E"
+                      externalMetadataColumnId="Package\Flujo Datos ECI\Insertar ECI.Inputs[OLE DB Destination Input].ExternalColumns[FPROD_PREVISTA]"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[PROD_PREVISTA_E]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Insertar ECI.Inputs[OLE DB Destination Input].Columns[MES_E]"
+                      cachedDataType="i4"
+                      cachedName="MES_E"
+                      cachedSortKeyPosition="2"
+                      externalMetadataColumnId="Package\Flujo Datos ECI\Insertar ECI.Inputs[OLE DB Destination Input].ExternalColumns[NMES]"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[MES_E]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Flujo Datos ECI\Insertar ECI.Inputs[OLE DB Destination Input].ExternalColumns[NAÑO]"
+                      dataType="i4"
+                      name="NAÑO" />
+                    <externalMetadataColumn
+                      refId="Package\Flujo Datos ECI\Insertar ECI.Inputs[OLE DB Destination Input].ExternalColumns[NMES]"
+                      dataType="i4"
+                      name="NMES" />
+                    <externalMetadataColumn
+                      refId="Package\Flujo Datos ECI\Insertar ECI.Inputs[OLE DB Destination Input].ExternalColumns[NVAMBITO]"
+                      dataType="wstr"
+                      length="255"
+                      name="NVAMBITO" />
+                    <externalMetadataColumn
+                      refId="Package\Flujo Datos ECI\Insertar ECI.Inputs[OLE DB Destination Input].ExternalColumns[NVRAMA]"
+                      dataType="wstr"
+                      length="255"
+                      name="NVRAMA" />
+                    <externalMetadataColumn
+                      refId="Package\Flujo Datos ECI\Insertar ECI.Inputs[OLE DB Destination Input].ExternalColumns[FCLIMA_INDUST]"
+                      dataType="r8"
+                      name="FCLIMA_INDUST" />
+                    <externalMetadataColumn
+                      refId="Package\Flujo Datos ECI\Insertar ECI.Inputs[OLE DB Destination Input].ExternalColumns[FPROD_ACTUAL]"
+                      dataType="r8"
+                      name="FPROD_ACTUAL" />
+                    <externalMetadataColumn
+                      refId="Package\Flujo Datos ECI\Insertar ECI.Inputs[OLE DB Destination Input].ExternalColumns[FPROD_PREVISTA]"
+                      dataType="r8"
+                      name="FPROD_PREVISTA" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Flujo Datos ECI\Insertar ECI.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Flujo Datos ECI\Insertar ECI.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Insertar ECI.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Flujo Datos ECI\Insertar ECI.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Insertar ECI.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Flujo Datos ECI\Insertar ECI.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Flujo Datos ECI\InsertOrUpdate"
+              componentClassID="{7F88F654-4E20-4D14-84F4-AF9C925D3087}"
+              contactInfo="División condicional;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Enruta filas de datos a diferentes salidas según el contenido de los datos. Se usan condiciones (expresiones de SSIS) para especificar las filas que se van a enrutar. Por ejemplo, se usa para separar los registros que deben limpiarse de los registros listos para ser cargados o para enrutar solamente un subconjunto de registros."
+              name="InsertOrUpdate"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Flujo Datos ECI\InsertOrUpdate.Inputs[Entrada de división condicional]"
+                  description="Entrada en la transformación División condicional"
+                  name="Entrada de división condicional">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\InsertOrUpdate.Inputs[Entrada de división condicional].Columns[ANNO_E]"
+                      cachedDataType="i4"
+                      cachedName="ANNO_E"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[ANNO_E]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\InsertOrUpdate.Inputs[Entrada de división condicional].Columns[AMBITO_E]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="AMBITO_E"
+                      cachedSortKeyPosition="3"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[AMBITO_E]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\InsertOrUpdate.Inputs[Entrada de división condicional].Columns[RAMA_E]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="RAMA_E"
+                      cachedSortKeyPosition="4"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[RAMA_E]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\InsertOrUpdate.Inputs[Entrada de división condicional].Columns[NAÑO]"
+                      cachedDataType="i4"
+                      cachedName="NAÑO"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[NAÑO]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\InsertOrUpdate.Inputs[Entrada de división condicional].Columns[NMES]"
+                      cachedDataType="i4"
+                      cachedName="NMES"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[NMES]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\InsertOrUpdate.Inputs[Entrada de división condicional].Columns[NVAMBITO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NVAMBITO"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[NVAMBITO]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\InsertOrUpdate.Inputs[Entrada de división condicional].Columns[NVRAMA]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NVRAMA"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[NVRAMA]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\InsertOrUpdate.Inputs[Entrada de división condicional].Columns[MES_E]"
+                      cachedDataType="i4"
+                      cachedName="MES_E"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[MES_E]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Flujo Datos ECI\InsertOrUpdate.Outputs[Insert]"
+                  description="Salida 1 de la transformación División condicional"
+                  errorOrTruncationOperation="Cálculo"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Insert"
+                  synchronousInputId="Package\Flujo Datos ECI\InsertOrUpdate.Inputs[Entrada de división condicional]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la expresión. Esta versión de expresión usa identificadores de linaje en lugar de nombres de columna."
+                      name="Expression">(![ISNULL](#{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[ANNO_E]}) &amp;&amp; [ISNULL](#{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[NAÑO]})) || (![ISNULL](#{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[AMBITO_E]}) &amp;&amp; [ISNULL](#{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[NVAMBITO]})) || (![ISNULL](#{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[RAMA_E]}) &amp;&amp; [ISNULL](#{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[NVRAMA]})) || (![ISNULL](#{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[MES_E]}) &amp;&amp; [ISNULL](#{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[NMES]}))</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la versión descriptiva de la expresión. Esta versión de expresión usa nombres de columna."
+                      expressionType="Notify"
+                      name="FriendlyExpression">(!ISNULL(ANNO_E) &amp;&amp; ISNULL([NAÑO])) || (!ISNULL(AMBITO_E) &amp;&amp; ISNULL(NVAMBITO)) || (!ISNULL(RAMA_E) &amp;&amp; ISNULL(NVRAMA)) || (!ISNULL(MES_E) &amp;&amp; ISNULL(NMES))</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la posición de la condición en la lista de condiciones que evalúa la transformación. El orden de evaluación es del menor al mayor valor."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Flujo Datos ECI\InsertOrUpdate.Outputs[Update]"
+                  description="Salida 3 de la transformación División condicional"
+                  errorOrTruncationOperation="Cálculo"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Update"
+                  synchronousInputId="Package\Flujo Datos ECI\InsertOrUpdate.Inputs[Entrada de división condicional]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la expresión. Esta versión de expresión usa identificadores de linaje en lugar de nombres de columna."
+                      name="Expression">(![ISNULL](#{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[ANNO_E]}) &amp;&amp; ![ISNULL](#{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[NAÑO]})) &amp;&amp; (![ISNULL](#{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[AMBITO_E]}) &amp;&amp; ![ISNULL](#{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[NVAMBITO]})) &amp;&amp; (![ISNULL](#{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[RAMA_E]}) &amp;&amp; ![ISNULL](#{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[NVRAMA]})) &amp;&amp; (![ISNULL](#{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[MES_E]}) &amp;&amp; ![ISNULL](#{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[NMES]}))</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la versión descriptiva de la expresión. Esta versión de expresión usa nombres de columna."
+                      expressionType="Notify"
+                      name="FriendlyExpression">(!ISNULL(ANNO_E) &amp;&amp; !ISNULL([NAÑO])) &amp;&amp; (!ISNULL(AMBITO_E) &amp;&amp; !ISNULL(NVAMBITO)) &amp;&amp; (!ISNULL(RAMA_E) &amp;&amp; !ISNULL(NVRAMA)) &amp;&amp; (!ISNULL(MES_E) &amp;&amp; !ISNULL(NMES))</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la posición de la condición en la lista de condiciones que evalúa la transformación. El orden de evaluación es del menor al mayor valor."
+                      name="EvaluationOrder">1</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Flujo Datos ECI\InsertOrUpdate.Outputs[Salida predeterminada de división condicional]"
+                  description="Salida predeterminada de la transformación División condicional"
+                  exclusionGroup="1"
+                  name="Salida predeterminada de división condicional"
+                  synchronousInputId="Package\Flujo Datos ECI\InsertOrUpdate.Inputs[Entrada de división condicional]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Flujo Datos ECI\InsertOrUpdate.Outputs[Salida de error de división condicional]"
+                  description="Salida de error de la transformación División condicional"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de división condicional"
+                  synchronousInputId="Package\Flujo Datos ECI\InsertOrUpdate.Inputs[Entrada de división condicional]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\InsertOrUpdate.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Flujo Datos ECI\InsertOrUpdate.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\InsertOrUpdate.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Flujo Datos ECI\InsertOrUpdate.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Flujo Datos ECI\Ordenar"
+              componentClassID="{5B1A3FF5-D366-4D75-AD1F-F19A36FCBEDB}"
+              contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
+              name="Ordenar"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si la transformación Ordenar quita filas con valores de ordenación duplicados."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número máximo de subprocesos que se deben usar para la ordenación."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Flujo Datos ECI\Ordenar.Inputs[Entrada de ordenación]"
+                  name="Entrada de ordenación">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Ordenar.Inputs[Entrada de ordenación].Columns[NAÑO]"
+                      cachedDataType="i4"
+                      cachedName="NAÑO"
+                      lineageId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].Columns[NAÑO]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Ordenar.Inputs[Entrada de ordenación].Columns[NMES]"
+                      cachedDataType="i4"
+                      cachedName="NMES"
+                      lineageId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].Columns[NMES]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Ordenar.Inputs[Entrada de ordenación].Columns[NVAMBITO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NVAMBITO"
+                      lineageId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].Columns[NVAMBITO]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">3</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Ordenar.Inputs[Entrada de ordenación].Columns[NVRAMA]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NVRAMA"
+                      lineageId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].Columns[NVRAMA]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">4</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Ordenar.Inputs[Entrada de ordenación].Columns[FCLIMA_INDUST]"
+                      cachedDataType="r8"
+                      cachedName="FCLIMA_INDUST"
+                      lineageId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].Columns[FCLIMA_INDUST]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Ordenar.Inputs[Entrada de ordenación].Columns[FPROD_ACTUAL]"
+                      cachedDataType="r8"
+                      cachedName="FPROD_ACTUAL"
+                      lineageId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].Columns[FPROD_ACTUAL]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Ordenar.Inputs[Entrada de ordenación].Columns[FPROD_PREVISTA]"
+                      cachedDataType="r8"
+                      cachedName="FPROD_PREVISTA"
+                      lineageId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].Columns[FPROD_PREVISTA]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Flujo Datos ECI\Ordenar.Outputs[Salida de ordenación]"
+                  isSorted="true"
+                  name="Salida de ordenación">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Ordenar.Outputs[Salida de ordenación].Columns[NAÑO]"
+                      dataType="i4"
+                      lineageId="Package\Flujo Datos ECI\Ordenar.Outputs[Salida de ordenación].Columns[NAÑO]"
+                      name="NAÑO"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].Columns[NAÑO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Ordenar.Outputs[Salida de ordenación].Columns[NMES]"
+                      dataType="i4"
+                      lineageId="Package\Flujo Datos ECI\Ordenar.Outputs[Salida de ordenación].Columns[NMES]"
+                      name="NMES"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].Columns[NMES]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Ordenar.Outputs[Salida de ordenación].Columns[NVAMBITO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Flujo Datos ECI\Ordenar.Outputs[Salida de ordenación].Columns[NVAMBITO]"
+                      name="NVAMBITO"
+                      sortKeyPosition="3">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].Columns[NVAMBITO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Ordenar.Outputs[Salida de ordenación].Columns[NVRAMA]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Flujo Datos ECI\Ordenar.Outputs[Salida de ordenación].Columns[NVRAMA]"
+                      name="NVRAMA"
+                      sortKeyPosition="4">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].Columns[NVRAMA]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Ordenar.Outputs[Salida de ordenación].Columns[FCLIMA_INDUST]"
+                      dataType="r8"
+                      lineageId="Package\Flujo Datos ECI\Ordenar.Outputs[Salida de ordenación].Columns[FCLIMA_INDUST]"
+                      name="FCLIMA_INDUST">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].Columns[FCLIMA_INDUST]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Ordenar.Outputs[Salida de ordenación].Columns[FPROD_ACTUAL]"
+                      dataType="r8"
+                      lineageId="Package\Flujo Datos ECI\Ordenar.Outputs[Salida de ordenación].Columns[FPROD_ACTUAL]"
+                      name="FPROD_ACTUAL">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].Columns[FPROD_ACTUAL]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Ordenar.Outputs[Salida de ordenación].Columns[FPROD_PREVISTA]"
+                      dataType="r8"
+                      lineageId="Package\Flujo Datos ECI\Ordenar.Outputs[Salida de ordenación].Columns[FPROD_PREVISTA]"
+                      name="FPROD_PREVISTA">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].Columns[FPROD_PREVISTA]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Flujo Datos ECI\Ordenar Excel"
+              componentClassID="{5B1A3FF5-D366-4D75-AD1F-F19A36FCBEDB}"
+              contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
+              name="Ordenar Excel"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si la transformación Ordenar quita filas con valores de ordenación duplicados."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número máximo de subprocesos que se deben usar para la ordenación."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Flujo Datos ECI\Ordenar Excel.Inputs[Entrada de ordenación]"
+                  name="Entrada de ordenación">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Ordenar Excel.Inputs[Entrada de ordenación].Columns[ANNO_E]"
+                      cachedDataType="i4"
+                      cachedName="ANNO_E"
+                      lineageId="Package\Flujo Datos ECI\Data Conversion.Outputs[Data Conversion Output].Columns[ANNO_E]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Ordenar Excel.Inputs[Entrada de ordenación].Columns[AMBITO_E]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="AMBITO_E"
+                      lineageId="Package\Flujo Datos ECI\Data Conversion.Outputs[Data Conversion Output].Columns[AMBITO_E]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">3</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Ordenar Excel.Inputs[Entrada de ordenación].Columns[RAMA_E]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="RAMA_E"
+                      lineageId="Package\Flujo Datos ECI\Data Conversion.Outputs[Data Conversion Output].Columns[RAMA_E]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">4</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Ordenar Excel.Inputs[Entrada de ordenación].Columns[CLIMA _INDUSTRIAL_E]"
+                      cachedDataType="r8"
+                      cachedName="CLIMA _INDUSTRIAL_E"
+                      lineageId="Package\Flujo Datos ECI\Data Conversion.Outputs[Data Conversion Output].Columns[CLIMA _INDUSTRIAL_E]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Ordenar Excel.Inputs[Entrada de ordenación].Columns[PROD_ACTUAL_E]"
+                      cachedDataType="r8"
+                      cachedName="PROD_ACTUAL_E"
+                      lineageId="Package\Flujo Datos ECI\Data Conversion.Outputs[Data Conversion Output].Columns[PROD_ACTUAL_E]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Ordenar Excel.Inputs[Entrada de ordenación].Columns[PROD_PREVISTA_E]"
+                      cachedDataType="r8"
+                      cachedName="PROD_PREVISTA_E"
+                      lineageId="Package\Flujo Datos ECI\Data Conversion.Outputs[Data Conversion Output].Columns[PROD_PREVISTA_E]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Ordenar Excel.Inputs[Entrada de ordenación].Columns[MES_E]"
+                      cachedDataType="i4"
+                      cachedName="MES_E"
+                      lineageId="Package\Flujo Datos ECI\Data Conversion.Outputs[Data Conversion Output].Columns[MES_E]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Flujo Datos ECI\Ordenar Excel.Outputs[Salida de ordenación]"
+                  isSorted="true"
+                  name="Salida de ordenación">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Ordenar Excel.Outputs[Salida de ordenación].Columns[ANNO_E]"
+                      dataType="i4"
+                      lineageId="Package\Flujo Datos ECI\Ordenar Excel.Outputs[Salida de ordenación].Columns[ANNO_E]"
+                      name="ANNO_E"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Flujo Datos ECI\Data Conversion.Outputs[Data Conversion Output].Columns[ANNO_E]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Ordenar Excel.Outputs[Salida de ordenación].Columns[AMBITO_E]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Flujo Datos ECI\Ordenar Excel.Outputs[Salida de ordenación].Columns[AMBITO_E]"
+                      name="AMBITO_E"
+                      sortKeyPosition="3">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Flujo Datos ECI\Data Conversion.Outputs[Data Conversion Output].Columns[AMBITO_E]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Ordenar Excel.Outputs[Salida de ordenación].Columns[RAMA_E]"
+                      dataType="wstr"
+                      length="150"
+                      lineageId="Package\Flujo Datos ECI\Ordenar Excel.Outputs[Salida de ordenación].Columns[RAMA_E]"
+                      name="RAMA_E"
+                      sortKeyPosition="4">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Flujo Datos ECI\Data Conversion.Outputs[Data Conversion Output].Columns[RAMA_E]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Ordenar Excel.Outputs[Salida de ordenación].Columns[CLIMA _INDUSTRIAL_E]"
+                      dataType="r8"
+                      lineageId="Package\Flujo Datos ECI\Ordenar Excel.Outputs[Salida de ordenación].Columns[CLIMA _INDUSTRIAL_E]"
+                      name="CLIMA _INDUSTRIAL_E">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Flujo Datos ECI\Data Conversion.Outputs[Data Conversion Output].Columns[CLIMA _INDUSTRIAL_E]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Ordenar Excel.Outputs[Salida de ordenación].Columns[PROD_ACTUAL_E]"
+                      dataType="r8"
+                      lineageId="Package\Flujo Datos ECI\Ordenar Excel.Outputs[Salida de ordenación].Columns[PROD_ACTUAL_E]"
+                      name="PROD_ACTUAL_E">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Flujo Datos ECI\Data Conversion.Outputs[Data Conversion Output].Columns[PROD_ACTUAL_E]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Ordenar Excel.Outputs[Salida de ordenación].Columns[PROD_PREVISTA_E]"
+                      dataType="r8"
+                      lineageId="Package\Flujo Datos ECI\Ordenar Excel.Outputs[Salida de ordenación].Columns[PROD_PREVISTA_E]"
+                      name="PROD_PREVISTA_E">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Flujo Datos ECI\Data Conversion.Outputs[Data Conversion Output].Columns[PROD_PREVISTA_E]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Ordenar Excel.Outputs[Salida de ordenación].Columns[MES_E]"
+                      dataType="i4"
+                      lineageId="Package\Flujo Datos ECI\Ordenar Excel.Outputs[Salida de ordenación].Columns[MES_E]"
+                      name="MES_E"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Flujo Datos ECI\Data Conversion.Outputs[Data Conversion Output].Columns[MES_E]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Flujo Datos ECI\Origen ECI"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="Origen de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;7"
+              description="Origen de OLE DB"
+              name="Origen ECI"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[ECI].[TECID]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Asignaciones entre los parámetros del comando SQL y las variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Flujo Datos ECI\Origen ECI.Connections[OleDbConnection]"
+                  connectionManagerID="{4006B7E9-9DFB-4184-862D-B28541684AB4}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DWH_Economicos]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB]"
+                  name="Salida de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].Columns[NAÑO]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].ExternalColumns[NAÑO]"
+                      lineageId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].Columns[NAÑO]"
+                      name="NAÑO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].Columns[NMES]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].ExternalColumns[NMES]"
+                      lineageId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].Columns[NMES]"
+                      name="NMES"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].Columns[NVAMBITO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].ExternalColumns[NVAMBITO]"
+                      length="255"
+                      lineageId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].Columns[NVAMBITO]"
+                      name="NVAMBITO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].Columns[NVRAMA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].ExternalColumns[NVRAMA]"
+                      length="255"
+                      lineageId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].Columns[NVRAMA]"
+                      name="NVRAMA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].Columns[FCLIMA_INDUST]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].ExternalColumns[FCLIMA_INDUST]"
+                      lineageId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].Columns[FCLIMA_INDUST]"
+                      name="FCLIMA_INDUST"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].Columns[FPROD_ACTUAL]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].ExternalColumns[FPROD_ACTUAL]"
+                      lineageId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].Columns[FPROD_ACTUAL]"
+                      name="FPROD_ACTUAL"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].Columns[FPROD_PREVISTA]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].ExternalColumns[FPROD_PREVISTA]"
+                      lineageId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].Columns[FPROD_PREVISTA]"
+                      name="FPROD_PREVISTA"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].ExternalColumns[NAÑO]"
+                      dataType="i4"
+                      name="NAÑO" />
+                    <externalMetadataColumn
+                      refId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].ExternalColumns[NMES]"
+                      dataType="i4"
+                      name="NMES" />
+                    <externalMetadataColumn
+                      refId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].ExternalColumns[NVAMBITO]"
+                      dataType="wstr"
+                      length="255"
+                      name="NVAMBITO" />
+                    <externalMetadataColumn
+                      refId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].ExternalColumns[NVRAMA]"
+                      dataType="wstr"
+                      length="255"
+                      name="NVRAMA" />
+                    <externalMetadataColumn
+                      refId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].ExternalColumns[FCLIMA_INDUST]"
+                      dataType="r8"
+                      name="FCLIMA_INDUST" />
+                    <externalMetadataColumn
+                      refId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].ExternalColumns[FPROD_ACTUAL]"
+                      dataType="r8"
+                      name="FPROD_ACTUAL" />
+                    <externalMetadataColumn
+                      refId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB].ExternalColumns[FPROD_PREVISTA]"
+                      dataType="r8"
+                      name="FPROD_PREVISTA" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de error de origen de OLE DB]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de error de origen de OLE DB].Columns[NAÑO]"
+                      dataType="i4"
+                      lineageId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de error de origen de OLE DB].Columns[NAÑO]"
+                      name="NAÑO" />
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de error de origen de OLE DB].Columns[NMES]"
+                      dataType="i4"
+                      lineageId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de error de origen de OLE DB].Columns[NMES]"
+                      name="NMES" />
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de error de origen de OLE DB].Columns[NVAMBITO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de error de origen de OLE DB].Columns[NVAMBITO]"
+                      name="NVAMBITO" />
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de error de origen de OLE DB].Columns[NVRAMA]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de error de origen de OLE DB].Columns[NVRAMA]"
+                      name="NVRAMA" />
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de error de origen de OLE DB].Columns[FCLIMA_INDUST]"
+                      dataType="r8"
+                      lineageId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de error de origen de OLE DB].Columns[FCLIMA_INDUST]"
+                      name="FCLIMA_INDUST" />
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de error de origen de OLE DB].Columns[FPROD_ACTUAL]"
+                      dataType="r8"
+                      lineageId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de error de origen de OLE DB].Columns[FPROD_ACTUAL]"
+                      name="FPROD_ACTUAL" />
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de error de origen de OLE DB].Columns[FPROD_PREVISTA]"
+                      dataType="r8"
+                      lineageId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de error de origen de OLE DB].Columns[FPROD_PREVISTA]"
+                      name="FPROD_PREVISTA" />
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Flujo Datos ECI\Union datos"
+              componentClassID="{14D43A4F-D7BD-489D-829E-6DE35750CFE4}"
+              contactInfo="Combinación de mezcla;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Combina dos flujos de datos ordenados en uno solo mediante la combinación FULL, LEFT o INNER. Se recomienda esta transformación cuando se pueden ordenar los flujos de datos en sus orígenes."
+              name="Union datos"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el tipo de combinación que se debe realizar."
+                  name="JoinType"
+                  typeConverter="JoinType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número de columnas de la clave de ordenación."
+                  name="NumKeyColumns">4</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si los valores NULL se tratan como valores iguales."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indica la cantidad máxima solicitada de búferes por entrada antes del bloqueo."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Flujo Datos ECI\Union datos.Inputs[Entrada izquierda de combinación de mezcla]"
+                  hasSideEffects="true"
+                  name="Entrada izquierda de combinación de mezcla">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Union datos.Inputs[Entrada izquierda de combinación de mezcla].Columns[ANNO_E]"
+                      cachedDataType="i4"
+                      cachedName="ANNO_E"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Flujo Datos ECI\Ordenar Excel.Outputs[Salida de ordenación].Columns[ANNO_E]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Union datos.Inputs[Entrada izquierda de combinación de mezcla].Columns[AMBITO_E]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="AMBITO_E"
+                      cachedSortKeyPosition="3"
+                      lineageId="Package\Flujo Datos ECI\Ordenar Excel.Outputs[Salida de ordenación].Columns[AMBITO_E]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Union datos.Inputs[Entrada izquierda de combinación de mezcla].Columns[RAMA_E]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="RAMA_E"
+                      cachedSortKeyPosition="4"
+                      lineageId="Package\Flujo Datos ECI\Ordenar Excel.Outputs[Salida de ordenación].Columns[RAMA_E]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Union datos.Inputs[Entrada izquierda de combinación de mezcla].Columns[MES_E]"
+                      cachedDataType="i4"
+                      cachedName="MES_E"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Flujo Datos ECI\Ordenar Excel.Outputs[Salida de ordenación].Columns[MES_E]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Union datos.Inputs[Entrada izquierda de combinación de mezcla].Columns[CLIMA _INDUSTRIAL_E]"
+                      cachedDataType="r8"
+                      cachedName="CLIMA _INDUSTRIAL_E"
+                      lineageId="Package\Flujo Datos ECI\Ordenar Excel.Outputs[Salida de ordenación].Columns[CLIMA _INDUSTRIAL_E]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Union datos.Inputs[Entrada izquierda de combinación de mezcla].Columns[PROD_ACTUAL_E]"
+                      cachedDataType="r8"
+                      cachedName="PROD_ACTUAL_E"
+                      lineageId="Package\Flujo Datos ECI\Ordenar Excel.Outputs[Salida de ordenación].Columns[PROD_ACTUAL_E]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Union datos.Inputs[Entrada izquierda de combinación de mezcla].Columns[PROD_PREVISTA_E]"
+                      cachedDataType="r8"
+                      cachedName="PROD_PREVISTA_E"
+                      lineageId="Package\Flujo Datos ECI\Ordenar Excel.Outputs[Salida de ordenación].Columns[PROD_PREVISTA_E]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Flujo Datos ECI\Union datos.Inputs[Entrada derecha de combinación de mezcla]"
+                  hasSideEffects="true"
+                  name="Entrada derecha de combinación de mezcla">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Union datos.Inputs[Entrada derecha de combinación de mezcla].Columns[NAÑO]"
+                      cachedDataType="i4"
+                      cachedName="NAÑO"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Flujo Datos ECI\Ordenar.Outputs[Salida de ordenación].Columns[NAÑO]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Union datos.Inputs[Entrada derecha de combinación de mezcla].Columns[NMES]"
+                      cachedDataType="i4"
+                      cachedName="NMES"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Flujo Datos ECI\Ordenar.Outputs[Salida de ordenación].Columns[NMES]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Union datos.Inputs[Entrada derecha de combinación de mezcla].Columns[NVAMBITO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NVAMBITO"
+                      cachedSortKeyPosition="3"
+                      lineageId="Package\Flujo Datos ECI\Ordenar.Outputs[Salida de ordenación].Columns[NVAMBITO]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Union datos.Inputs[Entrada derecha de combinación de mezcla].Columns[NVRAMA]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NVRAMA"
+                      cachedSortKeyPosition="4"
+                      lineageId="Package\Flujo Datos ECI\Ordenar.Outputs[Salida de ordenación].Columns[NVRAMA]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Union datos.Inputs[Entrada derecha de combinación de mezcla].Columns[FCLIMA_INDUST]"
+                      cachedDataType="r8"
+                      cachedName="FCLIMA_INDUST"
+                      lineageId="Package\Flujo Datos ECI\Ordenar.Outputs[Salida de ordenación].Columns[FCLIMA_INDUST]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Union datos.Inputs[Entrada derecha de combinación de mezcla].Columns[FPROD_ACTUAL]"
+                      cachedDataType="r8"
+                      cachedName="FPROD_ACTUAL"
+                      lineageId="Package\Flujo Datos ECI\Ordenar.Outputs[Salida de ordenación].Columns[FPROD_ACTUAL]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\Union datos.Inputs[Entrada derecha de combinación de mezcla].Columns[FPROD_PREVISTA]"
+                      cachedDataType="r8"
+                      cachedName="FPROD_PREVISTA"
+                      lineageId="Package\Flujo Datos ECI\Ordenar.Outputs[Salida de ordenación].Columns[FPROD_PREVISTA]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla]"
+                  isSorted="true"
+                  name="Salida de combinación de mezcla">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[ANNO_E]"
+                      dataType="i4"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[ANNO_E]"
+                      name="ANNO_E"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Flujo Datos ECI\Union datos.Inputs[Entrada izquierda de combinación de mezcla].Columns[ANNO_E]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[AMBITO_E]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[AMBITO_E]"
+                      name="AMBITO_E"
+                      sortKeyPosition="3">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Flujo Datos ECI\Union datos.Inputs[Entrada izquierda de combinación de mezcla].Columns[AMBITO_E]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[RAMA_E]"
+                      dataType="wstr"
+                      length="150"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[RAMA_E]"
+                      name="RAMA_E"
+                      sortKeyPosition="4">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Flujo Datos ECI\Union datos.Inputs[Entrada izquierda de combinación de mezcla].Columns[RAMA_E]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[CLIMA _INDUSTRIAL_E]"
+                      dataType="r8"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[CLIMA _INDUSTRIAL_E]"
+                      name="CLIMA _INDUSTRIAL_E">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Flujo Datos ECI\Union datos.Inputs[Entrada izquierda de combinación de mezcla].Columns[CLIMA _INDUSTRIAL_E]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[PROD_ACTUAL_E]"
+                      dataType="r8"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[PROD_ACTUAL_E]"
+                      name="PROD_ACTUAL_E">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Flujo Datos ECI\Union datos.Inputs[Entrada izquierda de combinación de mezcla].Columns[PROD_ACTUAL_E]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[PROD_PREVISTA_E]"
+                      dataType="r8"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[PROD_PREVISTA_E]"
+                      name="PROD_PREVISTA_E">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Flujo Datos ECI\Union datos.Inputs[Entrada izquierda de combinación de mezcla].Columns[PROD_PREVISTA_E]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[MES_E]"
+                      dataType="i4"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[MES_E]"
+                      name="MES_E"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Flujo Datos ECI\Union datos.Inputs[Entrada izquierda de combinación de mezcla].Columns[MES_E]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[NAÑO]"
+                      dataType="i4"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[NAÑO]"
+                      name="NAÑO">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Flujo Datos ECI\Union datos.Inputs[Entrada derecha de combinación de mezcla].Columns[NAÑO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[NMES]"
+                      dataType="i4"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[NMES]"
+                      name="NMES">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Flujo Datos ECI\Union datos.Inputs[Entrada derecha de combinación de mezcla].Columns[NMES]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[NVAMBITO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[NVAMBITO]"
+                      name="NVAMBITO">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Flujo Datos ECI\Union datos.Inputs[Entrada derecha de combinación de mezcla].Columns[NVAMBITO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[NVRAMA]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[NVRAMA]"
+                      name="NVRAMA">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Flujo Datos ECI\Union datos.Inputs[Entrada derecha de combinación de mezcla].Columns[NVRAMA]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[FCLIMA_INDUST]"
+                      dataType="r8"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[FCLIMA_INDUST]"
+                      name="FCLIMA_INDUST">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Flujo Datos ECI\Union datos.Inputs[Entrada derecha de combinación de mezcla].Columns[FCLIMA_INDUST]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[FPROD_ACTUAL]"
+                      dataType="r8"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[FPROD_ACTUAL]"
+                      name="FPROD_ACTUAL">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Flujo Datos ECI\Union datos.Inputs[Entrada derecha de combinación de mezcla].Columns[FPROD_ACTUAL]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[FPROD_PREVISTA]"
+                      dataType="r8"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[FPROD_PREVISTA]"
+                      name="FPROD_PREVISTA">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Flujo Datos ECI\Union datos.Inputs[Entrada derecha de combinación de mezcla].Columns[FPROD_PREVISTA]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Flujo Datos ECI\UpdateOrNull"
+              componentClassID="{7F88F654-4E20-4D14-84F4-AF9C925D3087}"
+              contactInfo="División condicional;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Enruta filas de datos a diferentes salidas según el contenido de los datos. Se usan condiciones (expresiones de SSIS) para especificar las filas que se van a enrutar. Por ejemplo, se usa para separar los registros que deben limpiarse de los registros listos para ser cargados o para enrutar solamente un subconjunto de registros."
+              name="UpdateOrNull"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Flujo Datos ECI\UpdateOrNull.Inputs[Entrada de división condicional]"
+                  description="Entrada en la transformación División condicional"
+                  name="Entrada de división condicional">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\UpdateOrNull.Inputs[Entrada de división condicional].Columns[ANNO_E]"
+                      cachedDataType="i4"
+                      cachedName="ANNO_E"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[ANNO_E]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\UpdateOrNull.Inputs[Entrada de división condicional].Columns[AMBITO_E]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="AMBITO_E"
+                      cachedSortKeyPosition="3"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[AMBITO_E]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\UpdateOrNull.Inputs[Entrada de división condicional].Columns[RAMA_E]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="RAMA_E"
+                      cachedSortKeyPosition="4"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[RAMA_E]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\UpdateOrNull.Inputs[Entrada de división condicional].Columns[CLIMA _INDUSTRIAL_E]"
+                      cachedDataType="r8"
+                      cachedName="CLIMA _INDUSTRIAL_E"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[CLIMA _INDUSTRIAL_E]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\UpdateOrNull.Inputs[Entrada de división condicional].Columns[PROD_ACTUAL_E]"
+                      cachedDataType="r8"
+                      cachedName="PROD_ACTUAL_E"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[PROD_ACTUAL_E]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\UpdateOrNull.Inputs[Entrada de división condicional].Columns[PROD_PREVISTA_E]"
+                      cachedDataType="r8"
+                      cachedName="PROD_PREVISTA_E"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[PROD_PREVISTA_E]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\UpdateOrNull.Inputs[Entrada de división condicional].Columns[NAÑO]"
+                      cachedDataType="i4"
+                      cachedName="NAÑO"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[NAÑO]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\UpdateOrNull.Inputs[Entrada de división condicional].Columns[NMES]"
+                      cachedDataType="i4"
+                      cachedName="NMES"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[NMES]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\UpdateOrNull.Inputs[Entrada de división condicional].Columns[NVAMBITO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NVAMBITO"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[NVAMBITO]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\UpdateOrNull.Inputs[Entrada de división condicional].Columns[NVRAMA]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NVRAMA"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[NVRAMA]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\UpdateOrNull.Inputs[Entrada de división condicional].Columns[FCLIMA_INDUST]"
+                      cachedDataType="r8"
+                      cachedName="FCLIMA_INDUST"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[FCLIMA_INDUST]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\UpdateOrNull.Inputs[Entrada de división condicional].Columns[FPROD_ACTUAL]"
+                      cachedDataType="r8"
+                      cachedName="FPROD_ACTUAL"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[FPROD_ACTUAL]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\UpdateOrNull.Inputs[Entrada de división condicional].Columns[FPROD_PREVISTA]"
+                      cachedDataType="r8"
+                      cachedName="FPROD_PREVISTA"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[FPROD_PREVISTA]" />
+                    <inputColumn
+                      refId="Package\Flujo Datos ECI\UpdateOrNull.Inputs[Entrada de división condicional].Columns[MES_E]"
+                      cachedDataType="i4"
+                      cachedName="MES_E"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[MES_E]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Flujo Datos ECI\UpdateOrNull.Outputs[Update]"
+                  description="Salida 1 de la transformación División condicional"
+                  errorOrTruncationOperation="Cálculo"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Update"
+                  synchronousInputId="Package\Flujo Datos ECI\UpdateOrNull.Inputs[Entrada de división condicional]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la expresión. Esta versión de expresión usa identificadores de linaje en lugar de nombres de columna."
+                      name="Expression">(#{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[ANNO_E]} == #{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[NAÑO]}) &amp;&amp; (#{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[MES_E]} == #{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[NMES]}) &amp;&amp; (#{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[AMBITO_E]} == #{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[NVAMBITO]}) &amp;&amp; (#{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[RAMA_E]} == #{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[NVRAMA]}) &amp;&amp; ((([ISNULL](#{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[CLIMA _INDUSTRIAL_E]}) ? 0 : #{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[CLIMA _INDUSTRIAL_E]}) != ([ISNULL](#{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[FCLIMA_INDUST]}) ? 0 : #{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[FCLIMA_INDUST]})) || (([ISNULL](#{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[PROD_ACTUAL_E]}) ? 0 : #{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[PROD_ACTUAL_E]}) != ([ISNULL](#{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[FPROD_ACTUAL]}) ? 0 : #{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[FPROD_ACTUAL]})) || (([ISNULL](#{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[PROD_PREVISTA_E]}) ? 0 : #{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[PROD_PREVISTA_E]}) != ([ISNULL](#{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[FPROD_PREVISTA]}) ? 0 : #{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[FPROD_PREVISTA]})))</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la versión descriptiva de la expresión. Esta versión de expresión usa nombres de columna."
+                      expressionType="Notify"
+                      name="FriendlyExpression">(ANNO_E == [NAÑO]) &amp;&amp; (MES_E == NMES) &amp;&amp; (AMBITO_E == NVAMBITO) &amp;&amp; (RAMA_E == NVRAMA) &amp;&amp; (((ISNULL([CLIMA _INDUSTRIAL_E]) ? 0 : [CLIMA _INDUSTRIAL_E]) != (ISNULL(FCLIMA_INDUST) ? 0 : FCLIMA_INDUST)) || ((ISNULL(PROD_ACTUAL_E) ? 0 : PROD_ACTUAL_E) != (ISNULL(FPROD_ACTUAL) ? 0 : FPROD_ACTUAL)) || ((ISNULL(PROD_PREVISTA_E) ? 0 : PROD_PREVISTA_E) != (ISNULL(FPROD_PREVISTA) ? 0 : FPROD_PREVISTA)))</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la posición de la condición en la lista de condiciones que evalúa la transformación. El orden de evaluación es del menor al mayor valor."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Flujo Datos ECI\UpdateOrNull.Outputs[Null]"
+                  description="Salida 2 de la transformación División condicional"
+                  errorOrTruncationOperation="Cálculo"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Null"
+                  synchronousInputId="Package\Flujo Datos ECI\UpdateOrNull.Inputs[Entrada de división condicional]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la expresión. Esta versión de expresión usa identificadores de linaje en lugar de nombres de columna."
+                      name="Expression">(#{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[ANNO_E]} == #{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[NAÑO]}) &amp;&amp; (#{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[MES_E]} == #{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[NMES]}) &amp;&amp; (#{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[AMBITO_E]} == #{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[NVAMBITO]}) &amp;&amp; (#{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[RAMA_E]} == #{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[NVRAMA]}) &amp;&amp; ((([ISNULL](#{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[CLIMA _INDUSTRIAL_E]}) ? 0 : #{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[CLIMA _INDUSTRIAL_E]}) == ([ISNULL](#{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[FCLIMA_INDUST]}) ? 0 : #{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[FCLIMA_INDUST]})) &amp;&amp; (([ISNULL](#{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[PROD_ACTUAL_E]}) ? 0 : #{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[PROD_ACTUAL_E]}) == ([ISNULL](#{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[FPROD_ACTUAL]}) ? 0 : #{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[FPROD_ACTUAL]})) &amp;&amp; (([ISNULL](#{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[PROD_PREVISTA_E]}) ? 0 : #{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[PROD_PREVISTA_E]}) == ([ISNULL](#{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[FPROD_PREVISTA]}) ? 0 : #{Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla].Columns[FPROD_PREVISTA]})))</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la versión descriptiva de la expresión. Esta versión de expresión usa nombres de columna."
+                      expressionType="Notify"
+                      name="FriendlyExpression">(ANNO_E == [NAÑO]) &amp;&amp; (MES_E == NMES) &amp;&amp; (AMBITO_E == NVAMBITO) &amp;&amp; (RAMA_E == NVRAMA) &amp;&amp; (((ISNULL([CLIMA _INDUSTRIAL_E]) ? 0 : [CLIMA _INDUSTRIAL_E]) == (ISNULL(FCLIMA_INDUST) ? 0 : FCLIMA_INDUST)) &amp;&amp; ((ISNULL(PROD_ACTUAL_E) ? 0 : PROD_ACTUAL_E) == (ISNULL(FPROD_ACTUAL) ? 0 : FPROD_ACTUAL)) &amp;&amp; ((ISNULL(PROD_PREVISTA_E) ? 0 : PROD_PREVISTA_E) == (ISNULL(FPROD_PREVISTA) ? 0 : FPROD_PREVISTA)))</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la posición de la condición en la lista de condiciones que evalúa la transformación. El orden de evaluación es del menor al mayor valor."
+                      name="EvaluationOrder">1</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Flujo Datos ECI\UpdateOrNull.Outputs[Salida predeterminada de división condicional]"
+                  description="Salida predeterminada de la transformación División condicional"
+                  exclusionGroup="1"
+                  name="Salida predeterminada de división condicional"
+                  synchronousInputId="Package\Flujo Datos ECI\UpdateOrNull.Inputs[Entrada de división condicional]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Flujo Datos ECI\UpdateOrNull.Outputs[Salida de error de división condicional]"
+                  description="Salida de error de la transformación División condicional"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de división condicional"
+                  synchronousInputId="Package\Flujo Datos ECI\UpdateOrNull.Inputs[Entrada de división condicional]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\UpdateOrNull.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Flujo Datos ECI\UpdateOrNull.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Flujo Datos ECI\UpdateOrNull.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Flujo Datos ECI\UpdateOrNull.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Flujo Datos ECI.Paths[Data Conversion Output]"
+              endId="Package\Flujo Datos ECI\Ordenar Excel.Inputs[Entrada de ordenación]"
+              name="Data Conversion Output"
+              startId="Package\Flujo Datos ECI\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Flujo Datos ECI.Paths[Excel Source Output]"
+              endId="Package\Flujo Datos ECI\Data Conversion.Inputs[Data Conversion Input]"
+              name="Excel Source Output"
+              startId="Package\Flujo Datos ECI\Excel ECI.Outputs[Excel Source Output]" />
+            <path
+              refId="Package\Flujo Datos ECI.Paths[Insert]"
+              endId="Package\Flujo Datos ECI\Insertar ECI.Inputs[OLE DB Destination Input]"
+              name="Insert"
+              startId="Package\Flujo Datos ECI\InsertOrUpdate.Outputs[Insert]" />
+            <path
+              refId="Package\Flujo Datos ECI.Paths[OLE DB Destination Error Output]"
+              endId="Package\Flujo Datos ECI\Error.Inputs[Excel Destination Input]"
+              name="OLE DB Destination Error Output"
+              startId="Package\Flujo Datos ECI\Insertar ECI.Outputs[OLE DB Destination Error Output]" />
+            <path
+              refId="Package\Flujo Datos ECI.Paths[Salida de combinación de mezcla]"
+              endId="Package\Flujo Datos ECI\InsertOrUpdate.Inputs[Entrada de división condicional]"
+              name="Salida de combinación de mezcla"
+              startId="Package\Flujo Datos ECI\Union datos.Outputs[Salida de combinación de mezcla]" />
+            <path
+              refId="Package\Flujo Datos ECI.Paths[Salida de ordenación]"
+              endId="Package\Flujo Datos ECI\Union datos.Inputs[Entrada izquierda de combinación de mezcla]"
+              name="Salida de ordenación"
+              startId="Package\Flujo Datos ECI\Ordenar Excel.Outputs[Salida de ordenación]" />
+            <path
+              refId="Package\Flujo Datos ECI.Paths[Salida de ordenación1]"
+              endId="Package\Flujo Datos ECI\Union datos.Inputs[Entrada derecha de combinación de mezcla]"
+              name="Salida de ordenación"
+              startId="Package\Flujo Datos ECI\Ordenar.Outputs[Salida de ordenación]" />
+            <path
+              refId="Package\Flujo Datos ECI.Paths[Salida de origen de OLE DB]"
+              endId="Package\Flujo Datos ECI\Ordenar.Inputs[Entrada de ordenación]"
+              name="Salida de origen de OLE DB"
+              startId="Package\Flujo Datos ECI\Origen ECI.Outputs[Salida de origen de OLE DB]" />
+            <path
+              refId="Package\Flujo Datos ECI.Paths[Update]"
+              endId="Package\Flujo Datos ECI\UpdateOrNull.Inputs[Entrada de división condicional]"
+              name="Update"
+              startId="Package\Flujo Datos ECI\InsertOrUpdate.Outputs[Update]" />
+            <path
+              refId="Package\Flujo Datos ECI.Paths[Update1]"
+              endId="Package\Flujo Datos ECI\Comando de OLE DB.Inputs[Entrada de comando de OLE DB]"
+              name="Update"
+              startId="Package\Flujo Datos ECI\UpdateOrNull.Outputs[Update]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{9FE32FBB-E8DD-4BD9-9057-BEC5052DDCBC}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{AEF35240-DD8E-4A18-BCA0-088C1E30B22C}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables />
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="sql11">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Flujo Datos ECI"
+          TopLeft="172,147" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Flujo Datos ECI">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="102,42"
+          Id="Package\Flujo Datos ECI\Error"
+          TopLeft="42.25,624" />
+        <NodeLayout
+          Size="123,42"
+          Id="Package\Flujo Datos ECI\Excel ECI"
+          TopLeft="184,2" />
+        <NodeLayout
+          Size="142,42"
+          Id="Package\Flujo Datos ECI\UpdateOrNull"
+          TopLeft="452,499" />
+        <NodeLayout
+          Size="136,42"
+          Id="Package\Flujo Datos ECI\Insertar ECI"
+          TopLeft="104.25,535" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Flujo Datos ECI\InsertOrUpdate"
+          TopLeft="176,448" />
+        <NodeLayout
+          Size="130,42"
+          Id="Package\Flujo Datos ECI\Origen ECI"
+          TopLeft="462,27" />
+        <NodeLayout
+          Size="145,42"
+          Id="Package\Flujo Datos ECI\Ordenar Excel"
+          TopLeft="85.25,279" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Flujo Datos ECI\Data Conversion"
+          TopLeft="103.5,172.25" />
+        <NodeLayout
+          Size="177,42"
+          Id="Package\Flujo Datos ECI\Comando de OLE DB"
+          TopLeft="508,596" />
+        <NodeLayout
+          Size="117,42"
+          Id="Package\Flujo Datos ECI\Ordenar"
+          TopLeft="486,145.25" />
+        <NodeLayout
+          Size="135,42"
+          Id="Package\Flujo Datos ECI\Union datos"
+          TopLeft="304,329" />
+        <EdgeLayout
+          Id="Package\Flujo Datos ECI.Paths[Salida de origen de OLE DB]"
+          TopLeft="527,69">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="17.5,76.25"
+              Start="0,0"
+              End="17.5,68.75">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.125" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,34.125"
+                    Point2="0,38.125"
+                    Point3="4,38.125" />
+                  <mssgle:LineSegment
+                    End="13.5,38.125" />
+                  <mssgle:CubicBezierSegment
+                    Point1="13.5,38.125"
+                    Point2="17.5,38.125"
+                    Point3="17.5,42.125" />
+                  <mssgle:LineSegment
+                    End="17.5,68.75" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Flujo Datos ECI.Paths[Salida de ordenación1]"
+          TopLeft="544.5,187.25">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-173,141.75"
+              Start="0,0"
+              End="-173,134.25">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,66.875" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,66.875"
+                    Point2="0,70.875"
+                    Point3="-4,70.875" />
+                  <mssgle:LineSegment
+                    End="-169,70.875" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-169,70.875"
+                    Point2="-173,70.875"
+                    Point3="-173,74.875" />
+                  <mssgle:LineSegment
+                    End="-173,134.25" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Flujo Datos ECI.Paths[Salida de ordenación]"
+          TopLeft="230.25,300">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="73.75,50"
+              Start="0,0"
+              End="66.25,50">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="32.875,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="32.875,0"
+                    Point2="36.875,0"
+                    Point3="36.875,4" />
+                  <mssgle:LineSegment
+                    End="36.875,46" />
+                  <mssgle:CubicBezierSegment
+                    Point1="36.875,46"
+                    Point2="36.875,50"
+                    Point3="40.875,50" />
+                  <mssgle:LineSegment
+                    End="66.25,50" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Flujo Datos ECI.Paths[Salida de combinación de mezcla]"
+          TopLeft="371.5,371">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-119.5,77"
+              Start="0,0"
+              End="-119.5,69.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,34.5"
+                    Point2="0,38.5"
+                    Point3="-4,38.5" />
+                  <mssgle:LineSegment
+                    End="-115.5,38.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-115.5,38.5"
+                    Point2="-119.5,38.5"
+                    Point3="-119.5,42.5" />
+                  <mssgle:LineSegment
+                    End="-119.5,69.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Flujo Datos ECI.Paths[OLE DB Destination Error Output]"
+          TopLeft="172.25,577">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-79,47"
+              Start="0,0"
+              End="-79,39.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.5"
+                    Point2="0,23.5"
+                    Point3="-4,23.5" />
+                  <mssgle:LineSegment
+                    End="-75,23.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-75,23.5"
+                    Point2="-79,23.5"
+                    Point3="-79,27.5" />
+                  <mssgle:LineSegment
+                    End="-79,39.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-112.70890625,28.5,146.4178125,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Flujo Datos ECI.Paths[Insert]"
+          TopLeft="252,490">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-79.75,45"
+              Start="0,0"
+              End="-79.75,37.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.5"
+                    Point2="0,22.5"
+                    Point3="-4,22.5" />
+                  <mssgle:LineSegment
+                    End="-75.75,22.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-75.75,22.5"
+                    Point2="-79.75,22.5"
+                    Point3="-79.75,26.5" />
+                  <mssgle:LineSegment
+                    End="-79.75,37.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-53.62798828125,27.5,27.5059765625,9.40234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Flujo Datos ECI.Paths[Excel Source Output]"
+          TopLeft="245.5,44">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-64,128.25"
+              Start="0,0"
+              End="-64,120.75">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,60.125" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,60.125"
+                    Point2="0,64.125"
+                    Point3="-4,64.125" />
+                  <mssgle:LineSegment
+                    End="-60,64.125" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-60,64.125"
+                    Point2="-64,64.125"
+                    Point3="-64,68.125" />
+                  <mssgle:LineSegment
+                    End="-64,120.75" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Flujo Datos ECI.Paths[Data Conversion Output]"
+          TopLeft="181.5,214.25">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-23.75,64.75"
+              Start="0,0"
+              End="-23.75,57.25">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.375" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.375"
+                    Point2="0,32.375"
+                    Point3="-4,32.375" />
+                  <mssgle:LineSegment
+                    End="-19.75,32.375" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-19.75,32.375"
+                    Point2="-23.75,32.375"
+                    Point3="-23.75,36.375" />
+                  <mssgle:LineSegment
+                    End="-23.75,57.25" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Flujo Datos ECI.Paths[Update1]"
+          TopLeft="523,541">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="73.5,55"
+              Start="0,0"
+              End="73.5,47.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.5"
+                    Point2="0,27.5"
+                    Point3="4,27.5" />
+                  <mssgle:LineSegment
+                    End="69.5,27.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="69.5,27.5"
+                    Point2="73.5,27.5"
+                    Point3="73.5,31.5" />
+                  <mssgle:LineSegment
+                    End="73.5,47.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="20.46970703125,32.5,32.5605859375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Flujo Datos ECI.Paths[Update]"
+          TopLeft="328,469">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="124,51"
+              Start="0,0"
+              End="116.5,51">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="58,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="58,0"
+                    Point2="62,0"
+                    Point3="62,4" />
+                  <mssgle:LineSegment
+                    End="62,47" />
+                  <mssgle:CubicBezierSegment
+                    Point1="62,47"
+                    Point2="62,51"
+                    Point3="66,51" />
+                  <mssgle:LineSegment
+                    End="116.5,51" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="45.71970703125,-17.609375,32.5605859375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Flujo Datos ECI\Error">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Flujo Datos ECI\Excel ECI">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Flujo Datos ECI\Insertar ECI">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Flujo Datos ECI\Origen ECI">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,2805 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/18/2018 3:15:50 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DESKTOP-JEJ8I8L"
+  DTS:CreatorName="DESKTOP-JEJ8I8L\usuario"
+  DTS:DTSID="{D2546086-407E-4A86-BAA1-F2092AA27786}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.6020.0"
+  DTS:LocaleID="3082"
+  DTS:ObjectName="POND_GRUP"
+  DTS:PackageType="5"
+  DTS:VersionBuild="50"
+  DTS:VersionGUID="{62DFC7CA-E2EF-4569-8DEB-F40348B002D7}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Conexion Excel]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{E45C3DC5-4430-4793-BCAE-830BD052DB18}"
+      DTS:ObjectName="Conexion Excel">
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[$Package::PathFichero]+ @[$Package::NombreFichero]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Proyectos\Navarra\Ficheros\IPI15 Y PONDERACIONES.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:Description="Fichero Datos"
+      DTS:DTSID="{7C49BD2D-78BC-4E70-B2B0-60E2F42A168A}"
+      DTS:ObjectName="NombreFichero">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">IPI15 Y PONDERACIONES.xlsx</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:Description="Path fichero con barra"
+      DTS:DTSID="{D0DB6EEB-68D4-4B17-97BF-2D60E35EDA73}"
+      DTS:ObjectName="PathFichero">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">C:\Proyectos\Navarra\Ficheros\</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Insert and Update Records"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Tarea Flujo de datos"
+      DTS:DTSID="{016EAD0F-CF78-49C4-A514-35CE99B3BC76}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Insert and Update Records"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Insert and Update Records\Comando de OLE DB"
+              componentClassID="{93FFEC66-CBC8-4C7F-9C6A-CB1C17A7567D}"
+              contactInfo="Comando de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Ejecuta una instrucción SQL para cada fila de un flujo de datos. Por ejemplo, se usa para llamar al procedimiento almacenado de configuración de nuevo empleado para cada fila de la tabla de nuevos empleados. Nota: la ejecución de una instrucción SQL para cada fila de un flujo de datos de gran tamaño puede tardar mucho tiempo."
+              name="Comando de OLE DB"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">UPDATE [dbo].[POND_B2015_GRU]
+   SET [PCA15] = ?
+ WHERE [CA] = ? and [GRU] = ? and [NINFGRU] = ? and [POND] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Insert and Update Records\Comando de OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="{4006B7E9-9DFB-4184-862D-B28541684AB4}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DWH_Economicos]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Insert and Update Records\Comando de OLE DB.Inputs[Entrada de comando de OLE DB]"
+                  errorOrTruncationOperation="Ejecución de comando"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de comando de OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Comando de OLE DB.Inputs[Entrada de comando de OLE DB].Columns[PCA15]"
+                      cachedDataType="r8"
+                      cachedName="PCA15"
+                      externalMetadataColumnId="Package\Insert and Update Records\Comando de OLE DB.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_0]"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[PCA15]" />
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Comando de OLE DB.Inputs[Entrada de comando de OLE DB].Columns[NINFGRU_EXCEL]"
+                      cachedDataType="i4"
+                      cachedName="NINFGRU_EXCEL"
+                      cachedSortKeyPosition="3"
+                      externalMetadataColumnId="Package\Insert and Update Records\Comando de OLE DB.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_3]"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[NINFGRU_EXCEL]" />
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Comando de OLE DB.Inputs[Entrada de comando de OLE DB].Columns[POND_TABLA]"
+                      cachedDataType="i4"
+                      cachedName="POND_TABLA"
+                      externalMetadataColumnId="Package\Insert and Update Records\Comando de OLE DB.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_4]"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[POND_TABLA]" />
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Comando de OLE DB.Inputs[Entrada de comando de OLE DB].Columns[GRU_TABLA]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="GRU_TABLA"
+                      externalMetadataColumnId="Package\Insert and Update Records\Comando de OLE DB.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_2]"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[GRU_TABLA]" />
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Comando de OLE DB.Inputs[Entrada de comando de OLE DB].Columns[CA_TABLA]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="CA_TABLA"
+                      externalMetadataColumnId="Package\Insert and Update Records\Comando de OLE DB.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_1]"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[CA_TABLA]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Insert and Update Records\Comando de OLE DB.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_0]"
+                      dataType="r8"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Información de parámetros. Coincide con los valores de DBPARAMFLAGSENUM de OLE DB."
+                          name="DBParamInfoFlags">1</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Insert and Update Records\Comando de OLE DB.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_1]"
+                      dataType="wstr"
+                      length="50"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Información de parámetros. Coincide con los valores de DBPARAMFLAGSENUM de OLE DB."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Insert and Update Records\Comando de OLE DB.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_2]"
+                      dataType="wstr"
+                      length="50"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Información de parámetros. Coincide con los valores de DBPARAMFLAGSENUM de OLE DB."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Insert and Update Records\Comando de OLE DB.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_3]"
+                      dataType="i4"
+                      name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Información de parámetros. Coincide con los valores de DBPARAMFLAGSENUM de OLE DB."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Insert and Update Records\Comando de OLE DB.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_4]"
+                      dataType="i4"
+                      name="Param_4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Información de parámetros. Coincide con los valores de DBPARAMFLAGSENUM de OLE DB."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Insert and Update Records\Comando de OLE DB.Outputs[Salida de comando de OLE DB]"
+                  exclusionGroup="1"
+                  name="Salida de comando de OLE DB"
+                  synchronousInputId="Package\Insert and Update Records\Comando de OLE DB.Inputs[Entrada de comando de OLE DB]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Insert and Update Records\Comando de OLE DB.Outputs[Salida de error de comando de OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de comando de OLE DB"
+                  synchronousInputId="Package\Insert and Update Records\Comando de OLE DB.Inputs[Entrada de comando de OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Comando de OLE DB.Outputs[Salida de error de comando de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Insert and Update Records\Comando de OLE DB.Outputs[Salida de error de comando de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Comando de OLE DB.Outputs[Salida de error de comando de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Insert and Update Records\Comando de OLE DB.Outputs[Salida de error de comando de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Insert and Update Records\Combinación Datos"
+              componentClassID="{14D43A4F-D7BD-489D-829E-6DE35750CFE4}"
+              contactInfo="Combinación de mezcla;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Combina dos flujos de datos ordenados en uno solo mediante la combinación FULL, LEFT o INNER. Se recomienda esta transformación cuando se pueden ordenar los flujos de datos en sus orígenes."
+              name="Combinación Datos"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el tipo de combinación que se debe realizar."
+                  name="JoinType"
+                  typeConverter="JoinType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número de columnas de la clave de ordenación."
+                  name="NumKeyColumns">4</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si los valores NULL se tratan como valores iguales."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indica la cantidad máxima solicitada de búferes por entrada antes del bloqueo."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Insert and Update Records\Combinación Datos.Inputs[Entrada izquierda de combinación de mezcla]"
+                  hasSideEffects="true"
+                  name="Entrada izquierda de combinación de mezcla">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Combinación Datos.Inputs[Entrada izquierda de combinación de mezcla].Columns[POND]"
+                      cachedDataType="i4"
+                      cachedName="POND"
+                      cachedSortKeyPosition="4"
+                      lineageId="Package\Insert and Update Records\Ordenar Excel.Outputs[Salida de ordenación].Columns[POND]" />
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Combinación Datos.Inputs[Entrada izquierda de combinación de mezcla].Columns[CA]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CA"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Insert and Update Records\Ordenar Excel.Outputs[Salida de ordenación].Columns[CA]" />
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Combinación Datos.Inputs[Entrada izquierda de combinación de mezcla].Columns[GRU]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="GRU"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Insert and Update Records\Ordenar Excel.Outputs[Salida de ordenación].Columns[GRU]" />
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Combinación Datos.Inputs[Entrada izquierda de combinación de mezcla].Columns[NINFGRU_EXCEL]"
+                      cachedDataType="i4"
+                      cachedName="NINFGRU_EXCEL"
+                      cachedSortKeyPosition="3"
+                      lineageId="Package\Insert and Update Records\Ordenar Excel.Outputs[Salida de ordenación].Columns[NINFGRU_EXCEL]" />
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Combinación Datos.Inputs[Entrada izquierda de combinación de mezcla].Columns[NNCA]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NNCA"
+                      lineageId="Package\Insert and Update Records\Ordenar Excel.Outputs[Salida de ordenación].Columns[NNCA]" />
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Combinación Datos.Inputs[Entrada izquierda de combinación de mezcla].Columns[PCA15]"
+                      cachedDataType="r8"
+                      cachedName="PCA15"
+                      lineageId="Package\Insert and Update Records\Ordenar Excel.Outputs[Salida de ordenación].Columns[PCA15]" />
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Combinación Datos.Inputs[Entrada izquierda de combinación de mezcla].Columns[NCNAE]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NCNAE"
+                      lineageId="Package\Insert and Update Records\Ordenar Excel.Outputs[Salida de ordenación].Columns[NCNAE]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Insert and Update Records\Combinación Datos.Inputs[Entrada derecha de combinación de mezcla]"
+                  hasSideEffects="true"
+                  name="Entrada derecha de combinación de mezcla">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Combinación Datos.Inputs[Entrada derecha de combinación de mezcla].Columns[POND]"
+                      cachedDataType="i4"
+                      cachedName="POND"
+                      cachedSortKeyPosition="4"
+                      lineageId="Package\Insert and Update Records\Ordenar tabla.Outputs[Salida de ordenación].Columns[POND]" />
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Combinación Datos.Inputs[Entrada derecha de combinación de mezcla].Columns[CA]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="CA"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Insert and Update Records\Ordenar tabla.Outputs[Salida de ordenación].Columns[CA]" />
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Combinación Datos.Inputs[Entrada derecha de combinación de mezcla].Columns[GRU]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="GRU"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Insert and Update Records\Ordenar tabla.Outputs[Salida de ordenación].Columns[GRU]" />
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Combinación Datos.Inputs[Entrada derecha de combinación de mezcla].Columns[NINFGRU]"
+                      cachedDataType="i4"
+                      cachedName="NINFGRU"
+                      cachedSortKeyPosition="3"
+                      lineageId="Package\Insert and Update Records\Ordenar tabla.Outputs[Salida de ordenación].Columns[NINFGRU]" />
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Combinación Datos.Inputs[Entrada derecha de combinación de mezcla].Columns[NNCA]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NNCA"
+                      lineageId="Package\Insert and Update Records\Ordenar tabla.Outputs[Salida de ordenación].Columns[NNCA]" />
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Combinación Datos.Inputs[Entrada derecha de combinación de mezcla].Columns[PCA15]"
+                      cachedDataType="r8"
+                      cachedName="PCA15"
+                      lineageId="Package\Insert and Update Records\Ordenar tabla.Outputs[Salida de ordenación].Columns[PCA15]" />
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Combinación Datos.Inputs[Entrada derecha de combinación de mezcla].Columns[NCNAE]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NCNAE"
+                      lineageId="Package\Insert and Update Records\Ordenar tabla.Outputs[Salida de ordenación].Columns[NCNAE]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla]"
+                  isSorted="true"
+                  name="Salida de combinación de mezcla">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[POND]"
+                      dataType="i4"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[POND]"
+                      name="POND"
+                      sortKeyPosition="4">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Insert and Update Records\Combinación Datos.Inputs[Entrada izquierda de combinación de mezcla].Columns[POND]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[CA]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[CA]"
+                      name="CA"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Insert and Update Records\Combinación Datos.Inputs[Entrada izquierda de combinación de mezcla].Columns[CA]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[NNCA]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[NNCA]"
+                      name="NNCA">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Insert and Update Records\Combinación Datos.Inputs[Entrada izquierda de combinación de mezcla].Columns[NNCA]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[PCA15]"
+                      dataType="r8"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[PCA15]"
+                      name="PCA15">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Insert and Update Records\Combinación Datos.Inputs[Entrada izquierda de combinación de mezcla].Columns[PCA15]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[NCNAE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[NCNAE]"
+                      name="NCNAE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Insert and Update Records\Combinación Datos.Inputs[Entrada izquierda de combinación de mezcla].Columns[NCNAE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[GRU]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[GRU]"
+                      name="GRU"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Insert and Update Records\Combinación Datos.Inputs[Entrada izquierda de combinación de mezcla].Columns[GRU]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[NINFGRU_EXCEL]"
+                      dataType="i4"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[NINFGRU_EXCEL]"
+                      name="NINFGRU_EXCEL"
+                      sortKeyPosition="3">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Insert and Update Records\Combinación Datos.Inputs[Entrada izquierda de combinación de mezcla].Columns[NINFGRU_EXCEL]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[POND_TABLA]"
+                      dataType="i4"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[POND_TABLA]"
+                      name="POND_TABLA">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Insert and Update Records\Combinación Datos.Inputs[Entrada derecha de combinación de mezcla].Columns[POND]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[CA_TABLA]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[CA_TABLA]"
+                      name="CA_TABLA">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Insert and Update Records\Combinación Datos.Inputs[Entrada derecha de combinación de mezcla].Columns[CA]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[GRU_TABLA]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[GRU_TABLA]"
+                      name="GRU_TABLA">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Insert and Update Records\Combinación Datos.Inputs[Entrada derecha de combinación de mezcla].Columns[GRU]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[NINFGRU_TABLA]"
+                      dataType="i4"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[NINFGRU_TABLA]"
+                      name="NINFGRU_TABLA">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Insert and Update Records\Combinación Datos.Inputs[Entrada derecha de combinación de mezcla].Columns[NINFGRU]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[NNCA_TABLA]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[NNCA_TABLA]"
+                      name="NNCA_TABLA">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Insert and Update Records\Combinación Datos.Inputs[Entrada derecha de combinación de mezcla].Columns[NNCA]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[PCA15_TABLA]"
+                      dataType="r8"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[PCA15_TABLA]"
+                      name="PCA15_TABLA">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Insert and Update Records\Combinación Datos.Inputs[Entrada derecha de combinación de mezcla].Columns[PCA15]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[NCNAE_TABLA]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[NCNAE_TABLA]"
+                      name="NCNAE_TABLA">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Insert and Update Records\Combinación Datos.Inputs[Entrada derecha de combinación de mezcla].Columns[NCNAE]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Insert and Update Records\Conversión de datos"
+              componentClassID="{62B1106C-7DB8-4EC8-ADD6-4C664DFFC54A}"
+              contactInfo="Conversión de datos;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Conversión de datos"
+              name="Conversión de datos"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Insert and Update Records\Conversión de datos.Inputs[Entrada de conversión de datos]"
+                  name="Entrada de conversión de datos">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[NINFGRU]"
+                      cachedDataType="r8"
+                      cachedName="NINFGRU"
+                      lineageId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].Columns[NINFGRU]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Insert and Update Records\Conversión de datos.Outputs[Salida de conversión de datos]"
+                  exclusionGroup="1"
+                  name="Salida de conversión de datos"
+                  synchronousInputId="Package\Insert and Update Records\Conversión de datos.Inputs[Entrada de conversión de datos]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Conversión de datos.Outputs[Salida de conversión de datos].Columns[NINFGRU_EXCEL]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Insert and Update Records\Conversión de datos.Outputs[Salida de conversión de datos].Columns[NINFGRU_EXCEL]"
+                      name="NINFGRU_EXCEL"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].Columns[NINFGRU]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Insert and Update Records\Conversión de datos.Outputs[Salida de error de conversión de datos]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de conversión de datos"
+                  synchronousInputId="Package\Insert and Update Records\Conversión de datos.Inputs[Entrada de conversión de datos]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Insert and Update Records\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Insert and Update Records\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Insert and Update Records\Dest new record"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="Destino de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino de OLE DB"
+              name="Dest new record"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[dbo].[POND_B2015_GRU]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si los valores proporcionados para columnas de identidad se van a copiar al destino. Si es False, los valores de las columnas de identidad se generan automáticamente en el destino. Sólo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si las columnas que contienen NULL tendrán NULL insertado en el destino. Si es False, las columnas que contienen NULL tendrán sus valores predeterminados insertados en el destino. Sólo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica opciones para usar con la carga rápida. Sólo se aplica si está activada la carga rápida."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica cuándo se emiten confirmaciones durante la inserción de datos. El valor 0 especifica que se emitirá una confirmación al final de la inserción de datos. Sólo se aplica si está activada la carga rápida."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Insert and Update Records\Dest new record.Connections[OleDbConnection]"
+                  connectionManagerID="{4006B7E9-9DFB-4184-862D-B28541684AB4}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DWH_Economicos]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Insert and Update Records\Dest new record.Inputs[Entrada de destino de OLE DB]"
+                  errorOrTruncationOperation="Insertar"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Dest new record.Inputs[Entrada de destino de OLE DB].Columns[POND]"
+                      cachedDataType="i4"
+                      cachedName="POND"
+                      cachedSortKeyPosition="4"
+                      externalMetadataColumnId="Package\Insert and Update Records\Dest new record.Inputs[Entrada de destino de OLE DB].ExternalColumns[POND]"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[POND]" />
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Dest new record.Inputs[Entrada de destino de OLE DB].Columns[CA]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CA"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Insert and Update Records\Dest new record.Inputs[Entrada de destino de OLE DB].ExternalColumns[CA]"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[CA]" />
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Dest new record.Inputs[Entrada de destino de OLE DB].Columns[NNCA]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NNCA"
+                      externalMetadataColumnId="Package\Insert and Update Records\Dest new record.Inputs[Entrada de destino de OLE DB].ExternalColumns[NNCA]"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[NNCA]" />
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Dest new record.Inputs[Entrada de destino de OLE DB].Columns[PCA15]"
+                      cachedDataType="r8"
+                      cachedName="PCA15"
+                      externalMetadataColumnId="Package\Insert and Update Records\Dest new record.Inputs[Entrada de destino de OLE DB].ExternalColumns[PCA15]"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[PCA15]" />
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Dest new record.Inputs[Entrada de destino de OLE DB].Columns[NCNAE]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NCNAE"
+                      externalMetadataColumnId="Package\Insert and Update Records\Dest new record.Inputs[Entrada de destino de OLE DB].ExternalColumns[NCNAE]"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[NCNAE]" />
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Dest new record.Inputs[Entrada de destino de OLE DB].Columns[GRU]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="GRU"
+                      cachedSortKeyPosition="2"
+                      externalMetadataColumnId="Package\Insert and Update Records\Dest new record.Inputs[Entrada de destino de OLE DB].ExternalColumns[GRU]"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[GRU]" />
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Dest new record.Inputs[Entrada de destino de OLE DB].Columns[NINFGRU_EXCEL]"
+                      cachedDataType="i4"
+                      cachedName="NINFGRU_EXCEL"
+                      cachedSortKeyPosition="3"
+                      externalMetadataColumnId="Package\Insert and Update Records\Dest new record.Inputs[Entrada de destino de OLE DB].ExternalColumns[NINFGRU]"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[NINFGRU_EXCEL]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Insert and Update Records\Dest new record.Inputs[Entrada de destino de OLE DB].ExternalColumns[POND]"
+                      dataType="i4"
+                      name="POND" />
+                    <externalMetadataColumn
+                      refId="Package\Insert and Update Records\Dest new record.Inputs[Entrada de destino de OLE DB].ExternalColumns[CA]"
+                      dataType="wstr"
+                      length="50"
+                      name="CA" />
+                    <externalMetadataColumn
+                      refId="Package\Insert and Update Records\Dest new record.Inputs[Entrada de destino de OLE DB].ExternalColumns[NNCA]"
+                      dataType="wstr"
+                      length="255"
+                      name="NNCA" />
+                    <externalMetadataColumn
+                      refId="Package\Insert and Update Records\Dest new record.Inputs[Entrada de destino de OLE DB].ExternalColumns[PCA15]"
+                      dataType="r8"
+                      name="PCA15" />
+                    <externalMetadataColumn
+                      refId="Package\Insert and Update Records\Dest new record.Inputs[Entrada de destino de OLE DB].ExternalColumns[NCNAE]"
+                      dataType="wstr"
+                      length="255"
+                      name="NCNAE" />
+                    <externalMetadataColumn
+                      refId="Package\Insert and Update Records\Dest new record.Inputs[Entrada de destino de OLE DB].ExternalColumns[GRU]"
+                      dataType="wstr"
+                      length="50"
+                      name="GRU" />
+                    <externalMetadataColumn
+                      refId="Package\Insert and Update Records\Dest new record.Inputs[Entrada de destino de OLE DB].ExternalColumns[NINFGRU]"
+                      dataType="i4"
+                      name="NINFGRU" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Insert and Update Records\Dest new record.Outputs[Salida de error de destino de OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de OLE DB"
+                  synchronousInputId="Package\Insert and Update Records\Dest new record.Inputs[Entrada de destino de OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Dest new record.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Insert and Update Records\Dest new record.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Dest new record.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Insert and Update Records\Dest new record.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Insert and Update Records\Insert update"
+              componentClassID="{7F88F654-4E20-4D14-84F4-AF9C925D3087}"
+              contactInfo="División condicional;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Enruta filas de datos a diferentes salidas según el contenido de los datos. Se usan condiciones (expresiones de SSIS) para especificar las filas que se van a enrutar. Por ejemplo, se usa para separar los registros que deben limpiarse de los registros listos para ser cargados o para enrutar solamente un subconjunto de registros."
+              name="Insert update"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Insert and Update Records\Insert update.Inputs[Entrada de división condicional]"
+                  description="Entrada en la transformación División condicional"
+                  name="Entrada de división condicional">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Insert update.Inputs[Entrada de división condicional].Columns[POND]"
+                      cachedDataType="i4"
+                      cachedName="POND"
+                      cachedSortKeyPosition="4"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[POND]" />
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Insert update.Inputs[Entrada de división condicional].Columns[CA]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CA"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[CA]" />
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Insert update.Inputs[Entrada de división condicional].Columns[POND_TABLA]"
+                      cachedDataType="i4"
+                      cachedName="POND_TABLA"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[POND_TABLA]" />
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Insert update.Inputs[Entrada de división condicional].Columns[CA_TABLA]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="CA_TABLA"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[CA_TABLA]" />
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Insert update.Inputs[Entrada de división condicional].Columns[GRU]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="GRU"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[GRU]" />
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Insert update.Inputs[Entrada de división condicional].Columns[NINFGRU_EXCEL]"
+                      cachedDataType="i4"
+                      cachedName="NINFGRU_EXCEL"
+                      cachedSortKeyPosition="3"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[NINFGRU_EXCEL]" />
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Insert update.Inputs[Entrada de división condicional].Columns[GRU_TABLA]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="GRU_TABLA"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[GRU_TABLA]" />
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Insert update.Inputs[Entrada de división condicional].Columns[NINFGRU_TABLA]"
+                      cachedDataType="i4"
+                      cachedName="NINFGRU_TABLA"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[NINFGRU_TABLA]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Insert and Update Records\Insert update.Outputs[new_record]"
+                  description="Salida 1 de la transformación División condicional"
+                  errorOrTruncationOperation="Cálculo"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="new_record"
+                  synchronousInputId="Package\Insert and Update Records\Insert update.Inputs[Entrada de división condicional]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la expresión. Esta versión de expresión usa identificadores de linaje en lugar de nombres de columna."
+                      name="Expression">(![ISNULL](#{Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[POND]}) &amp;&amp; [ISNULL](#{Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[POND_TABLA]})) || (![ISNULL](#{Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[CA]}) &amp;&amp; [ISNULL](#{Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[CA_TABLA]})) || (![ISNULL](#{Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[GRU]}) &amp;&amp; [ISNULL](#{Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[GRU_TABLA]})) || (![ISNULL](#{Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[NINFGRU_EXCEL]}) &amp;&amp; [ISNULL](#{Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[NINFGRU_TABLA]}))</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la versión descriptiva de la expresión. Esta versión de expresión usa nombres de columna."
+                      expressionType="Notify"
+                      name="FriendlyExpression">(!ISNULL(POND) &amp;&amp; ISNULL(POND_TABLA)) || (!ISNULL(CA) &amp;&amp; ISNULL(CA_TABLA)) || (!ISNULL(GRU) &amp;&amp; ISNULL(GRU_TABLA)) || (!ISNULL(NINFGRU_EXCEL) &amp;&amp; ISNULL(NINFGRU_TABLA))</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la posición de la condición en la lista de condiciones que evalúa la transformación. El orden de evaluación es del menor al mayor valor."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Insert and Update Records\Insert update.Outputs[upadate_record]"
+                  description="Salida 2 de la transformación División condicional"
+                  errorOrTruncationOperation="Cálculo"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="upadate_record"
+                  synchronousInputId="Package\Insert and Update Records\Insert update.Inputs[Entrada de división condicional]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la expresión. Esta versión de expresión usa identificadores de linaje en lugar de nombres de columna."
+                      name="Expression">(![ISNULL](#{Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[POND]}) &amp;&amp; ![ISNULL](#{Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[POND_TABLA]})) &amp;&amp; (![ISNULL](#{Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[CA]}) &amp;&amp; ![ISNULL](#{Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[CA_TABLA]})) &amp;&amp; (![ISNULL](#{Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[GRU]}) &amp;&amp; ![ISNULL](#{Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[GRU_TABLA]})) &amp;&amp; (![ISNULL](#{Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[NINFGRU_EXCEL]}) &amp;&amp; ![ISNULL](#{Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[NINFGRU_TABLA]}))</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la versión descriptiva de la expresión. Esta versión de expresión usa nombres de columna."
+                      expressionType="Notify"
+                      name="FriendlyExpression">(!ISNULL(POND) &amp;&amp; !ISNULL(POND_TABLA)) &amp;&amp; (!ISNULL(CA) &amp;&amp; !ISNULL(CA_TABLA)) &amp;&amp; (!ISNULL(GRU) &amp;&amp; !ISNULL(GRU_TABLA)) &amp;&amp; (!ISNULL(NINFGRU_EXCEL) &amp;&amp; !ISNULL(NINFGRU_TABLA))</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la posición de la condición en la lista de condiciones que evalúa la transformación. El orden de evaluación es del menor al mayor valor."
+                      name="EvaluationOrder">1</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Insert and Update Records\Insert update.Outputs[Salida inset]"
+                  description="Salida predeterminada de la transformación División condicional"
+                  exclusionGroup="1"
+                  name="Salida inset"
+                  synchronousInputId="Package\Insert and Update Records\Insert update.Inputs[Entrada de división condicional]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Insert and Update Records\Insert update.Outputs[Salida de error de división condicional]"
+                  description="Salida de error de la transformación División condicional"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de división condicional"
+                  synchronousInputId="Package\Insert and Update Records\Insert update.Inputs[Entrada de división condicional]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Insert update.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Insert and Update Records\Insert update.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Insert update.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Insert and Update Records\Insert update.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Insert and Update Records\Ordenar Excel"
+              componentClassID="{5B1A3FF5-D366-4D75-AD1F-F19A36FCBEDB}"
+              contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
+              name="Ordenar Excel"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si la transformación Ordenar quita filas con valores de ordenación duplicados."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número máximo de subprocesos que se deben usar para la ordenación."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Insert and Update Records\Ordenar Excel.Inputs[Entrada de ordenación]"
+                  name="Entrada de ordenación">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Ordenar Excel.Inputs[Entrada de ordenación].Columns[POND]"
+                      cachedDataType="i4"
+                      cachedName="POND"
+                      lineageId="Package\Insert and Update Records\Ponderacion.Outputs[Salida de columna derivada].Columns[POND]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">4</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Ordenar Excel.Inputs[Entrada de ordenación].Columns[CA]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CA"
+                      lineageId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].Columns[CA]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Ordenar Excel.Inputs[Entrada de ordenación].Columns[NNCA]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NNCA"
+                      lineageId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].Columns[NNCA]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Ordenar Excel.Inputs[Entrada de ordenación].Columns[PCA15]"
+                      cachedDataType="r8"
+                      cachedName="PCA15"
+                      lineageId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].Columns[PCA15]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Ordenar Excel.Inputs[Entrada de ordenación].Columns[NCNAE]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NCNAE"
+                      lineageId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].Columns[NCNAE]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Ordenar Excel.Inputs[Entrada de ordenación].Columns[GRU]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="GRU"
+                      lineageId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].Columns[GRU]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Ordenar Excel.Inputs[Entrada de ordenación].Columns[NINFGRU_EXCEL]"
+                      cachedDataType="i4"
+                      cachedName="NINFGRU_EXCEL"
+                      lineageId="Package\Insert and Update Records\Conversión de datos.Outputs[Salida de conversión de datos].Columns[NINFGRU_EXCEL]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">3</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Insert and Update Records\Ordenar Excel.Outputs[Salida de ordenación]"
+                  isSorted="true"
+                  name="Salida de ordenación">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Ordenar Excel.Outputs[Salida de ordenación].Columns[POND]"
+                      dataType="i4"
+                      lineageId="Package\Insert and Update Records\Ordenar Excel.Outputs[Salida de ordenación].Columns[POND]"
+                      name="POND"
+                      sortKeyPosition="4">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Insert and Update Records\Ponderacion.Outputs[Salida de columna derivada].Columns[POND]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Ordenar Excel.Outputs[Salida de ordenación].Columns[CA]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Insert and Update Records\Ordenar Excel.Outputs[Salida de ordenación].Columns[CA]"
+                      name="CA"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].Columns[CA]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Ordenar Excel.Outputs[Salida de ordenación].Columns[NNCA]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Insert and Update Records\Ordenar Excel.Outputs[Salida de ordenación].Columns[NNCA]"
+                      name="NNCA">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].Columns[NNCA]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Ordenar Excel.Outputs[Salida de ordenación].Columns[PCA15]"
+                      dataType="r8"
+                      lineageId="Package\Insert and Update Records\Ordenar Excel.Outputs[Salida de ordenación].Columns[PCA15]"
+                      name="PCA15">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].Columns[PCA15]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Ordenar Excel.Outputs[Salida de ordenación].Columns[NCNAE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Insert and Update Records\Ordenar Excel.Outputs[Salida de ordenación].Columns[NCNAE]"
+                      name="NCNAE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].Columns[NCNAE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Ordenar Excel.Outputs[Salida de ordenación].Columns[GRU]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Insert and Update Records\Ordenar Excel.Outputs[Salida de ordenación].Columns[GRU]"
+                      name="GRU"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].Columns[GRU]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Ordenar Excel.Outputs[Salida de ordenación].Columns[NINFGRU_EXCEL]"
+                      dataType="i4"
+                      lineageId="Package\Insert and Update Records\Ordenar Excel.Outputs[Salida de ordenación].Columns[NINFGRU_EXCEL]"
+                      name="NINFGRU_EXCEL"
+                      sortKeyPosition="3">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Insert and Update Records\Conversión de datos.Outputs[Salida de conversión de datos].Columns[NINFGRU_EXCEL]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Insert and Update Records\Ordenar tabla"
+              componentClassID="{5B1A3FF5-D366-4D75-AD1F-F19A36FCBEDB}"
+              contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
+              name="Ordenar tabla"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si la transformación Ordenar quita filas con valores de ordenación duplicados."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número máximo de subprocesos que se deben usar para la ordenación."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Insert and Update Records\Ordenar tabla.Inputs[Entrada de ordenación]"
+                  name="Entrada de ordenación">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Ordenar tabla.Inputs[Entrada de ordenación].Columns[POND]"
+                      cachedDataType="i4"
+                      cachedName="POND"
+                      lineageId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[POND]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">4</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Ordenar tabla.Inputs[Entrada de ordenación].Columns[CA]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="CA"
+                      lineageId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[CA]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Ordenar tabla.Inputs[Entrada de ordenación].Columns[GRU]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="GRU"
+                      lineageId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[GRU]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Ordenar tabla.Inputs[Entrada de ordenación].Columns[NINFGRU]"
+                      cachedDataType="i4"
+                      cachedName="NINFGRU"
+                      lineageId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[NINFGRU]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">3</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Ordenar tabla.Inputs[Entrada de ordenación].Columns[NNCA]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NNCA"
+                      lineageId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[NNCA]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Ordenar tabla.Inputs[Entrada de ordenación].Columns[PCA15]"
+                      cachedDataType="r8"
+                      cachedName="PCA15"
+                      lineageId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[PCA15]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Ordenar tabla.Inputs[Entrada de ordenación].Columns[NCNAE]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NCNAE"
+                      lineageId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[NCNAE]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Insert and Update Records\Ordenar tabla.Outputs[Salida de ordenación]"
+                  isSorted="true"
+                  name="Salida de ordenación">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Ordenar tabla.Outputs[Salida de ordenación].Columns[POND]"
+                      dataType="i4"
+                      lineageId="Package\Insert and Update Records\Ordenar tabla.Outputs[Salida de ordenación].Columns[POND]"
+                      name="POND"
+                      sortKeyPosition="4">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[POND]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Ordenar tabla.Outputs[Salida de ordenación].Columns[CA]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Insert and Update Records\Ordenar tabla.Outputs[Salida de ordenación].Columns[CA]"
+                      name="CA"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[CA]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Ordenar tabla.Outputs[Salida de ordenación].Columns[GRU]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Insert and Update Records\Ordenar tabla.Outputs[Salida de ordenación].Columns[GRU]"
+                      name="GRU"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[GRU]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Ordenar tabla.Outputs[Salida de ordenación].Columns[NINFGRU]"
+                      dataType="i4"
+                      lineageId="Package\Insert and Update Records\Ordenar tabla.Outputs[Salida de ordenación].Columns[NINFGRU]"
+                      name="NINFGRU"
+                      sortKeyPosition="3">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[NINFGRU]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Ordenar tabla.Outputs[Salida de ordenación].Columns[NNCA]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Insert and Update Records\Ordenar tabla.Outputs[Salida de ordenación].Columns[NNCA]"
+                      name="NNCA">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[NNCA]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Ordenar tabla.Outputs[Salida de ordenación].Columns[PCA15]"
+                      dataType="r8"
+                      lineageId="Package\Insert and Update Records\Ordenar tabla.Outputs[Salida de ordenación].Columns[PCA15]"
+                      name="PCA15">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[PCA15]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Ordenar tabla.Outputs[Salida de ordenación].Columns[NCNAE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Insert and Update Records\Ordenar tabla.Outputs[Salida de ordenación].Columns[NCNAE]"
+                      name="NCNAE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[NCNAE]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Insert and Update Records\Origen de Excel"
+              componentClassID="{8C084929-27D1-479F-9641-ABB7CDADF1AC}"
+              contactInfo="Origen de Excel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Origen de Excel"
+              name="Origen de Excel"
+              usesDispositions="true"
+              validateExternalMetadata="False"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">POND_B2015_GRU$</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="La asignación de parámetros del comando SQL a variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Insert and Update Records\Origen de Excel.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Conexion Excel]"
+                  connectionManagerRefId="Package.ConnectionManagers[Conexion Excel]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel]"
+                  name="Salida de origen de Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].Columns[CA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[CA]"
+                      length="255"
+                      lineageId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].Columns[CA]"
+                      name="CA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].Columns[NNCA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[NNCA]"
+                      length="255"
+                      lineageId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].Columns[NNCA]"
+                      name="NNCA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].Columns[PCA15]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[PCA15]"
+                      lineageId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].Columns[PCA15]"
+                      name="PCA15"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].Columns[NCNAE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[NCNAE]"
+                      length="255"
+                      lineageId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].Columns[NCNAE]"
+                      name="NCNAE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].Columns[GRU]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[GRU]"
+                      length="255"
+                      lineageId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].Columns[GRU]"
+                      name="GRU"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].Columns[NINFGRU]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[NINFGRU]"
+                      lineageId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].Columns[NINFGRU]"
+                      name="NINFGRU"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[CA]"
+                      dataType="wstr"
+                      length="255"
+                      name="CA" />
+                    <externalMetadataColumn
+                      refId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[NNCA]"
+                      dataType="wstr"
+                      length="255"
+                      name="NNCA" />
+                    <externalMetadataColumn
+                      refId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[PCA15]"
+                      dataType="r8"
+                      name="PCA15" />
+                    <externalMetadataColumn
+                      refId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[NCNAE]"
+                      dataType="wstr"
+                      length="255"
+                      name="NCNAE" />
+                    <externalMetadataColumn
+                      refId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[GRU]"
+                      dataType="wstr"
+                      length="255"
+                      name="GRU" />
+                    <externalMetadataColumn
+                      refId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[NINFGRU]"
+                      dataType="r8"
+                      name="NINFGRU" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de error de origen de Excel]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[CA]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[CA]"
+                      name="CA" />
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[NNCA]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[NNCA]"
+                      name="NNCA" />
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[GRU]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[GRU]"
+                      name="GRU" />
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[PCA15]"
+                      dataType="r8"
+                      lineageId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[PCA15]"
+                      name="PCA15" />
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[NCNAE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[NCNAE]"
+                      name="NCNAE" />
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[NINFGRU]"
+                      dataType="r8"
+                      lineageId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[NINFGRU]"
+                      name="NINFGRU" />
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Insert and Update Records\Origen de OLE DB"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="Origen de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;7"
+              description="Origen de OLE DB"
+              name="Origen de OLE DB"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[IPI].[POND_B2015_GRU]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Asignaciones entre los parámetros del comando SQL y las variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Insert and Update Records\Origen de OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="{4006B7E9-9DFB-4184-862D-B28541684AB4}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DWH_Economicos]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB]"
+                  name="Salida de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[POND]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[POND]"
+                      lineageId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[POND]"
+                      name="POND"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[CA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[CA]"
+                      length="50"
+                      lineageId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[CA]"
+                      name="CA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[NNCA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[NNCA]"
+                      length="255"
+                      lineageId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[NNCA]"
+                      name="NNCA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[PCA15]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[PCA15]"
+                      lineageId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[PCA15]"
+                      name="PCA15"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[NCNAE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[NCNAE]"
+                      length="255"
+                      lineageId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[NCNAE]"
+                      name="NCNAE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[GRU]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[GRU]"
+                      length="50"
+                      lineageId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[GRU]"
+                      name="GRU"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[NINFGRU]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[NINFGRU]"
+                      lineageId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[NINFGRU]"
+                      name="NINFGRU"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[POND]"
+                      dataType="i4"
+                      name="POND" />
+                    <externalMetadataColumn
+                      refId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[CA]"
+                      dataType="wstr"
+                      length="50"
+                      name="CA" />
+                    <externalMetadataColumn
+                      refId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[NNCA]"
+                      dataType="wstr"
+                      length="255"
+                      name="NNCA" />
+                    <externalMetadataColumn
+                      refId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[PCA15]"
+                      dataType="r8"
+                      name="PCA15" />
+                    <externalMetadataColumn
+                      refId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[NCNAE]"
+                      dataType="wstr"
+                      length="255"
+                      name="NCNAE" />
+                    <externalMetadataColumn
+                      refId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[GRU]"
+                      dataType="wstr"
+                      length="50"
+                      name="GRU" />
+                    <externalMetadataColumn
+                      refId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[NINFGRU]"
+                      dataType="i4"
+                      name="NINFGRU" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[CA]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[CA]"
+                      name="CA" />
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[NNCA]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[NNCA]"
+                      name="NNCA" />
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[GRU]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[GRU]"
+                      name="GRU" />
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[PCA15]"
+                      dataType="r8"
+                      lineageId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[PCA15]"
+                      name="PCA15" />
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[NCNAE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[NCNAE]"
+                      name="NCNAE" />
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[NINFGRU]"
+                      dataType="i4"
+                      lineageId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[NINFGRU]"
+                      name="NINFGRU" />
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[POND]"
+                      dataType="i4"
+                      lineageId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[POND]"
+                      name="POND" />
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Insert and Update Records\Ponderacion"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Columna derivada;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Crea nuevos valores de columna aplicando expresiones a las columnas de entrada de la transformación. Crea nuevas columnas o sobrescribe las columnas existentes. Por ejemplo, se concatenan los valores de las columnas 'nombre' y 'apellidos' para crear una columna 'nombre completo'."
+              name="Ponderacion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Insert and Update Records\Ponderacion.Inputs[Entrada de columna derivada]"
+                  description="Entrada en la transformación Columna derivada"
+                  name="Entrada de columna derivada">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Ponderacion.Inputs[Entrada de columna derivada].Columns[CA]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CA"
+                      errorOrTruncationOperation="Cálculo"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].Columns[CA]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expresión de columna derivada"
+                          name="Expression">#{Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].Columns[CA]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expresión descriptiva de columna derivada"
+                          expressionType="Notify"
+                          name="FriendlyExpression">CA</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Ponderacion.Inputs[Entrada de columna derivada].Columns[NNCA]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NNCA"
+                      errorOrTruncationOperation="Cálculo"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].Columns[NNCA]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expresión de columna derivada"
+                          name="Expression">#{Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].Columns[NCNAE]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expresión descriptiva de columna derivada"
+                          expressionType="Notify"
+                          name="FriendlyExpression">NCNAE</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Ponderacion.Inputs[Entrada de columna derivada].Columns[PCA15]"
+                      cachedDataType="r8"
+                      cachedName="PCA15"
+                      errorOrTruncationOperation="Cálculo"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].Columns[PCA15]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expresión de columna derivada"
+                          name="Expression">#{Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].Columns[PCA15]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expresión descriptiva de columna derivada"
+                          expressionType="Notify"
+                          name="FriendlyExpression">PCA15</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Ponderacion.Inputs[Entrada de columna derivada].Columns[NCNAE]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NCNAE"
+                      errorOrTruncationOperation="Cálculo"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].Columns[NCNAE]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expresión de columna derivada"
+                          name="Expression">#{Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].Columns[NCNAE]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expresión descriptiva de columna derivada"
+                          expressionType="Notify"
+                          name="FriendlyExpression">NCNAE</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Ponderacion.Inputs[Entrada de columna derivada].Columns[GRU]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="GRU"
+                      errorOrTruncationOperation="Cálculo"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].Columns[GRU]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expresión de columna derivada"
+                          name="Expression">#{Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel].Columns[GRU]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expresión descriptiva de columna derivada"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GRU</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Ponderacion.Inputs[Entrada de columna derivada].Columns[NINFGRU_EXCEL]"
+                      cachedDataType="i4"
+                      cachedName="NINFGRU_EXCEL"
+                      errorOrTruncationOperation="Cálculo"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Insert and Update Records\Conversión de datos.Outputs[Salida de conversión de datos].Columns[NINFGRU_EXCEL]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expresión de columna derivada"
+                          name="Expression">#{Package\Insert and Update Records\Conversión de datos.Outputs[Salida de conversión de datos].Columns[NINFGRU_EXCEL]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expresión descriptiva de columna derivada"
+                          expressionType="Notify"
+                          name="FriendlyExpression">NINFGRU_EXCEL</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Insert and Update Records\Ponderacion.Outputs[Salida de columna derivada]"
+                  description="Salida predeterminada de la transformación Columna derivada"
+                  exclusionGroup="1"
+                  name="Salida de columna derivada"
+                  synchronousInputId="Package\Insert and Update Records\Ponderacion.Inputs[Entrada de columna derivada]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Ponderacion.Outputs[Salida de columna derivada].Columns[POND]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Cálculo"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Insert and Update Records\Ponderacion.Outputs[Salida de columna derivada].Columns[POND]"
+                      name="POND"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expresión de columna derivada"
+                          name="Expression">(DT_I4)[SUBSTRING](@[$Package::NombreFichero],4,3)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expresión descriptiva de columna derivada"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_I4)SUBSTRING(@[$Package::NombreFichero],4,3)</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Insert and Update Records\Ponderacion.Outputs[Salida de error de columna derivada]"
+                  description="Salida de error de la transformación Columna derivada"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de columna derivada"
+                  synchronousInputId="Package\Insert and Update Records\Ponderacion.Inputs[Entrada de columna derivada]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Ponderacion.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Insert and Update Records\Ponderacion.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Ponderacion.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Insert and Update Records\Ponderacion.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Insert and Update Records\Update"
+              componentClassID="{7F88F654-4E20-4D14-84F4-AF9C925D3087}"
+              contactInfo="División condicional;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Enruta filas de datos a diferentes salidas según el contenido de los datos. Se usan condiciones (expresiones de SSIS) para especificar las filas que se van a enrutar. Por ejemplo, se usa para separar los registros que deben limpiarse de los registros listos para ser cargados o para enrutar solamente un subconjunto de registros."
+              name="Update"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Insert and Update Records\Update.Inputs[Entrada de división condicional]"
+                  description="Entrada en la transformación División condicional"
+                  name="Entrada de división condicional">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Update.Inputs[Entrada de división condicional].Columns[POND]"
+                      cachedDataType="i4"
+                      cachedName="POND"
+                      cachedSortKeyPosition="4"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[POND]" />
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Update.Inputs[Entrada de división condicional].Columns[CA]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CA"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[CA]" />
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Update.Inputs[Entrada de división condicional].Columns[PCA15]"
+                      cachedDataType="r8"
+                      cachedName="PCA15"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[PCA15]" />
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Update.Inputs[Entrada de división condicional].Columns[POND_TABLA]"
+                      cachedDataType="i4"
+                      cachedName="POND_TABLA"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[POND_TABLA]" />
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Update.Inputs[Entrada de división condicional].Columns[CA_TABLA]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="CA_TABLA"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[CA_TABLA]" />
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Update.Inputs[Entrada de división condicional].Columns[PCA15_TABLA]"
+                      cachedDataType="r8"
+                      cachedName="PCA15_TABLA"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[PCA15_TABLA]" />
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Update.Inputs[Entrada de división condicional].Columns[GRU]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="GRU"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[GRU]" />
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Update.Inputs[Entrada de división condicional].Columns[NINFGRU_EXCEL]"
+                      cachedDataType="i4"
+                      cachedName="NINFGRU_EXCEL"
+                      cachedSortKeyPosition="3"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[NINFGRU_EXCEL]" />
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Update.Inputs[Entrada de división condicional].Columns[GRU_TABLA]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="GRU_TABLA"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[GRU_TABLA]" />
+                    <inputColumn
+                      refId="Package\Insert and Update Records\Update.Inputs[Entrada de división condicional].Columns[NINFGRU_TABLA]"
+                      cachedDataType="i4"
+                      cachedName="NINFGRU_TABLA"
+                      lineageId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[NINFGRU_TABLA]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Insert and Update Records\Update.Outputs[update]"
+                  description="Salida 1 de la transformación División condicional"
+                  errorOrTruncationOperation="Cálculo"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="update"
+                  synchronousInputId="Package\Insert and Update Records\Update.Inputs[Entrada de división condicional]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la expresión. Esta versión de expresión usa identificadores de linaje en lugar de nombres de columna."
+                      name="Expression">(#{Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[POND]} == #{Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[POND_TABLA]}) &amp;&amp; (#{Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[CA]} == #{Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[CA_TABLA]}) &amp;&amp; (#{Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[GRU]} == #{Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[GRU_TABLA]}) &amp;&amp; (#{Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[NINFGRU_EXCEL]} == #{Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[NINFGRU_TABLA]}) &amp;&amp; (#{Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[PCA15]} != #{Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[PCA15_TABLA]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la versión descriptiva de la expresión. Esta versión de expresión usa nombres de columna."
+                      expressionType="Notify"
+                      name="FriendlyExpression">(POND == POND_TABLA) &amp;&amp; (CA == CA_TABLA) &amp;&amp; (GRU == GRU_TABLA) &amp;&amp; (NINFGRU_EXCEL == NINFGRU_TABLA) &amp;&amp; (PCA15 != PCA15_TABLA)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la posición de la condición en la lista de condiciones que evalúa la transformación. El orden de evaluación es del menor al mayor valor."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Insert and Update Records\Update.Outputs[nada]"
+                  description="Salida 2 de la transformación División condicional"
+                  errorOrTruncationOperation="Cálculo"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="nada"
+                  synchronousInputId="Package\Insert and Update Records\Update.Inputs[Entrada de división condicional]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la expresión. Esta versión de expresión usa identificadores de linaje en lugar de nombres de columna."
+                      name="Expression">(#{Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[POND]} == #{Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[POND_TABLA]}) &amp;&amp; (#{Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[CA]} == #{Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[CA_TABLA]}) &amp;&amp; (#{Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[GRU]} == #{Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[GRU_TABLA]}) &amp;&amp; (#{Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[NINFGRU_EXCEL]} == #{Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[NINFGRU_TABLA]}) &amp;&amp; (#{Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[PCA15]} == #{Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla].Columns[PCA15_TABLA]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la versión descriptiva de la expresión. Esta versión de expresión usa nombres de columna."
+                      expressionType="Notify"
+                      name="FriendlyExpression">(POND == POND_TABLA) &amp;&amp; (CA == CA_TABLA) &amp;&amp; (GRU == GRU_TABLA) &amp;&amp; (NINFGRU_EXCEL == NINFGRU_TABLA) &amp;&amp; (PCA15 == PCA15_TABLA)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la posición de la condición en la lista de condiciones que evalúa la transformación. El orden de evaluación es del menor al mayor valor."
+                      name="EvaluationOrder">1</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Insert and Update Records\Update.Outputs[Salida predeterminada de división condicional]"
+                  description="Salida predeterminada de la transformación División condicional"
+                  exclusionGroup="1"
+                  name="Salida predeterminada de división condicional"
+                  synchronousInputId="Package\Insert and Update Records\Update.Inputs[Entrada de división condicional]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Insert and Update Records\Update.Outputs[Salida de error de división condicional]"
+                  description="Salida de error de la transformación División condicional"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de división condicional"
+                  synchronousInputId="Package\Insert and Update Records\Update.Inputs[Entrada de división condicional]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Update.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Insert and Update Records\Update.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Insert and Update Records\Update.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Insert and Update Records\Update.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Insert and Update Records.Paths[new_record]"
+              endId="Package\Insert and Update Records\Dest new record.Inputs[Entrada de destino de OLE DB]"
+              name="new_record"
+              startId="Package\Insert and Update Records\Insert update.Outputs[new_record]" />
+            <path
+              refId="Package\Insert and Update Records.Paths[Salida de columna derivada]"
+              endId="Package\Insert and Update Records\Ordenar Excel.Inputs[Entrada de ordenación]"
+              name="Salida de columna derivada"
+              startId="Package\Insert and Update Records\Ponderacion.Outputs[Salida de columna derivada]" />
+            <path
+              refId="Package\Insert and Update Records.Paths[Salida de combinación de mezcla]"
+              endId="Package\Insert and Update Records\Insert update.Inputs[Entrada de división condicional]"
+              name="Salida de combinación de mezcla"
+              startId="Package\Insert and Update Records\Combinación Datos.Outputs[Salida de combinación de mezcla]" />
+            <path
+              refId="Package\Insert and Update Records.Paths[Salida de conversión de datos]"
+              endId="Package\Insert and Update Records\Ponderacion.Inputs[Entrada de columna derivada]"
+              name="Salida de conversión de datos"
+              startId="Package\Insert and Update Records\Conversión de datos.Outputs[Salida de conversión de datos]" />
+            <path
+              refId="Package\Insert and Update Records.Paths[Salida de ordenación]"
+              endId="Package\Insert and Update Records\Combinación Datos.Inputs[Entrada izquierda de combinación de mezcla]"
+              name="Salida de ordenación"
+              startId="Package\Insert and Update Records\Ordenar Excel.Outputs[Salida de ordenación]" />
+            <path
+              refId="Package\Insert and Update Records.Paths[Salida de ordenación1]"
+              endId="Package\Insert and Update Records\Combinación Datos.Inputs[Entrada derecha de combinación de mezcla]"
+              name="Salida de ordenación"
+              startId="Package\Insert and Update Records\Ordenar tabla.Outputs[Salida de ordenación]" />
+            <path
+              refId="Package\Insert and Update Records.Paths[Salida de origen de Excel]"
+              endId="Package\Insert and Update Records\Conversión de datos.Inputs[Entrada de conversión de datos]"
+              name="Salida de origen de Excel"
+              startId="Package\Insert and Update Records\Origen de Excel.Outputs[Salida de origen de Excel]" />
+            <path
+              refId="Package\Insert and Update Records.Paths[Salida de origen de OLE DB]"
+              endId="Package\Insert and Update Records\Ordenar tabla.Inputs[Entrada de ordenación]"
+              name="Salida de origen de OLE DB"
+              startId="Package\Insert and Update Records\Origen de OLE DB.Outputs[Salida de origen de OLE DB]" />
+            <path
+              refId="Package\Insert and Update Records.Paths[upadate_record]"
+              endId="Package\Insert and Update Records\Update.Inputs[Entrada de división condicional]"
+              name="upadate_record"
+              startId="Package\Insert and Update Records\Insert update.Outputs[upadate_record]" />
+            <path
+              refId="Package\Insert and Update Records.Paths[update]"
+              endId="Package\Insert and Update Records\Comando de OLE DB.Inputs[Entrada de comando de OLE DB]"
+              name="update"
+              startId="Package\Insert and Update Records\Update.Outputs[update]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="sql11">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="205,42"
+          Id="Package\Insert and Update Records"
+          TopLeft="124,51" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Insert and Update Records">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="143,42"
+          Id="Package\Insert and Update Records\Insert update"
+          TopLeft="338,450" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\Insert and Update Records\Origen de OLE DB"
+          TopLeft="393,31" />
+        <NodeLayout
+          Size="144,42"
+          Id="Package\Insert and Update Records\Ordenar tabla"
+          TopLeft="399,202" />
+        <NodeLayout
+          Size="169,42"
+          Id="Package\Insert and Update Records\Combinación Datos"
+          TopLeft="306,333" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Insert and Update Records\Conversión de datos"
+          TopLeft="163,110" />
+        <NodeLayout
+          Size="113,42"
+          Id="Package\Insert and Update Records\Update"
+          TopLeft="642,402" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Insert and Update Records\Dest new record"
+          TopLeft="30,514" />
+        <NodeLayout
+          Size="145,42"
+          Id="Package\Insert and Update Records\Ordenar Excel"
+          TopLeft="116,306" />
+        <NodeLayout
+          Size="177,42"
+          Id="Package\Insert and Update Records\Comando de OLE DB"
+          TopLeft="608,529" />
+        <NodeLayout
+          Size="137,42"
+          Id="Package\Insert and Update Records\Ponderacion"
+          TopLeft="183,202" />
+        <NodeLayout
+          Size="153,42"
+          Id="Package\Insert and Update Records\Origen de Excel"
+          TopLeft="146,32" />
+        <EdgeLayout
+          Id="Package\Insert and Update Records.Paths[update]"
+          TopLeft="716,444">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-19.5,85"
+              Start="0,0"
+              End="-19.5,77.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.7120418848168" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,30.7120418848168"
+                    Point2="0,34.7120418848168"
+                    Point3="-4,34.7120418848168" />
+                  <mssgle:LineSegment
+                    End="-15.5,34.7120418848168" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-15.5,34.7120418848168"
+                    Point2="-19.5,34.7120418848168"
+                    Point3="-19.5,38.7120418848168" />
+                  <mssgle:LineSegment
+                    End="-19.5,77.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-25.5525,39.7120418848168,31.605,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Insert and Update Records.Paths[upadate_record]"
+          TopLeft="481,471">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="161,-48"
+              Start="0,0"
+              End="153.5,-48">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="76.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="76.5,0"
+                    Point2="80.5,0"
+                    Point3="80.5,-4" />
+                  <mssgle:LineSegment
+                    End="80.5,-44" />
+                  <mssgle:CubicBezierSegment
+                    Point1="80.5,-44"
+                    Point2="80.5,-48"
+                    Point3="84.5,-48" />
+                  <mssgle:LineSegment
+                    End="153.5,-48" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="24.307109375,1,69.93828125,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Insert and Update Records.Paths[Salida de origen de OLE DB]"
+          TopLeft="473,73">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,129"
+              Start="0,0"
+              End="0,121.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,121.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Insert and Update Records.Paths[Salida de origen de Excel]"
+          TopLeft="222.5,74">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="28,36"
+              Start="0,0"
+              End="28,28.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14"
+                    Point2="0,18"
+                    Point3="4,18" />
+                  <mssgle:LineSegment
+                    End="24,18" />
+                  <mssgle:CubicBezierSegment
+                    Point1="24,18"
+                    Point2="28,18"
+                    Point3="28,22" />
+                  <mssgle:LineSegment
+                    End="28,28.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Insert and Update Records.Paths[Salida de ordenación1]"
+          TopLeft="471,244">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-80.5,89"
+              Start="0,0"
+              End="-80.5,81.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40.5"
+                    Point2="0,44.5"
+                    Point3="-4,44.5" />
+                  <mssgle:LineSegment
+                    End="-76.5,44.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-76.5,44.5"
+                    Point2="-80.5,44.5"
+                    Point3="-80.5,48.5" />
+                  <mssgle:LineSegment
+                    End="-80.5,81.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Insert and Update Records.Paths[Salida de ordenación]"
+          TopLeft="261,327">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="45,27"
+              Start="0,0"
+              End="37.5,27">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="18.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="18.5,0"
+                    Point2="22.5,0"
+                    Point3="22.5,4" />
+                  <mssgle:LineSegment
+                    End="22.5,23" />
+                  <mssgle:CubicBezierSegment
+                    Point1="22.5,23"
+                    Point2="22.5,27"
+                    Point3="26.5,27" />
+                  <mssgle:LineSegment
+                    End="37.5,27" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Insert and Update Records.Paths[Salida de conversión de datos]"
+          TopLeft="251,152">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,50"
+              Start="0,0"
+              End="0,42.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Insert and Update Records.Paths[Salida de combinación de mezcla]"
+          TopLeft="390.5,375">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="19,75"
+              Start="0,0"
+              End="19,67.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,33.5"
+                    Point2="0,37.5"
+                    Point3="4,37.5" />
+                  <mssgle:LineSegment
+                    End="15,37.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="15,37.5"
+                    Point2="19,37.5"
+                    Point3="19,41.5" />
+                  <mssgle:LineSegment
+                    End="19,67.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Insert and Update Records.Paths[Salida de columna derivada]"
+          TopLeft="251.5,244">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-63,62"
+              Start="0,0"
+              End="-63,54.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27"
+                    Point2="0,31"
+                    Point3="-4,31" />
+                  <mssgle:LineSegment
+                    End="-59,31" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-59,31"
+                    Point2="-63,31"
+                    Point3="-63,35" />
+                  <mssgle:LineSegment
+                    End="-63,54.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Insert and Update Records.Paths[new_record]"
+          TopLeft="338,471">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-152,64"
+              Start="0,0"
+              End="-144.5,64">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-72,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-72,0"
+                    Point2="-76,0"
+                    Point3="-76,4" />
+                  <mssgle:LineSegment
+                    End="-76,60" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-76,60"
+                    Point2="-76,64"
+                    Point3="-80,64" />
+                  <mssgle:LineSegment
+                    End="-144.5,64" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-102.209609375,-17.0625,52.41921875,11.0625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Insert and Update Records\Origen de OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Insert and Update Records\Dest new record">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Synonym</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Insert and Update Records\Origen de Excel">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
