@@ -1,0 +1,2402 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/19/2018 11:14:22 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DESKTOP-JEJ8I8L"
+  DTS:CreatorName="DESKTOP-JEJ8I8L\usuario"
+  DTS:DTSID="{2822B2DF-0110-457C-A9F2-E24473936FAE}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.6020.0"
+  DTS:LocaleID="3082"
+  DTS:ObjectName="E_ICC"
+  DTS:PackageType="5"
+  DTS:VersionBuild="16"
+  DTS:VersionGUID="{40137E12-4B43-42F6-B0CC-59908783A5C5}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Conexion Excel ICC]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{77956C33-D37B-49F9-9698-614CD42B0A67}"
+      DTS:ObjectName="Conexion Excel ICC">
+      <DTS:PropertyExpression
+        DTS:Name="ExcelFilePath">@[$Project::PathFicheros] + @[$Package::NombreFichero]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[$Project::PathFicheros] + @[$Package::NombreFichero]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Proyectos\Navarra\Ficheros\RESTO SERIES.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:Description="Fichero de datos"
+      DTS:DTSID="{7E6452FD-522A-4745-B1FC-14896E171472}"
+      DTS:ObjectName="NombreFichero">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">RESTO SERIES.xlsx</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Flujo de ICC"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Tarea Flujo de datos"
+      DTS:DTSID="{0C24463B-57BB-41AA-A12F-47F095FF41EB}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Flujo de ICC"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Tarea Flujo de ICC\Combinación de mezcla"
+              componentClassID="{14D43A4F-D7BD-489D-829E-6DE35750CFE4}"
+              contactInfo="Combinación de mezcla;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Combina dos flujos de datos ordenados en uno solo mediante la combinación FULL, LEFT o INNER. Se recomienda esta transformación cuando se pueden ordenar los flujos de datos en sus orígenes."
+              name="Combinación de mezcla"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el tipo de combinación que se debe realizar."
+                  name="JoinType"
+                  typeConverter="JoinType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número de columnas de la clave de ordenación."
+                  name="NumKeyColumns">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si los valores NULL se tratan como valores iguales."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indica la cantidad máxima solicitada de búferes por entrada antes del bloqueo."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Tarea Flujo de ICC\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla]"
+                  hasSideEffects="true"
+                  name="Entrada izquierda de combinación de mezcla">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[NAÑO]"
+                      cachedDataType="i4"
+                      cachedName="NAÑO"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Tarea Flujo de ICC\Ordenar excel icc.Outputs[Salida de ordenación].Columns[NAÑO]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[SAMBITO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="SAMBITO"
+                      cachedSortKeyPosition="3"
+                      lineageId="Package\Tarea Flujo de ICC\Ordenar excel icc.Outputs[Salida de ordenación].Columns[SAMBITO]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[TRIM_E]"
+                      cachedDataType="i4"
+                      cachedName="TRIM_E"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Tarea Flujo de ICC\Ordenar excel icc.Outputs[Salida de ordenación].Columns[TRIM_E]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[ICC]"
+                      cachedDataType="r8"
+                      cachedName="ICC"
+                      lineageId="Package\Tarea Flujo de ICC\Ordenar excel icc.Outputs[Salida de ordenación].Columns[ICC]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Tarea Flujo de ICC\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla]"
+                  hasSideEffects="true"
+                  name="Entrada derecha de combinación de mezcla">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[ANNO]"
+                      cachedDataType="i4"
+                      cachedName="ANNO"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Tarea Flujo de ICC\Ordenar Export.Outputs[Salida de ordenación].Columns[ANNO]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[AMBITO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="AMBITO"
+                      cachedSortKeyPosition="3"
+                      lineageId="Package\Tarea Flujo de ICC\Ordenar Export.Outputs[Salida de ordenación].Columns[AMBITO]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[TRIM]"
+                      cachedDataType="i4"
+                      cachedName="TRIM"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Tarea Flujo de ICC\Ordenar Export.Outputs[Salida de ordenación].Columns[TRIM]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[FICC]"
+                      cachedDataType="r8"
+                      cachedName="FICC"
+                      lineageId="Package\Tarea Flujo de ICC\Ordenar Export.Outputs[Salida de ordenación].Columns[FICC]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla]"
+                  isSorted="true"
+                  name="Salida de combinación de mezcla">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[NAÑO]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[NAÑO]"
+                      name="NAÑO"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Tarea Flujo de ICC\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[NAÑO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[SAMBITO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[SAMBITO]"
+                      name="SAMBITO"
+                      sortKeyPosition="3">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Tarea Flujo de ICC\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[SAMBITO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[TRIM_E]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[TRIM_E]"
+                      name="TRIM_E"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Tarea Flujo de ICC\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[TRIM_E]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[ICC]"
+                      dataType="r8"
+                      lineageId="Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[ICC]"
+                      name="ICC">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Tarea Flujo de ICC\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[ICC]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[ANNO]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[ANNO]"
+                      name="ANNO">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Tarea Flujo de ICC\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[ANNO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[AMBITO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[AMBITO]"
+                      name="AMBITO">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Tarea Flujo de ICC\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[AMBITO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[TRIM]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[TRIM]"
+                      name="TRIM">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Tarea Flujo de ICC\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[TRIM]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[FICC]"
+                      dataType="r8"
+                      lineageId="Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[FICC]"
+                      name="FICC">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Tarea Flujo de ICC\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[FICC]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de ICC\Conversión de datos"
+              componentClassID="{62B1106C-7DB8-4EC8-ADD6-4C664DFFC54A}"
+              contactInfo="Conversión de datos;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Conversión de datos"
+              name="Conversión de datos"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Tarea Flujo de ICC\Conversión de datos.Inputs[Entrada de conversión de datos]"
+                  name="Entrada de conversión de datos">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[AÑO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="AÑO"
+                      lineageId="Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de origen de Excel].Columns[AÑO]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[AMBITO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="AMBITO"
+                      lineageId="Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de origen de Excel].Columns[AMBITO]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[TRIM]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TRIM"
+                      lineageId="Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de origen de Excel].Columns[TRIM]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[Indice de confianza del consumidor]"
+                      cachedDataType="r8"
+                      cachedName="Indice de confianza del consumidor"
+                      lineageId="Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de origen de Excel].Columns[Indice de confianza del consumidor]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de ICC\Conversión de datos.Outputs[Salida de conversión de datos]"
+                  exclusionGroup="1"
+                  name="Salida de conversión de datos"
+                  synchronousInputId="Package\Tarea Flujo de ICC\Conversión de datos.Inputs[Entrada de conversión de datos]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\Conversión de datos.Outputs[Salida de conversión de datos].Columns[NAÑO]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Tarea Flujo de ICC\Conversión de datos.Outputs[Salida de conversión de datos].Columns[NAÑO]"
+                      name="NAÑO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de origen de Excel].Columns[AÑO]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\Conversión de datos.Outputs[Salida de conversión de datos].Columns[SAMBITO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Tarea Flujo de ICC\Conversión de datos.Outputs[Salida de conversión de datos].Columns[SAMBITO]"
+                      name="SAMBITO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de origen de Excel].Columns[AMBITO]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\Conversión de datos.Outputs[Salida de conversión de datos].Columns[TRIM_E]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Tarea Flujo de ICC\Conversión de datos.Outputs[Salida de conversión de datos].Columns[TRIM_E]"
+                      name="TRIM_E"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de origen de Excel].Columns[TRIM]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\Conversión de datos.Outputs[Salida de conversión de datos].Columns[ICC]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Tarea Flujo de ICC\Conversión de datos.Outputs[Salida de conversión de datos].Columns[ICC]"
+                      name="ICC"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de origen de Excel].Columns[Indice de confianza del consumidor]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tarea Flujo de ICC\Conversión de datos.Outputs[Salida de error de conversión de datos]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de conversión de datos"
+                  synchronousInputId="Package\Tarea Flujo de ICC\Conversión de datos.Inputs[Entrada de conversión de datos]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de ICC\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de ICC\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de ICC\DB ICC"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="Origen de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;7"
+              description="Origen de OLE DB"
+              name="DB ICC"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[icc].[TICCD]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Asignaciones entre los parámetros del comando SQL y las variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Flujo de ICC\DB ICC.Connections[OleDbConnection]"
+                  connectionManagerID="{4006B7E9-9DFB-4184-862D-B28541684AB4}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DWH_Economicos]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de origen de OLE DB]"
+                  name="Salida de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de origen de OLE DB].Columns[ANNO]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de origen de OLE DB].ExternalColumns[ANNO]"
+                      lineageId="Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de origen de OLE DB].Columns[ANNO]"
+                      name="ANNO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de origen de OLE DB].Columns[AMBITO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de origen de OLE DB].ExternalColumns[AMBITO]"
+                      length="100"
+                      lineageId="Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de origen de OLE DB].Columns[AMBITO]"
+                      name="AMBITO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de origen de OLE DB].Columns[TRIM]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de origen de OLE DB].ExternalColumns[TRIM]"
+                      lineageId="Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de origen de OLE DB].Columns[TRIM]"
+                      name="TRIM"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de origen de OLE DB].Columns[FICC]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de origen de OLE DB].ExternalColumns[FICC]"
+                      lineageId="Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de origen de OLE DB].Columns[FICC]"
+                      name="FICC"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de origen de OLE DB].ExternalColumns[ANNO]"
+                      dataType="i4"
+                      name="ANNO" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de origen de OLE DB].ExternalColumns[AMBITO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="AMBITO" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de origen de OLE DB].ExternalColumns[TRIM]"
+                      dataType="i4"
+                      name="TRIM" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de origen de OLE DB].ExternalColumns[FICC]"
+                      dataType="r8"
+                      name="FICC" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de error de origen de OLE DB]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de error de origen de OLE DB].Columns[ANNO]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de error de origen de OLE DB].Columns[ANNO]"
+                      name="ANNO" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de error de origen de OLE DB].Columns[TRIM]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de error de origen de OLE DB].Columns[TRIM]"
+                      name="TRIM" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de error de origen de OLE DB].Columns[AMBITO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de error de origen de OLE DB].Columns[AMBITO]"
+                      name="AMBITO" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de error de origen de OLE DB].Columns[FICC]"
+                      dataType="r8"
+                      lineageId="Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de error de origen de OLE DB].Columns[FICC]"
+                      name="FICC" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de ICC\Destino ICC"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="Destino de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino de OLE DB"
+              name="Destino ICC"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[icc].[TICCD]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si los valores proporcionados para columnas de identidad se van a copiar al destino. Si es False, los valores de las columnas de identidad se generan automáticamente en el destino. Sólo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si las columnas que contienen NULL tendrán NULL insertado en el destino. Si es False, las columnas que contienen NULL tendrán sus valores predeterminados insertados en el destino. Sólo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica opciones para usar con la carga rápida. Sólo se aplica si está activada la carga rápida."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica cuándo se emiten confirmaciones durante la inserción de datos. El valor 0 especifica que se emitirá una confirmación al final de la inserción de datos. Sólo se aplica si está activada la carga rápida."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Flujo de ICC\Destino ICC.Connections[OleDbConnection]"
+                  connectionManagerID="{4006B7E9-9DFB-4184-862D-B28541684AB4}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DWH_Economicos]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Tarea Flujo de ICC\Destino ICC.Inputs[Entrada de destino de OLE DB]"
+                  errorOrTruncationOperation="Insertar"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\Destino ICC.Inputs[Entrada de destino de OLE DB].Columns[NAÑO]"
+                      cachedDataType="i4"
+                      cachedName="NAÑO"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Tarea Flujo de ICC\Destino ICC.Inputs[Entrada de destino de OLE DB].ExternalColumns[ANNO]"
+                      lineageId="Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[NAÑO]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\Destino ICC.Inputs[Entrada de destino de OLE DB].Columns[SAMBITO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="SAMBITO"
+                      cachedSortKeyPosition="3"
+                      externalMetadataColumnId="Package\Tarea Flujo de ICC\Destino ICC.Inputs[Entrada de destino de OLE DB].ExternalColumns[AMBITO]"
+                      lineageId="Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[SAMBITO]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\Destino ICC.Inputs[Entrada de destino de OLE DB].Columns[TRIM_E]"
+                      cachedDataType="i4"
+                      cachedName="TRIM_E"
+                      cachedSortKeyPosition="2"
+                      externalMetadataColumnId="Package\Tarea Flujo de ICC\Destino ICC.Inputs[Entrada de destino de OLE DB].ExternalColumns[TRIM]"
+                      lineageId="Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[TRIM_E]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\Destino ICC.Inputs[Entrada de destino de OLE DB].Columns[ICC]"
+                      cachedDataType="r8"
+                      cachedName="ICC"
+                      externalMetadataColumnId="Package\Tarea Flujo de ICC\Destino ICC.Inputs[Entrada de destino de OLE DB].ExternalColumns[FICC]"
+                      lineageId="Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[ICC]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de ICC\Destino ICC.Inputs[Entrada de destino de OLE DB].ExternalColumns[ANNO]"
+                      dataType="i4"
+                      name="ANNO" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de ICC\Destino ICC.Inputs[Entrada de destino de OLE DB].ExternalColumns[AMBITO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="AMBITO" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de ICC\Destino ICC.Inputs[Entrada de destino de OLE DB].ExternalColumns[TRIM]"
+                      dataType="i4"
+                      name="TRIM" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de ICC\Destino ICC.Inputs[Entrada de destino de OLE DB].ExternalColumns[FICC]"
+                      dataType="r8"
+                      name="FICC" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de ICC\Destino ICC.Outputs[Salida de error de destino de OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de OLE DB"
+                  synchronousInputId="Package\Tarea Flujo de ICC\Destino ICC.Inputs[Entrada de destino de OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\Destino ICC.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de ICC\Destino ICC.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\Destino ICC.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de ICC\Destino ICC.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de ICC\División condicional"
+              componentClassID="{7F88F654-4E20-4D14-84F4-AF9C925D3087}"
+              contactInfo="División condicional;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Enruta filas de datos a diferentes salidas según el contenido de los datos. Se usan condiciones (expresiones de SSIS) para especificar las filas que se van a enrutar. Por ejemplo, se usa para separar los registros que deben limpiarse de los registros listos para ser cargados o para enrutar solamente un subconjunto de registros."
+              name="División condicional"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Tarea Flujo de ICC\División condicional.Inputs[Entrada de división condicional]"
+                  description="Entrada en la transformación División condicional"
+                  name="Entrada de división condicional">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\División condicional.Inputs[Entrada de división condicional].Columns[NAÑO]"
+                      cachedDataType="i4"
+                      cachedName="NAÑO"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[NAÑO]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\División condicional.Inputs[Entrada de división condicional].Columns[SAMBITO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="SAMBITO"
+                      cachedSortKeyPosition="3"
+                      lineageId="Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[SAMBITO]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\División condicional.Inputs[Entrada de división condicional].Columns[ANNO]"
+                      cachedDataType="i4"
+                      cachedName="ANNO"
+                      lineageId="Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[ANNO]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\División condicional.Inputs[Entrada de división condicional].Columns[AMBITO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="AMBITO"
+                      lineageId="Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[AMBITO]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\División condicional.Inputs[Entrada de división condicional].Columns[TRIM_E]"
+                      cachedDataType="i4"
+                      cachedName="TRIM_E"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[TRIM_E]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\División condicional.Inputs[Entrada de división condicional].Columns[ICC]"
+                      cachedDataType="r8"
+                      cachedName="ICC"
+                      lineageId="Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[ICC]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\División condicional.Inputs[Entrada de división condicional].Columns[TRIM]"
+                      cachedDataType="i4"
+                      cachedName="TRIM"
+                      lineageId="Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[TRIM]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\División condicional.Inputs[Entrada de división condicional].Columns[FICC]"
+                      cachedDataType="r8"
+                      cachedName="FICC"
+                      lineageId="Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[FICC]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de ICC\División condicional.Outputs[Update]"
+                  description="Salida 1 de la transformación División condicional"
+                  errorOrTruncationOperation="Cálculo"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Update"
+                  synchronousInputId="Package\Tarea Flujo de ICC\División condicional.Inputs[Entrada de división condicional]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la expresión. Esta versión de expresión usa identificadores de linaje en lugar de nombres de columna."
+                      name="Expression">(#{Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[NAÑO]} == #{Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[ANNO]}) &amp;&amp; (#{Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[TRIM_E]} == #{Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[TRIM]}) &amp;&amp; (#{Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[SAMBITO]} == #{Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[AMBITO]}) &amp;&amp; (#{Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[ICC]} != #{Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[FICC]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la versión descriptiva de la expresión. Esta versión de expresión usa nombres de columna."
+                      expressionType="Notify"
+                      name="FriendlyExpression">([NAÑO] == ANNO) &amp;&amp; (TRIM_E == TRIM) &amp;&amp; (SAMBITO == AMBITO) &amp;&amp; (ICC != FICC)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la posición de la condición en la lista de condiciones que evalúa la transformación. El orden de evaluación es del menor al mayor valor."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tarea Flujo de ICC\División condicional.Outputs[Salida predeterminada de división condicional]"
+                  description="Salida predeterminada de la transformación División condicional"
+                  exclusionGroup="1"
+                  name="Salida predeterminada de división condicional"
+                  synchronousInputId="Package\Tarea Flujo de ICC\División condicional.Inputs[Entrada de división condicional]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tarea Flujo de ICC\División condicional.Outputs[Salida de error de división condicional]"
+                  description="Salida de error de la transformación División condicional"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de división condicional"
+                  synchronousInputId="Package\Tarea Flujo de ICC\División condicional.Inputs[Entrada de división condicional]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\División condicional.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de ICC\División condicional.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\División condicional.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de ICC\División condicional.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de ICC\FICC null"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Columna derivada;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Crea nuevos valores de columna aplicando expresiones a las columnas de entrada de la transformación. Crea nuevas columnas o sobrescribe las columnas existentes. Por ejemplo, se concatenan los valores de las columnas 'nombre' y 'apellidos' para crear una columna 'nombre completo'."
+              name="FICC null"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Tarea Flujo de ICC\FICC null.Inputs[Entrada de columna derivada]"
+                  description="Entrada en la transformación Columna derivada"
+                  name="Entrada de columna derivada">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\FICC null.Inputs[Entrada de columna derivada].Columns[FICC]"
+                      cachedDataType="r8"
+                      cachedName="FICC"
+                      errorOrTruncationOperation="Cálculo"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de origen de OLE DB].Columns[FICC]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expresión de columna derivada"
+                          name="Expression">[ISNULL](#{Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de origen de OLE DB].Columns[FICC]}) ? 0 : #{Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de origen de OLE DB].Columns[FICC]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expresión descriptiva de columna derivada"
+                          expressionType="Notify"
+                          name="FriendlyExpression">ISNULL(FICC) ? 0 : FICC</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de ICC\FICC null.Outputs[Salida de columna derivada]"
+                  description="Salida predeterminada de la transformación Columna derivada"
+                  exclusionGroup="1"
+                  name="Salida de columna derivada"
+                  synchronousInputId="Package\Tarea Flujo de ICC\FICC null.Inputs[Entrada de columna derivada]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tarea Flujo de ICC\FICC null.Outputs[Salida de error de columna derivada]"
+                  description="Salida de error de la transformación Columna derivada"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de columna derivada"
+                  synchronousInputId="Package\Tarea Flujo de ICC\FICC null.Inputs[Entrada de columna derivada]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\FICC null.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de ICC\FICC null.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\FICC null.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de ICC\FICC null.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de ICC\InserOrUpdate"
+              componentClassID="{7F88F654-4E20-4D14-84F4-AF9C925D3087}"
+              contactInfo="División condicional;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Enruta filas de datos a diferentes salidas según el contenido de los datos. Se usan condiciones (expresiones de SSIS) para especificar las filas que se van a enrutar. Por ejemplo, se usa para separar los registros que deben limpiarse de los registros listos para ser cargados o para enrutar solamente un subconjunto de registros."
+              name="InserOrUpdate"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Tarea Flujo de ICC\InserOrUpdate.Inputs[Entrada de división condicional]"
+                  description="Entrada en la transformación División condicional"
+                  name="Entrada de división condicional">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\InserOrUpdate.Inputs[Entrada de división condicional].Columns[NAÑO]"
+                      cachedDataType="i4"
+                      cachedName="NAÑO"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[NAÑO]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\InserOrUpdate.Inputs[Entrada de división condicional].Columns[SAMBITO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="SAMBITO"
+                      cachedSortKeyPosition="3"
+                      lineageId="Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[SAMBITO]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\InserOrUpdate.Inputs[Entrada de división condicional].Columns[ANNO]"
+                      cachedDataType="i4"
+                      cachedName="ANNO"
+                      lineageId="Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[ANNO]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\InserOrUpdate.Inputs[Entrada de división condicional].Columns[AMBITO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="AMBITO"
+                      lineageId="Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[AMBITO]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\InserOrUpdate.Inputs[Entrada de división condicional].Columns[TRIM_E]"
+                      cachedDataType="i4"
+                      cachedName="TRIM_E"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[TRIM_E]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\InserOrUpdate.Inputs[Entrada de división condicional].Columns[TRIM]"
+                      cachedDataType="i4"
+                      cachedName="TRIM"
+                      lineageId="Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[TRIM]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de ICC\InserOrUpdate.Outputs[Insert]"
+                  description="Salida 1 de la transformación División condicional"
+                  errorOrTruncationOperation="Cálculo"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Insert"
+                  synchronousInputId="Package\Tarea Flujo de ICC\InserOrUpdate.Inputs[Entrada de división condicional]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la expresión. Esta versión de expresión usa identificadores de linaje en lugar de nombres de columna."
+                      name="Expression">(![ISNULL](#{Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[NAÑO]}) &amp;&amp; [ISNULL](#{Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[ANNO]}) || (![ISNULL](#{Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[TRIM_E]}) &amp;&amp; [ISNULL](#{Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[TRIM]})) || (![ISNULL](#{Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[SAMBITO]}) &amp;&amp; [ISNULL](#{Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[AMBITO]})))</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la versión descriptiva de la expresión. Esta versión de expresión usa nombres de columna."
+                      expressionType="Notify"
+                      name="FriendlyExpression">(!ISNULL([NAÑO]) &amp;&amp; ISNULL(ANNO) || (!ISNULL(TRIM_E) &amp;&amp; ISNULL(TRIM)) || (!ISNULL(SAMBITO) &amp;&amp; ISNULL(AMBITO)))</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la posición de la condición en la lista de condiciones que evalúa la transformación. El orden de evaluación es del menor al mayor valor."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tarea Flujo de ICC\InserOrUpdate.Outputs[Update]"
+                  description="Salida 2 de la transformación División condicional"
+                  errorOrTruncationOperation="Cálculo"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Update"
+                  synchronousInputId="Package\Tarea Flujo de ICC\InserOrUpdate.Inputs[Entrada de división condicional]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la expresión. Esta versión de expresión usa identificadores de linaje en lugar de nombres de columna."
+                      name="Expression">(![ISNULL](#{Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[NAÑO]}) &amp;&amp; ![ISNULL](#{Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[ANNO]}) &amp;&amp; (![ISNULL](#{Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[TRIM_E]}) &amp;&amp; ![ISNULL](#{Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[TRIM]})) &amp;&amp; (![ISNULL](#{Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[SAMBITO]}) &amp;&amp; ![ISNULL](#{Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[AMBITO]})))</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la versión descriptiva de la expresión. Esta versión de expresión usa nombres de columna."
+                      expressionType="Notify"
+                      name="FriendlyExpression">(!ISNULL([NAÑO]) &amp;&amp; !ISNULL(ANNO) &amp;&amp; (!ISNULL(TRIM_E) &amp;&amp; !ISNULL(TRIM)) &amp;&amp; (!ISNULL(SAMBITO) &amp;&amp; !ISNULL(AMBITO)))</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la posición de la condición en la lista de condiciones que evalúa la transformación. El orden de evaluación es del menor al mayor valor."
+                      name="EvaluationOrder">1</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tarea Flujo de ICC\InserOrUpdate.Outputs[Salida predeterminada de división condicional]"
+                  description="Salida predeterminada de la transformación División condicional"
+                  exclusionGroup="1"
+                  name="Salida predeterminada de división condicional"
+                  synchronousInputId="Package\Tarea Flujo de ICC\InserOrUpdate.Inputs[Entrada de división condicional]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tarea Flujo de ICC\InserOrUpdate.Outputs[Salida de error de división condicional]"
+                  description="Salida de error de la transformación División condicional"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de división condicional"
+                  synchronousInputId="Package\Tarea Flujo de ICC\InserOrUpdate.Inputs[Entrada de división condicional]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\InserOrUpdate.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de ICC\InserOrUpdate.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\InserOrUpdate.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de ICC\InserOrUpdate.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de ICC\null ICC"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Columna derivada;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Crea nuevos valores de columna aplicando expresiones a las columnas de entrada de la transformación. Crea nuevas columnas o sobrescribe las columnas existentes. Por ejemplo, se concatenan los valores de las columnas 'nombre' y 'apellidos' para crear una columna 'nombre completo'."
+              name="null ICC"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Tarea Flujo de ICC\null ICC.Inputs[Entrada de columna derivada]"
+                  description="Entrada en la transformación Columna derivada"
+                  name="Entrada de columna derivada">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\null ICC.Inputs[Entrada de columna derivada].Columns[ICC]"
+                      cachedDataType="r8"
+                      cachedName="ICC"
+                      errorOrTruncationOperation="Cálculo"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Tarea Flujo de ICC\Conversión de datos.Outputs[Salida de conversión de datos].Columns[ICC]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expresión de columna derivada"
+                          name="Expression">[ISNULL](#{Package\Tarea Flujo de ICC\Conversión de datos.Outputs[Salida de conversión de datos].Columns[ICC]}) ? 0 : #{Package\Tarea Flujo de ICC\Conversión de datos.Outputs[Salida de conversión de datos].Columns[ICC]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expresión descriptiva de columna derivada"
+                          expressionType="Notify"
+                          name="FriendlyExpression">ISNULL(ICC) ? 0 : ICC</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de ICC\null ICC.Outputs[Salida de columna derivada]"
+                  description="Salida predeterminada de la transformación Columna derivada"
+                  exclusionGroup="1"
+                  name="Salida de columna derivada"
+                  synchronousInputId="Package\Tarea Flujo de ICC\null ICC.Inputs[Entrada de columna derivada]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tarea Flujo de ICC\null ICC.Outputs[Salida de error de columna derivada]"
+                  description="Salida de error de la transformación Columna derivada"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de columna derivada"
+                  synchronousInputId="Package\Tarea Flujo de ICC\null ICC.Inputs[Entrada de columna derivada]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\null ICC.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de ICC\null ICC.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\null ICC.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de ICC\null ICC.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de ICC\Ordenar excel icc"
+              componentClassID="{5B1A3FF5-D366-4D75-AD1F-F19A36FCBEDB}"
+              contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
+              name="Ordenar excel icc"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si la transformación Ordenar quita filas con valores de ordenación duplicados."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número máximo de subprocesos que se deben usar para la ordenación."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Tarea Flujo de ICC\Ordenar excel icc.Inputs[Entrada de ordenación]"
+                  name="Entrada de ordenación">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\Ordenar excel icc.Inputs[Entrada de ordenación].Columns[NAÑO]"
+                      cachedDataType="i4"
+                      cachedName="NAÑO"
+                      lineageId="Package\Tarea Flujo de ICC\Conversión de datos.Outputs[Salida de conversión de datos].Columns[NAÑO]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\Ordenar excel icc.Inputs[Entrada de ordenación].Columns[SAMBITO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="SAMBITO"
+                      lineageId="Package\Tarea Flujo de ICC\Conversión de datos.Outputs[Salida de conversión de datos].Columns[SAMBITO]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">3</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\Ordenar excel icc.Inputs[Entrada de ordenación].Columns[TRIM_E]"
+                      cachedDataType="i4"
+                      cachedName="TRIM_E"
+                      lineageId="Package\Tarea Flujo de ICC\Conversión de datos.Outputs[Salida de conversión de datos].Columns[TRIM_E]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\Ordenar excel icc.Inputs[Entrada de ordenación].Columns[AÑO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="AÑO"
+                      lineageId="Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de origen de Excel].Columns[AÑO]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\Ordenar excel icc.Inputs[Entrada de ordenación].Columns[ICC]"
+                      cachedDataType="r8"
+                      cachedName="ICC"
+                      lineageId="Package\Tarea Flujo de ICC\Conversión de datos.Outputs[Salida de conversión de datos].Columns[ICC]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de ICC\Ordenar excel icc.Outputs[Salida de ordenación]"
+                  isSorted="true"
+                  name="Salida de ordenación">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\Ordenar excel icc.Outputs[Salida de ordenación].Columns[NAÑO]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de ICC\Ordenar excel icc.Outputs[Salida de ordenación].Columns[NAÑO]"
+                      name="NAÑO"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Tarea Flujo de ICC\Conversión de datos.Outputs[Salida de conversión de datos].Columns[NAÑO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\Ordenar excel icc.Outputs[Salida de ordenación].Columns[SAMBITO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Tarea Flujo de ICC\Ordenar excel icc.Outputs[Salida de ordenación].Columns[SAMBITO]"
+                      name="SAMBITO"
+                      sortKeyPosition="3">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Tarea Flujo de ICC\Conversión de datos.Outputs[Salida de conversión de datos].Columns[SAMBITO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\Ordenar excel icc.Outputs[Salida de ordenación].Columns[TRIM_E]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de ICC\Ordenar excel icc.Outputs[Salida de ordenación].Columns[TRIM_E]"
+                      name="TRIM_E"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Tarea Flujo de ICC\Conversión de datos.Outputs[Salida de conversión de datos].Columns[TRIM_E]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\Ordenar excel icc.Outputs[Salida de ordenación].Columns[AÑO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Tarea Flujo de ICC\Ordenar excel icc.Outputs[Salida de ordenación].Columns[AÑO]"
+                      name="AÑO">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de origen de Excel].Columns[AÑO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\Ordenar excel icc.Outputs[Salida de ordenación].Columns[ICC]"
+                      dataType="r8"
+                      lineageId="Package\Tarea Flujo de ICC\Ordenar excel icc.Outputs[Salida de ordenación].Columns[ICC]"
+                      name="ICC">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Tarea Flujo de ICC\Conversión de datos.Outputs[Salida de conversión de datos].Columns[ICC]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de ICC\Ordenar Export"
+              componentClassID="{5B1A3FF5-D366-4D75-AD1F-F19A36FCBEDB}"
+              contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
+              name="Ordenar Export"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si la transformación Ordenar quita filas con valores de ordenación duplicados."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número máximo de subprocesos que se deben usar para la ordenación."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Tarea Flujo de ICC\Ordenar Export.Inputs[Entrada de ordenación]"
+                  name="Entrada de ordenación">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\Ordenar Export.Inputs[Entrada de ordenación].Columns[ANNO]"
+                      cachedDataType="i4"
+                      cachedName="ANNO"
+                      lineageId="Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de origen de OLE DB].Columns[ANNO]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\Ordenar Export.Inputs[Entrada de ordenación].Columns[AMBITO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="AMBITO"
+                      lineageId="Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de origen de OLE DB].Columns[AMBITO]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">3</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\Ordenar Export.Inputs[Entrada de ordenación].Columns[TRIM]"
+                      cachedDataType="i4"
+                      cachedName="TRIM"
+                      lineageId="Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de origen de OLE DB].Columns[TRIM]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\Ordenar Export.Inputs[Entrada de ordenación].Columns[FICC]"
+                      cachedDataType="r8"
+                      cachedName="FICC"
+                      lineageId="Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de origen de OLE DB].Columns[FICC]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de ICC\Ordenar Export.Outputs[Salida de ordenación]"
+                  isSorted="true"
+                  name="Salida de ordenación">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\Ordenar Export.Outputs[Salida de ordenación].Columns[ANNO]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de ICC\Ordenar Export.Outputs[Salida de ordenación].Columns[ANNO]"
+                      name="ANNO"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de origen de OLE DB].Columns[ANNO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\Ordenar Export.Outputs[Salida de ordenación].Columns[AMBITO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Tarea Flujo de ICC\Ordenar Export.Outputs[Salida de ordenación].Columns[AMBITO]"
+                      name="AMBITO"
+                      sortKeyPosition="3">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de origen de OLE DB].Columns[AMBITO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\Ordenar Export.Outputs[Salida de ordenación].Columns[TRIM]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de ICC\Ordenar Export.Outputs[Salida de ordenación].Columns[TRIM]"
+                      name="TRIM"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de origen de OLE DB].Columns[TRIM]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\Ordenar Export.Outputs[Salida de ordenación].Columns[FICC]"
+                      dataType="r8"
+                      lineageId="Package\Tarea Flujo de ICC\Ordenar Export.Outputs[Salida de ordenación].Columns[FICC]"
+                      name="FICC">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de origen de OLE DB].Columns[FICC]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de ICC\Origen ICC"
+              componentClassID="{8C084929-27D1-479F-9641-ABB7CDADF1AC}"
+              contactInfo="Origen de Excel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Origen de Excel"
+              name="Origen ICC"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">trimestral$</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="La asignación de parámetros del comando SQL a variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Flujo de ICC\Origen ICC.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Conexion Excel ICC]"
+                  connectionManagerRefId="Package.ConnectionManagers[Conexion Excel ICC]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de origen de Excel]"
+                  name="Salida de origen de Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de origen de Excel].Columns[AÑO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de origen de Excel].ExternalColumns[AÑO]"
+                      length="255"
+                      lineageId="Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de origen de Excel].Columns[AÑO]"
+                      name="AÑO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de origen de Excel].Columns[AMBITO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de origen de Excel].ExternalColumns[AMBITO]"
+                      length="255"
+                      lineageId="Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de origen de Excel].Columns[AMBITO]"
+                      name="AMBITO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de origen de Excel].Columns[TRIM]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de origen de Excel].ExternalColumns[TRIM]"
+                      length="255"
+                      lineageId="Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de origen de Excel].Columns[TRIM]"
+                      name="TRIM"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de origen de Excel].Columns[Indice de confianza del consumidor]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de origen de Excel].ExternalColumns[Indice de confianza del consumidor]"
+                      lineageId="Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de origen de Excel].Columns[Indice de confianza del consumidor]"
+                      name="Indice de confianza del consumidor"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de origen de Excel].ExternalColumns[AÑO]"
+                      dataType="wstr"
+                      length="255"
+                      name="AÑO" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de origen de Excel].ExternalColumns[AMBITO]"
+                      dataType="wstr"
+                      length="255"
+                      name="AMBITO" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de origen de Excel].ExternalColumns[Indicador sintético consumo]"
+                      dataType="r8"
+                      name="Indicador sintético consumo" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de origen de Excel].ExternalColumns[TRIM]"
+                      dataType="wstr"
+                      length="255"
+                      name="TRIM" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de origen de Excel].ExternalColumns[Indice de confianza del consumidor]"
+                      dataType="r8"
+                      name="Indice de confianza del consumidor" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de origen de Excel].ExternalColumns[Índice consumo hogares_constantes#CT]"
+                      dataType="wstr"
+                      length="255"
+                      name="Índice consumo hogares_constantes#CT" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de error de origen de Excel]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de error de origen de Excel].Columns[AÑO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de error de origen de Excel].Columns[AÑO]"
+                      name="AÑO" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de error de origen de Excel].Columns[TRIM]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de error de origen de Excel].Columns[TRIM]"
+                      name="TRIM" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de error de origen de Excel].Columns[AMBITO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de error de origen de Excel].Columns[AMBITO]"
+                      name="AMBITO" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de error de origen de Excel].Columns[Indice de confianza del consumidor]"
+                      dataType="r8"
+                      lineageId="Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de error de origen de Excel].Columns[Indice de confianza del consumidor]"
+                      name="Indice de confianza del consumidor" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de error de origen de Excel].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de error de origen de Excel].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de error de origen de Excel].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de error de origen de Excel].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de ICC\update icc"
+              componentClassID="{93FFEC66-CBC8-4C7F-9C6A-CB1C17A7567D}"
+              contactInfo="Comando de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Ejecuta una instrucción SQL para cada fila de un flujo de datos. Por ejemplo, se usa para llamar al procedimiento almacenado de configuración de nuevo empleado para cada fila de la tabla de nuevos empleados. Nota: la ejecución de una instrucción SQL para cada fila de un flujo de datos de gran tamaño puede tardar mucho tiempo."
+              name="update icc"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">UPDATE [icc].[TICCD]
+   SET [FICC] = ?
+ WHERE [ANNO] = ?
+      AND [TRIM] = ?
+      AND [AMBITO] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Flujo de ICC\update icc.Connections[OleDbConnection]"
+                  connectionManagerID="{4006B7E9-9DFB-4184-862D-B28541684AB4}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DWH_Economicos]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Tarea Flujo de ICC\update icc.Inputs[Entrada de comando de OLE DB]"
+                  errorOrTruncationOperation="Ejecución de comando"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de comando de OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\update icc.Inputs[Entrada de comando de OLE DB].Columns[NAÑO]"
+                      cachedDataType="i4"
+                      cachedName="NAÑO"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Tarea Flujo de ICC\update icc.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_1]"
+                      lineageId="Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[NAÑO]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\update icc.Inputs[Entrada de comando de OLE DB].Columns[SAMBITO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="SAMBITO"
+                      cachedSortKeyPosition="3"
+                      externalMetadataColumnId="Package\Tarea Flujo de ICC\update icc.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_3]"
+                      lineageId="Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[SAMBITO]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\update icc.Inputs[Entrada de comando de OLE DB].Columns[ICC]"
+                      cachedDataType="r8"
+                      cachedName="ICC"
+                      externalMetadataColumnId="Package\Tarea Flujo de ICC\update icc.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_0]"
+                      lineageId="Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[ICC]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de ICC\update icc.Inputs[Entrada de comando de OLE DB].Columns[TRIM_E]"
+                      cachedDataType="i4"
+                      cachedName="TRIM_E"
+                      cachedSortKeyPosition="2"
+                      externalMetadataColumnId="Package\Tarea Flujo de ICC\update icc.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_2]"
+                      lineageId="Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[TRIM_E]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de ICC\update icc.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_0]"
+                      dataType="r8"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Información de parámetros. Coincide con los valores de DBPARAMFLAGSENUM de OLE DB."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de ICC\update icc.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_1]"
+                      dataType="i4"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Información de parámetros. Coincide con los valores de DBPARAMFLAGSENUM de OLE DB."
+                          name="DBParamInfoFlags">17</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de ICC\update icc.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_2]"
+                      dataType="i4"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Información de parámetros. Coincide con los valores de DBPARAMFLAGSENUM de OLE DB."
+                          name="DBParamInfoFlags">17</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de ICC\update icc.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_3]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Información de parámetros. Coincide con los valores de DBPARAMFLAGSENUM de OLE DB."
+                          name="DBParamInfoFlags">1</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de ICC\update icc.Outputs[Salida de comando de OLE DB]"
+                  exclusionGroup="1"
+                  name="Salida de comando de OLE DB"
+                  synchronousInputId="Package\Tarea Flujo de ICC\update icc.Inputs[Entrada de comando de OLE DB]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tarea Flujo de ICC\update icc.Outputs[Salida de error de comando de OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de comando de OLE DB"
+                  synchronousInputId="Package\Tarea Flujo de ICC\update icc.Inputs[Entrada de comando de OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\update icc.Outputs[Salida de error de comando de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de ICC\update icc.Outputs[Salida de error de comando de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de ICC\update icc.Outputs[Salida de error de comando de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de ICC\update icc.Outputs[Salida de error de comando de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Tarea Flujo de ICC.Paths[Insert]"
+              endId="Package\Tarea Flujo de ICC\Destino ICC.Inputs[Entrada de destino de OLE DB]"
+              name="Insert"
+              startId="Package\Tarea Flujo de ICC\InserOrUpdate.Outputs[Insert]" />
+            <path
+              refId="Package\Tarea Flujo de ICC.Paths[Salida de columna derivada]"
+              endId="Package\Tarea Flujo de ICC\Ordenar excel icc.Inputs[Entrada de ordenación]"
+              name="Salida de columna derivada"
+              startId="Package\Tarea Flujo de ICC\null ICC.Outputs[Salida de columna derivada]" />
+            <path
+              refId="Package\Tarea Flujo de ICC.Paths[Salida de columna derivada1]"
+              endId="Package\Tarea Flujo de ICC\Ordenar Export.Inputs[Entrada de ordenación]"
+              name="Salida de columna derivada"
+              startId="Package\Tarea Flujo de ICC\FICC null.Outputs[Salida de columna derivada]" />
+            <path
+              refId="Package\Tarea Flujo de ICC.Paths[Salida de combinación de mezcla]"
+              endId="Package\Tarea Flujo de ICC\InserOrUpdate.Inputs[Entrada de división condicional]"
+              name="Salida de combinación de mezcla"
+              startId="Package\Tarea Flujo de ICC\Combinación de mezcla.Outputs[Salida de combinación de mezcla]" />
+            <path
+              refId="Package\Tarea Flujo de ICC.Paths[Salida de conversión de datos]"
+              endId="Package\Tarea Flujo de ICC\null ICC.Inputs[Entrada de columna derivada]"
+              name="Salida de conversión de datos"
+              startId="Package\Tarea Flujo de ICC\Conversión de datos.Outputs[Salida de conversión de datos]" />
+            <path
+              refId="Package\Tarea Flujo de ICC.Paths[Salida de ordenación]"
+              endId="Package\Tarea Flujo de ICC\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla]"
+              name="Salida de ordenación"
+              startId="Package\Tarea Flujo de ICC\Ordenar excel icc.Outputs[Salida de ordenación]" />
+            <path
+              refId="Package\Tarea Flujo de ICC.Paths[Salida de ordenación1]"
+              endId="Package\Tarea Flujo de ICC\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla]"
+              name="Salida de ordenación"
+              startId="Package\Tarea Flujo de ICC\Ordenar Export.Outputs[Salida de ordenación]" />
+            <path
+              refId="Package\Tarea Flujo de ICC.Paths[Salida de origen de Excel]"
+              endId="Package\Tarea Flujo de ICC\Conversión de datos.Inputs[Entrada de conversión de datos]"
+              name="Salida de origen de Excel"
+              startId="Package\Tarea Flujo de ICC\Origen ICC.Outputs[Salida de origen de Excel]" />
+            <path
+              refId="Package\Tarea Flujo de ICC.Paths[Salida de origen de OLE DB]"
+              endId="Package\Tarea Flujo de ICC\FICC null.Inputs[Entrada de columna derivada]"
+              name="Salida de origen de OLE DB"
+              startId="Package\Tarea Flujo de ICC\DB ICC.Outputs[Salida de origen de OLE DB]" />
+            <path
+              refId="Package\Tarea Flujo de ICC.Paths[Update]"
+              endId="Package\Tarea Flujo de ICC\División condicional.Inputs[Entrada de división condicional]"
+              name="Update"
+              startId="Package\Tarea Flujo de ICC\InserOrUpdate.Outputs[Update]" />
+            <path
+              refId="Package\Tarea Flujo de ICC.Paths[Update1]"
+              endId="Package\Tarea Flujo de ICC\update icc.Inputs[Entrada de comando de OLE DB]"
+              name="Update"
+              startId="Package\Tarea Flujo de ICC\División condicional.Outputs[Update]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="sql11">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="167,42"
+          Id="Package\Tarea Flujo de ICC"
+          TopLeft="150,114" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Tarea Flujo de ICC">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="130,42"
+          Id="Package\Tarea Flujo de ICC\Origen ICC"
+          TopLeft="167,53" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Tarea Flujo de ICC\División condicional"
+          TopLeft="405,442" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Tarea Flujo de ICC\Conversión de datos"
+          TopLeft="172,141" />
+        <NodeLayout
+          Size="127,42"
+          Id="Package\Tarea Flujo de ICC\update icc"
+          TopLeft="448,518" />
+        <NodeLayout
+          Size="148,42"
+          Id="Package\Tarea Flujo de ICC\InserOrUpdate"
+          TopLeft="100,408" />
+        <NodeLayout
+          Size="113,42"
+          Id="Package\Tarea Flujo de ICC\DB ICC"
+          TopLeft="414,57" />
+        <NodeLayout
+          Size="160,42"
+          Id="Package\Tarea Flujo de ICC\Ordenar excel icc"
+          TopLeft="125,278" />
+        <NodeLayout
+          Size="121,42"
+          Id="Package\Tarea Flujo de ICC\FICC null"
+          TopLeft="441,142" />
+        <NodeLayout
+          Size="151,42"
+          Id="Package\Tarea Flujo de ICC\Ordenar Export"
+          TopLeft="378,258" />
+        <NodeLayout
+          Size="116,42"
+          Id="Package\Tarea Flujo de ICC\null ICC"
+          TopLeft="58,198" />
+        <NodeLayout
+          Size="134,42"
+          Id="Package\Tarea Flujo de ICC\Destino ICC"
+          TopLeft="61,517" />
+        <NodeLayout
+          Size="190,42"
+          Id="Package\Tarea Flujo de ICC\Combinación de mezcla"
+          TopLeft="262,351" />
+        <EdgeLayout
+          Id="Package\Tarea Flujo de ICC.Paths[Salida de columna derivada]"
+          TopLeft="116,240">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="89,38"
+              Start="0,0"
+              End="89,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15"
+                    Point2="0,19"
+                    Point3="4,19" />
+                  <mssgle:LineSegment
+                    End="85,19" />
+                  <mssgle:CubicBezierSegment
+                    Point1="85,19"
+                    Point2="89,19"
+                    Point3="89,23" />
+                  <mssgle:LineSegment
+                    End="89,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tarea Flujo de ICC.Paths[Insert]"
+          TopLeft="174,450">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-46,67"
+              Start="0,0"
+              End="-46,59.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,29.5"
+                    Point2="0,33.5"
+                    Point3="-4,33.5" />
+                  <mssgle:LineSegment
+                    End="-42,33.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-42,33.5"
+                    Point2="-46,33.5"
+                    Point3="-46,37.5" />
+                  <mssgle:LineSegment
+                    End="-46,59.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-36.75298828125,38.5,27.5059765625,9.40234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tarea Flujo de ICC.Paths[Update1]"
+          TopLeft="490.5,484">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="21,34"
+              Start="0,0"
+              End="21,26.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13"
+                    Point2="0,17"
+                    Point3="4,17" />
+                  <mssgle:LineSegment
+                    End="17,17" />
+                  <mssgle:CubicBezierSegment
+                    Point1="17,17"
+                    Point2="21,17"
+                    Point3="21,21" />
+                  <mssgle:LineSegment
+                    End="21,26.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-5.78029296875,22,32.5605859375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tarea Flujo de ICC.Paths[Update]"
+          TopLeft="248,429">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="157,34"
+              Start="0,0"
+              End="149.5,34">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="74.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="74.5,0"
+                    Point2="78.5,0"
+                    Point3="78.5,4" />
+                  <mssgle:LineSegment
+                    End="78.5,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="78.5,30"
+                    Point2="78.5,34"
+                    Point3="82.5,34" />
+                  <mssgle:LineSegment
+                    End="149.5,34" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="62.21970703125,-17.609375,32.5605859375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tarea Flujo de ICC.Paths[Salida de origen de OLE DB]"
+          TopLeft="470.5,99">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="31,43"
+              Start="0,0"
+              End="31,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.5"
+                    Point2="0,21.5"
+                    Point3="4,21.5" />
+                  <mssgle:LineSegment
+                    End="27,21.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="27,21.5"
+                    Point2="31,21.5"
+                    Point3="31,25.5" />
+                  <mssgle:LineSegment
+                    End="31,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tarea Flujo de ICC.Paths[Salida de origen de Excel]"
+          TopLeft="232,95">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="27.5,46"
+              Start="0,0"
+              End="27.5,38.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19"
+                    Point2="0,23"
+                    Point3="4,23" />
+                  <mssgle:LineSegment
+                    End="23.5,23" />
+                  <mssgle:CubicBezierSegment
+                    Point1="23.5,23"
+                    Point2="27.5,23"
+                    Point3="27.5,27" />
+                  <mssgle:LineSegment
+                    End="27.5,38.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tarea Flujo de ICC.Paths[Salida de ordenación1]"
+          TopLeft="453.5,300">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-66.1666666666667,51"
+              Start="0,0"
+              End="-66.1666666666667,43.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.3444676409186" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.3444676409186"
+                    Point2="0,30.3444676409186"
+                    Point3="-4,30.3444676409186" />
+                  <mssgle:LineSegment
+                    End="-62.1666666666667,30.3444676409186" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-62.1666666666667,30.3444676409186"
+                    Point2="-66.1666666666667,30.3444676409186"
+                    Point3="-66.1666666666667,34.3444676409186" />
+                  <mssgle:LineSegment
+                    End="-66.1666666666667,43.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tarea Flujo de ICC.Paths[Salida de ordenación]"
+          TopLeft="205,320">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="152,31"
+              Start="0,0"
+              End="152,23.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.5"
+                    Point2="0,15.5"
+                    Point3="4,15.5" />
+                  <mssgle:LineSegment
+                    End="148,15.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="148,15.5"
+                    Point2="152,15.5"
+                    Point3="152,19.5" />
+                  <mssgle:LineSegment
+                    End="152,23.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tarea Flujo de ICC.Paths[Salida de conversión de datos]"
+          TopLeft="172,162">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-56,36"
+              Start="0,0"
+              End="-56,28.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-52,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-52,0"
+                    Point2="-56,0"
+                    Point3="-56,4" />
+                  <mssgle:LineSegment
+                    End="-56,28.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tarea Flujo de ICC.Paths[Salida de combinación de mezcla]"
+          TopLeft="262,372">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-88,36"
+              Start="0,0"
+              End="-88,28.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-84,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-84,0"
+                    Point2="-88,0"
+                    Point3="-88,4" />
+                  <mssgle:LineSegment
+                    End="-88,28.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tarea Flujo de ICC.Paths[Salida de columna derivada1]"
+          TopLeft="501.5,184">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-48,74"
+              Start="0,0"
+              End="-48,66.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,33"
+                    Point2="0,37"
+                    Point3="-4,37" />
+                  <mssgle:LineSegment
+                    End="-44,37" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-44,37"
+                    Point2="-48,37"
+                    Point3="-48,41" />
+                  <mssgle:LineSegment
+                    End="-48,66.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Flujo de ICC\Destino ICC">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Flujo de ICC\Origen ICC">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Flujo de ICC\DB ICC">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

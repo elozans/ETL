@@ -1,0 +1,2397 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/16/2018 1:37:13 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DESKTOP-JEJ8I8L"
+  DTS:CreatorName="DESKTOP-JEJ8I8L\usuario"
+  DTS:DTSID="{1946756A-8F09-43E9-A312-754DCBAF23C5}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.6020.0"
+  DTS:LocaleID="3082"
+  DTS:ObjectName="E_turismos"
+  DTS:PackageType="5"
+  DTS:VersionBuild="17"
+  DTS:VersionGUID="{0D6F0571-33A1-461A-BEB6-25EB76610743}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Conexion Excel Turismo]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{2C2D4BFD-FA5A-4543-8E65-FDA48388E3EB}"
+      DTS:ObjectName="Conexion Excel Turismo">
+      <DTS:PropertyExpression
+        DTS:Name="ExcelFilePath">@[$Package::PathFichero]+ @[$Package::NombreFichero]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[$Package::PathFichero]+ @[$Package::NombreFichero]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Proyectos\Navarra\Ficheros\RESTO SERIES.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:Description="Fichero datos"
+      DTS:DTSID="{3CDA38E4-1A37-4120-BED2-7C91752C008D}"
+      DTS:ObjectName="NombreFichero">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">RESTO SERIES.xlsx</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:Description="Ruta fichero datos"
+      DTS:DTSID="{BF5C10F8-1998-404D-96CD-2292E047EFB9}"
+      DTS:ObjectName="PathFichero"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">C:\Proyectos\Navarra\Ficheros\</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Flujo de Turismos"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Tarea Flujo de datos"
+      DTS:DTSID="{6B930860-3ACA-4C6C-8A9E-6917CF4A40DC}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Flujo de Turismos"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Tarea Flujo de Turismos\Combinación de mezcla"
+              componentClassID="{14D43A4F-D7BD-489D-829E-6DE35750CFE4}"
+              contactInfo="Combinación de mezcla;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Combina dos flujos de datos ordenados en uno solo mediante la combinación FULL, LEFT o INNER. Se recomienda esta transformación cuando se pueden ordenar los flujos de datos en sus orígenes."
+              name="Combinación de mezcla"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el tipo de combinación que se debe realizar."
+                  name="JoinType"
+                  typeConverter="JoinType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número de columnas de la clave de ordenación."
+                  name="NumKeyColumns">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si los valores NULL se tratan como valores iguales."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indica la cantidad máxima solicitada de búferes por entrada antes del bloqueo."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla]"
+                  hasSideEffects="true"
+                  name="Entrada izquierda de combinación de mezcla">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[NAÑO]"
+                      cachedDataType="i4"
+                      cachedName="NAÑO"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Tarea Flujo de Turismos\Ordenar excel turismos.Outputs[Salida de ordenación].Columns[NAÑO]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[NMES]"
+                      cachedDataType="i4"
+                      cachedName="NMES"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Tarea Flujo de Turismos\Ordenar excel turismos.Outputs[Salida de ordenación].Columns[NMES]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[SAMBITO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="SAMBITO"
+                      cachedSortKeyPosition="3"
+                      lineageId="Package\Tarea Flujo de Turismos\Ordenar excel turismos.Outputs[Salida de ordenación].Columns[SAMBITO]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[FTURISMOS]"
+                      cachedDataType="r8"
+                      cachedName="FTURISMOS"
+                      lineageId="Package\Tarea Flujo de Turismos\Ordenar excel turismos.Outputs[Salida de ordenación].Columns[FTURISMOS]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla]"
+                  hasSideEffects="true"
+                  name="Entrada derecha de combinación de mezcla">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[ANNO]"
+                      cachedDataType="i4"
+                      cachedName="ANNO"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Tarea Flujo de Turismos\Ordenar Turismos.Outputs[Salida de ordenación].Columns[ANNO]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[MES]"
+                      cachedDataType="i4"
+                      cachedName="MES"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Tarea Flujo de Turismos\Ordenar Turismos.Outputs[Salida de ordenación].Columns[MES]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[AMBITO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="AMBITO"
+                      cachedSortKeyPosition="3"
+                      lineageId="Package\Tarea Flujo de Turismos\Ordenar Turismos.Outputs[Salida de ordenación].Columns[AMBITO]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[NTURISMOS]"
+                      cachedDataType="r8"
+                      cachedName="NTURISMOS"
+                      lineageId="Package\Tarea Flujo de Turismos\Ordenar Turismos.Outputs[Salida de ordenación].Columns[NTURISMOS]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla]"
+                  isSorted="true"
+                  name="Salida de combinación de mezcla">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[NAÑO]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[NAÑO]"
+                      name="NAÑO"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Tarea Flujo de Turismos\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[NAÑO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[NMES]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[NMES]"
+                      name="NMES"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Tarea Flujo de Turismos\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[NMES]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[SAMBITO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[SAMBITO]"
+                      name="SAMBITO"
+                      sortKeyPosition="3">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Tarea Flujo de Turismos\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[SAMBITO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[ANNO]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[ANNO]"
+                      name="ANNO">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Tarea Flujo de Turismos\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[ANNO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[MES]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[MES]"
+                      name="MES">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Tarea Flujo de Turismos\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[MES]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[AMBITO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[AMBITO]"
+                      name="AMBITO">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Tarea Flujo de Turismos\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[AMBITO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[FTURISMOS]"
+                      dataType="r8"
+                      lineageId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[FTURISMOS]"
+                      name="FTURISMOS">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Tarea Flujo de Turismos\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[FTURISMOS]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[NTURISMOS]"
+                      dataType="r8"
+                      lineageId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[NTURISMOS]"
+                      name="NTURISMOS">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Tarea Flujo de Turismos\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[NTURISMOS]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de Turismos\Conversión de datos"
+              componentClassID="{62B1106C-7DB8-4EC8-ADD6-4C664DFFC54A}"
+              contactInfo="Conversión de datos;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Conversión de datos"
+              name="Conversión de datos"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Tarea Flujo de Turismos\Conversión de datos.Inputs[Entrada de conversión de datos]"
+                  name="Entrada de conversión de datos">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[AÑO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="AÑO"
+                      lineageId="Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de origen de Excel].Columns[AÑO]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[MES]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="MES"
+                      lineageId="Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de origen de Excel].Columns[MES]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[AMBITO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="AMBITO"
+                      lineageId="Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de origen de Excel].Columns[AMBITO]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[Producción de Turismos#]"
+                      cachedDataType="r8"
+                      cachedName="Producción de Turismos# "
+                      lineageId="Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de origen de Excel].Columns[Producción de Turismos# ]"
+                      name="Producción de Turismos#" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de Turismos\Conversión de datos.Outputs[Salida de conversión de datos]"
+                  exclusionGroup="1"
+                  name="Salida de conversión de datos"
+                  synchronousInputId="Package\Tarea Flujo de Turismos\Conversión de datos.Inputs[Entrada de conversión de datos]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[NAÑO]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Tarea Flujo de Turismos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[NAÑO]"
+                      name="NAÑO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de origen de Excel].Columns[AÑO]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[NMES]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Tarea Flujo de Turismos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[NMES]"
+                      name="NMES"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de origen de Excel].Columns[MES]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[SAMBITO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Tarea Flujo de Turismos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[SAMBITO]"
+                      name="SAMBITO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de origen de Excel].Columns[AMBITO]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[FTURISMOS]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Tarea Flujo de Turismos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[FTURISMOS]"
+                      name="FTURISMOS"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de origen de Excel].Columns[Producción de Turismos# ]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tarea Flujo de Turismos\Conversión de datos.Outputs[Salida de error de conversión de datos]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de conversión de datos"
+                  synchronousInputId="Package\Tarea Flujo de Turismos\Conversión de datos.Inputs[Entrada de conversión de datos]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de Turismos\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de Turismos\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de Turismos\DB TURISMOS"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="Origen de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;7"
+              description="Origen de OLE DB"
+              name="DB TURISMOS"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[turismos].[TPRODTURISMOSD]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Asignaciones entre los parámetros del comando SQL y las variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Flujo de Turismos\DB TURISMOS.Connections[OleDbConnection]"
+                  connectionManagerID="{4006B7E9-9DFB-4184-862D-B28541684AB4}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DWH_Economicos]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de origen de OLE DB]"
+                  name="Salida de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de origen de OLE DB].Columns[ANNO]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de origen de OLE DB].ExternalColumns[ANNO]"
+                      lineageId="Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de origen de OLE DB].Columns[ANNO]"
+                      name="ANNO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de origen de OLE DB].Columns[MES]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de origen de OLE DB].ExternalColumns[MES]"
+                      lineageId="Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de origen de OLE DB].Columns[MES]"
+                      name="MES"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de origen de OLE DB].Columns[AMBITO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de origen de OLE DB].ExternalColumns[AMBITO]"
+                      length="100"
+                      lineageId="Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de origen de OLE DB].Columns[AMBITO]"
+                      name="AMBITO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de origen de OLE DB].Columns[NTURISMOS]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de origen de OLE DB].ExternalColumns[NTURISMOS]"
+                      lineageId="Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de origen de OLE DB].Columns[NTURISMOS]"
+                      name="NTURISMOS"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de origen de OLE DB].ExternalColumns[ANNO]"
+                      dataType="i4"
+                      name="ANNO" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de origen de OLE DB].ExternalColumns[MES]"
+                      dataType="i4"
+                      name="MES" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de origen de OLE DB].ExternalColumns[AMBITO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="AMBITO" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de origen de OLE DB].ExternalColumns[NTURISMOS]"
+                      dataType="r8"
+                      name="NTURISMOS" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de error de origen de OLE DB]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de error de origen de OLE DB].Columns[ANNO]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de error de origen de OLE DB].Columns[ANNO]"
+                      name="ANNO" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de error de origen de OLE DB].Columns[MES]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de error de origen de OLE DB].Columns[MES]"
+                      name="MES" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de error de origen de OLE DB].Columns[AMBITO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de error de origen de OLE DB].Columns[AMBITO]"
+                      name="AMBITO" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de error de origen de OLE DB].Columns[NTURISMOS]"
+                      dataType="r8"
+                      lineageId="Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de error de origen de OLE DB].Columns[NTURISMOS]"
+                      name="NTURISMOS" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de Turismos\Destino Turismos"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="Destino de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino de OLE DB"
+              name="Destino Turismos"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[turismos].[TPRODTURISMOSD]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si los valores proporcionados para columnas de identidad se van a copiar al destino. Si es False, los valores de las columnas de identidad se generan automáticamente en el destino. Sólo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si las columnas que contienen NULL tendrán NULL insertado en el destino. Si es False, las columnas que contienen NULL tendrán sus valores predeterminados insertados en el destino. Sólo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica opciones para usar con la carga rápida. Sólo se aplica si está activada la carga rápida."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica cuándo se emiten confirmaciones durante la inserción de datos. El valor 0 especifica que se emitirá una confirmación al final de la inserción de datos. Sólo se aplica si está activada la carga rápida."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Flujo de Turismos\Destino Turismos.Connections[OleDbConnection]"
+                  connectionManagerID="{4006B7E9-9DFB-4184-862D-B28541684AB4}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DWH_Economicos]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Tarea Flujo de Turismos\Destino Turismos.Inputs[Entrada de destino de OLE DB]"
+                  errorOrTruncationOperation="Insertar"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\Destino Turismos.Inputs[Entrada de destino de OLE DB].Columns[NAÑO]"
+                      cachedDataType="i4"
+                      cachedName="NAÑO"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Tarea Flujo de Turismos\Destino Turismos.Inputs[Entrada de destino de OLE DB].ExternalColumns[ANNO]"
+                      lineageId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[NAÑO]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\Destino Turismos.Inputs[Entrada de destino de OLE DB].Columns[NMES]"
+                      cachedDataType="i4"
+                      cachedName="NMES"
+                      cachedSortKeyPosition="2"
+                      externalMetadataColumnId="Package\Tarea Flujo de Turismos\Destino Turismos.Inputs[Entrada de destino de OLE DB].ExternalColumns[MES]"
+                      lineageId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[NMES]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\Destino Turismos.Inputs[Entrada de destino de OLE DB].Columns[SAMBITO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="SAMBITO"
+                      cachedSortKeyPosition="3"
+                      externalMetadataColumnId="Package\Tarea Flujo de Turismos\Destino Turismos.Inputs[Entrada de destino de OLE DB].ExternalColumns[AMBITO]"
+                      lineageId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[SAMBITO]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\Destino Turismos.Inputs[Entrada de destino de OLE DB].Columns[FTURISMOS]"
+                      cachedDataType="r8"
+                      cachedName="FTURISMOS"
+                      externalMetadataColumnId="Package\Tarea Flujo de Turismos\Destino Turismos.Inputs[Entrada de destino de OLE DB].ExternalColumns[NTURISMOS]"
+                      lineageId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[FTURISMOS]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de Turismos\Destino Turismos.Inputs[Entrada de destino de OLE DB].ExternalColumns[ANNO]"
+                      dataType="i4"
+                      name="ANNO" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de Turismos\Destino Turismos.Inputs[Entrada de destino de OLE DB].ExternalColumns[MES]"
+                      dataType="i4"
+                      name="MES" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de Turismos\Destino Turismos.Inputs[Entrada de destino de OLE DB].ExternalColumns[AMBITO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="AMBITO" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de Turismos\Destino Turismos.Inputs[Entrada de destino de OLE DB].ExternalColumns[NTURISMOS]"
+                      dataType="r8"
+                      name="NTURISMOS" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de Turismos\Destino Turismos.Outputs[Salida de error de destino de OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de OLE DB"
+                  synchronousInputId="Package\Tarea Flujo de Turismos\Destino Turismos.Inputs[Entrada de destino de OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\Destino Turismos.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de Turismos\Destino Turismos.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\Destino Turismos.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de Turismos\Destino Turismos.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de Turismos\División condicional"
+              componentClassID="{7F88F654-4E20-4D14-84F4-AF9C925D3087}"
+              contactInfo="División condicional;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Enruta filas de datos a diferentes salidas según el contenido de los datos. Se usan condiciones (expresiones de SSIS) para especificar las filas que se van a enrutar. Por ejemplo, se usa para separar los registros que deben limpiarse de los registros listos para ser cargados o para enrutar solamente un subconjunto de registros."
+              name="División condicional"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Tarea Flujo de Turismos\División condicional.Inputs[Entrada de división condicional]"
+                  description="Entrada en la transformación División condicional"
+                  name="Entrada de división condicional">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\División condicional.Inputs[Entrada de división condicional].Columns[NAÑO]"
+                      cachedDataType="i4"
+                      cachedName="NAÑO"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[NAÑO]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\División condicional.Inputs[Entrada de división condicional].Columns[NMES]"
+                      cachedDataType="i4"
+                      cachedName="NMES"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[NMES]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\División condicional.Inputs[Entrada de división condicional].Columns[SAMBITO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="SAMBITO"
+                      cachedSortKeyPosition="3"
+                      lineageId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[SAMBITO]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\División condicional.Inputs[Entrada de división condicional].Columns[ANNO]"
+                      cachedDataType="i4"
+                      cachedName="ANNO"
+                      lineageId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[ANNO]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\División condicional.Inputs[Entrada de división condicional].Columns[MES]"
+                      cachedDataType="i4"
+                      cachedName="MES"
+                      lineageId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[MES]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\División condicional.Inputs[Entrada de división condicional].Columns[AMBITO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="AMBITO"
+                      lineageId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[AMBITO]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\División condicional.Inputs[Entrada de división condicional].Columns[FTURISMOS]"
+                      cachedDataType="r8"
+                      cachedName="FTURISMOS"
+                      lineageId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[FTURISMOS]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\División condicional.Inputs[Entrada de división condicional].Columns[NTURISMOS]"
+                      cachedDataType="r8"
+                      cachedName="NTURISMOS"
+                      lineageId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[NTURISMOS]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de Turismos\División condicional.Outputs[Update]"
+                  description="Salida 1 de la transformación División condicional"
+                  errorOrTruncationOperation="Cálculo"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Update"
+                  synchronousInputId="Package\Tarea Flujo de Turismos\División condicional.Inputs[Entrada de división condicional]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la expresión. Esta versión de expresión usa identificadores de linaje en lugar de nombres de columna."
+                      name="Expression">(#{Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[NAÑO]} == #{Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[ANNO]}) &amp;&amp; (#{Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[NMES]} == #{Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[MES]}) &amp;&amp; (#{Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[SAMBITO]} == #{Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[AMBITO]}) &amp;&amp; (#{Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[FTURISMOS]} != #{Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[NTURISMOS]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la versión descriptiva de la expresión. Esta versión de expresión usa nombres de columna."
+                      expressionType="Notify"
+                      name="FriendlyExpression">([NAÑO] == ANNO) &amp;&amp; (NMES == MES) &amp;&amp; (SAMBITO == AMBITO) &amp;&amp; (FTURISMOS != NTURISMOS)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la posición de la condición en la lista de condiciones que evalúa la transformación. El orden de evaluación es del menor al mayor valor."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tarea Flujo de Turismos\División condicional.Outputs[Salida predeterminada de división condicional]"
+                  description="Salida predeterminada de la transformación División condicional"
+                  exclusionGroup="1"
+                  name="Salida predeterminada de división condicional"
+                  synchronousInputId="Package\Tarea Flujo de Turismos\División condicional.Inputs[Entrada de división condicional]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tarea Flujo de Turismos\División condicional.Outputs[Salida de error de división condicional]"
+                  description="Salida de error de la transformación División condicional"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de división condicional"
+                  synchronousInputId="Package\Tarea Flujo de Turismos\División condicional.Inputs[Entrada de división condicional]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\División condicional.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de Turismos\División condicional.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\División condicional.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de Turismos\División condicional.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de Turismos\FTURISMO null"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Columna derivada;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Crea nuevos valores de columna aplicando expresiones a las columnas de entrada de la transformación. Crea nuevas columnas o sobrescribe las columnas existentes. Por ejemplo, se concatenan los valores de las columnas 'nombre' y 'apellidos' para crear una columna 'nombre completo'."
+              name="FTURISMO null"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Tarea Flujo de Turismos\FTURISMO null.Inputs[Entrada de columna derivada]"
+                  description="Entrada en la transformación Columna derivada"
+                  name="Entrada de columna derivada">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\FTURISMO null.Inputs[Entrada de columna derivada].Columns[NTURISMOS]"
+                      cachedDataType="r8"
+                      cachedName="NTURISMOS"
+                      errorOrTruncationOperation="Cálculo"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de origen de OLE DB].Columns[NTURISMOS]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expresión de columna derivada"
+                          name="Expression">[ISNULL](#{Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de origen de OLE DB].Columns[NTURISMOS]}) ? 0 : #{Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de origen de OLE DB].Columns[NTURISMOS]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expresión descriptiva de columna derivada"
+                          expressionType="Notify"
+                          name="FriendlyExpression">ISNULL(NTURISMOS) ? 0 : NTURISMOS</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de Turismos\FTURISMO null.Outputs[Salida de columna derivada]"
+                  description="Salida predeterminada de la transformación Columna derivada"
+                  exclusionGroup="1"
+                  name="Salida de columna derivada"
+                  synchronousInputId="Package\Tarea Flujo de Turismos\FTURISMO null.Inputs[Entrada de columna derivada]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tarea Flujo de Turismos\FTURISMO null.Outputs[Salida de error de columna derivada]"
+                  description="Salida de error de la transformación Columna derivada"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de columna derivada"
+                  synchronousInputId="Package\Tarea Flujo de Turismos\FTURISMO null.Inputs[Entrada de columna derivada]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\FTURISMO null.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de Turismos\FTURISMO null.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\FTURISMO null.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de Turismos\FTURISMO null.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de Turismos\InserOrUpdate"
+              componentClassID="{7F88F654-4E20-4D14-84F4-AF9C925D3087}"
+              contactInfo="División condicional;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Enruta filas de datos a diferentes salidas según el contenido de los datos. Se usan condiciones (expresiones de SSIS) para especificar las filas que se van a enrutar. Por ejemplo, se usa para separar los registros que deben limpiarse de los registros listos para ser cargados o para enrutar solamente un subconjunto de registros."
+              name="InserOrUpdate"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Tarea Flujo de Turismos\InserOrUpdate.Inputs[Entrada de división condicional]"
+                  description="Entrada en la transformación División condicional"
+                  name="Entrada de división condicional">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\InserOrUpdate.Inputs[Entrada de división condicional].Columns[NAÑO]"
+                      cachedDataType="i4"
+                      cachedName="NAÑO"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[NAÑO]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\InserOrUpdate.Inputs[Entrada de división condicional].Columns[NMES]"
+                      cachedDataType="i4"
+                      cachedName="NMES"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[NMES]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\InserOrUpdate.Inputs[Entrada de división condicional].Columns[SAMBITO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="SAMBITO"
+                      cachedSortKeyPosition="3"
+                      lineageId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[SAMBITO]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\InserOrUpdate.Inputs[Entrada de división condicional].Columns[ANNO]"
+                      cachedDataType="i4"
+                      cachedName="ANNO"
+                      lineageId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[ANNO]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\InserOrUpdate.Inputs[Entrada de división condicional].Columns[MES]"
+                      cachedDataType="i4"
+                      cachedName="MES"
+                      lineageId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[MES]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\InserOrUpdate.Inputs[Entrada de división condicional].Columns[AMBITO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="AMBITO"
+                      lineageId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[AMBITO]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de Turismos\InserOrUpdate.Outputs[Insert]"
+                  description="Salida 1 de la transformación División condicional"
+                  errorOrTruncationOperation="Cálculo"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Insert"
+                  synchronousInputId="Package\Tarea Flujo de Turismos\InserOrUpdate.Inputs[Entrada de división condicional]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la expresión. Esta versión de expresión usa identificadores de linaje en lugar de nombres de columna."
+                      name="Expression">(![ISNULL](#{Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[NAÑO]}) &amp;&amp; [ISNULL](#{Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[ANNO]}) || (![ISNULL](#{Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[NMES]}) &amp;&amp; [ISNULL](#{Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[MES]})) || (![ISNULL](#{Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[SAMBITO]}) &amp;&amp; [ISNULL](#{Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[AMBITO]})))</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la versión descriptiva de la expresión. Esta versión de expresión usa nombres de columna."
+                      expressionType="Notify"
+                      name="FriendlyExpression">(!ISNULL([NAÑO]) &amp;&amp; ISNULL(ANNO) || (!ISNULL(NMES) &amp;&amp; ISNULL(MES)) || (!ISNULL(SAMBITO) &amp;&amp; ISNULL(AMBITO)))</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la posición de la condición en la lista de condiciones que evalúa la transformación. El orden de evaluación es del menor al mayor valor."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tarea Flujo de Turismos\InserOrUpdate.Outputs[Update]"
+                  description="Salida 2 de la transformación División condicional"
+                  errorOrTruncationOperation="Cálculo"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Update"
+                  synchronousInputId="Package\Tarea Flujo de Turismos\InserOrUpdate.Inputs[Entrada de división condicional]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la expresión. Esta versión de expresión usa identificadores de linaje en lugar de nombres de columna."
+                      name="Expression">(![ISNULL](#{Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[NAÑO]}) &amp;&amp; ![ISNULL](#{Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[ANNO]}) &amp;&amp; (![ISNULL](#{Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[NMES]}) &amp;&amp; ![ISNULL](#{Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[MES]})) &amp;&amp; (![ISNULL](#{Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[SAMBITO]}) &amp;&amp; ![ISNULL](#{Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[AMBITO]})))</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la versión descriptiva de la expresión. Esta versión de expresión usa nombres de columna."
+                      expressionType="Notify"
+                      name="FriendlyExpression">(!ISNULL([NAÑO]) &amp;&amp; !ISNULL(ANNO) &amp;&amp; (!ISNULL(NMES) &amp;&amp; !ISNULL(MES)) &amp;&amp; (!ISNULL(SAMBITO) &amp;&amp; !ISNULL(AMBITO)))</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la posición de la condición en la lista de condiciones que evalúa la transformación. El orden de evaluación es del menor al mayor valor."
+                      name="EvaluationOrder">1</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tarea Flujo de Turismos\InserOrUpdate.Outputs[Salida predeterminada de división condicional]"
+                  description="Salida predeterminada de la transformación División condicional"
+                  exclusionGroup="1"
+                  name="Salida predeterminada de división condicional"
+                  synchronousInputId="Package\Tarea Flujo de Turismos\InserOrUpdate.Inputs[Entrada de división condicional]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tarea Flujo de Turismos\InserOrUpdate.Outputs[Salida de error de división condicional]"
+                  description="Salida de error de la transformación División condicional"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de división condicional"
+                  synchronousInputId="Package\Tarea Flujo de Turismos\InserOrUpdate.Inputs[Entrada de división condicional]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\InserOrUpdate.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de Turismos\InserOrUpdate.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\InserOrUpdate.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de Turismos\InserOrUpdate.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de Turismos\null turismo"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Columna derivada;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Crea nuevos valores de columna aplicando expresiones a las columnas de entrada de la transformación. Crea nuevas columnas o sobrescribe las columnas existentes. Por ejemplo, se concatenan los valores de las columnas 'nombre' y 'apellidos' para crear una columna 'nombre completo'."
+              name="null turismo"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Tarea Flujo de Turismos\null turismo.Inputs[Entrada de columna derivada]"
+                  description="Entrada en la transformación Columna derivada"
+                  name="Entrada de columna derivada">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\null turismo.Inputs[Entrada de columna derivada].Columns[FTURISMOS]"
+                      cachedDataType="r8"
+                      cachedName="FTURISMOS"
+                      errorOrTruncationOperation="Cálculo"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Tarea Flujo de Turismos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[FTURISMOS]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expresión de columna derivada"
+                          name="Expression">[ISNULL](#{Package\Tarea Flujo de Turismos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[FTURISMOS]}) ? 0 : #{Package\Tarea Flujo de Turismos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[FTURISMOS]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expresión descriptiva de columna derivada"
+                          expressionType="Notify"
+                          name="FriendlyExpression">ISNULL(FTURISMOS) ? 0 : FTURISMOS</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de Turismos\null turismo.Outputs[Salida de columna derivada]"
+                  description="Salida predeterminada de la transformación Columna derivada"
+                  exclusionGroup="1"
+                  name="Salida de columna derivada"
+                  synchronousInputId="Package\Tarea Flujo de Turismos\null turismo.Inputs[Entrada de columna derivada]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tarea Flujo de Turismos\null turismo.Outputs[Salida de error de columna derivada]"
+                  description="Salida de error de la transformación Columna derivada"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de columna derivada"
+                  synchronousInputId="Package\Tarea Flujo de Turismos\null turismo.Inputs[Entrada de columna derivada]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\null turismo.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de Turismos\null turismo.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\null turismo.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de Turismos\null turismo.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de Turismos\Ordenar excel turismos"
+              componentClassID="{5B1A3FF5-D366-4D75-AD1F-F19A36FCBEDB}"
+              contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
+              name="Ordenar excel turismos"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si la transformación Ordenar quita filas con valores de ordenación duplicados."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número máximo de subprocesos que se deben usar para la ordenación."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Tarea Flujo de Turismos\Ordenar excel turismos.Inputs[Entrada de ordenación]"
+                  name="Entrada de ordenación">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\Ordenar excel turismos.Inputs[Entrada de ordenación].Columns[NAÑO]"
+                      cachedDataType="i4"
+                      cachedName="NAÑO"
+                      lineageId="Package\Tarea Flujo de Turismos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[NAÑO]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\Ordenar excel turismos.Inputs[Entrada de ordenación].Columns[NMES]"
+                      cachedDataType="i4"
+                      cachedName="NMES"
+                      lineageId="Package\Tarea Flujo de Turismos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[NMES]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\Ordenar excel turismos.Inputs[Entrada de ordenación].Columns[SAMBITO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="SAMBITO"
+                      lineageId="Package\Tarea Flujo de Turismos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[SAMBITO]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">3</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\Ordenar excel turismos.Inputs[Entrada de ordenación].Columns[FTURISMOS]"
+                      cachedDataType="r8"
+                      cachedName="FTURISMOS"
+                      lineageId="Package\Tarea Flujo de Turismos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[FTURISMOS]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de Turismos\Ordenar excel turismos.Outputs[Salida de ordenación]"
+                  isSorted="true"
+                  name="Salida de ordenación">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\Ordenar excel turismos.Outputs[Salida de ordenación].Columns[NAÑO]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de Turismos\Ordenar excel turismos.Outputs[Salida de ordenación].Columns[NAÑO]"
+                      name="NAÑO"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Tarea Flujo de Turismos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[NAÑO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\Ordenar excel turismos.Outputs[Salida de ordenación].Columns[NMES]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de Turismos\Ordenar excel turismos.Outputs[Salida de ordenación].Columns[NMES]"
+                      name="NMES"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Tarea Flujo de Turismos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[NMES]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\Ordenar excel turismos.Outputs[Salida de ordenación].Columns[SAMBITO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Tarea Flujo de Turismos\Ordenar excel turismos.Outputs[Salida de ordenación].Columns[SAMBITO]"
+                      name="SAMBITO"
+                      sortKeyPosition="3">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Tarea Flujo de Turismos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[SAMBITO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\Ordenar excel turismos.Outputs[Salida de ordenación].Columns[FTURISMOS]"
+                      dataType="r8"
+                      lineageId="Package\Tarea Flujo de Turismos\Ordenar excel turismos.Outputs[Salida de ordenación].Columns[FTURISMOS]"
+                      name="FTURISMOS">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Tarea Flujo de Turismos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[FTURISMOS]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de Turismos\Ordenar Turismos"
+              componentClassID="{5B1A3FF5-D366-4D75-AD1F-F19A36FCBEDB}"
+              contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
+              name="Ordenar Turismos"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si la transformación Ordenar quita filas con valores de ordenación duplicados."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número máximo de subprocesos que se deben usar para la ordenación."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Tarea Flujo de Turismos\Ordenar Turismos.Inputs[Entrada de ordenación]"
+                  name="Entrada de ordenación">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\Ordenar Turismos.Inputs[Entrada de ordenación].Columns[ANNO]"
+                      cachedDataType="i4"
+                      cachedName="ANNO"
+                      lineageId="Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de origen de OLE DB].Columns[ANNO]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\Ordenar Turismos.Inputs[Entrada de ordenación].Columns[MES]"
+                      cachedDataType="i4"
+                      cachedName="MES"
+                      lineageId="Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de origen de OLE DB].Columns[MES]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\Ordenar Turismos.Inputs[Entrada de ordenación].Columns[AMBITO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="AMBITO"
+                      lineageId="Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de origen de OLE DB].Columns[AMBITO]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">3</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\Ordenar Turismos.Inputs[Entrada de ordenación].Columns[NTURISMOS]"
+                      cachedDataType="r8"
+                      cachedName="NTURISMOS"
+                      lineageId="Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de origen de OLE DB].Columns[NTURISMOS]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de Turismos\Ordenar Turismos.Outputs[Salida de ordenación]"
+                  isSorted="true"
+                  name="Salida de ordenación">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\Ordenar Turismos.Outputs[Salida de ordenación].Columns[ANNO]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de Turismos\Ordenar Turismos.Outputs[Salida de ordenación].Columns[ANNO]"
+                      name="ANNO"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de origen de OLE DB].Columns[ANNO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\Ordenar Turismos.Outputs[Salida de ordenación].Columns[MES]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de Turismos\Ordenar Turismos.Outputs[Salida de ordenación].Columns[MES]"
+                      name="MES"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de origen de OLE DB].Columns[MES]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\Ordenar Turismos.Outputs[Salida de ordenación].Columns[AMBITO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Tarea Flujo de Turismos\Ordenar Turismos.Outputs[Salida de ordenación].Columns[AMBITO]"
+                      name="AMBITO"
+                      sortKeyPosition="3">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de origen de OLE DB].Columns[AMBITO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\Ordenar Turismos.Outputs[Salida de ordenación].Columns[NTURISMOS]"
+                      dataType="r8"
+                      lineageId="Package\Tarea Flujo de Turismos\Ordenar Turismos.Outputs[Salida de ordenación].Columns[NTURISMOS]"
+                      name="NTURISMOS">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de origen de OLE DB].Columns[NTURISMOS]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de Turismos\Origen turismo"
+              componentClassID="{8C084929-27D1-479F-9641-ABB7CDADF1AC}"
+              contactInfo="Origen de Excel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Origen de Excel"
+              name="Origen turismo"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">mensual$</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="La asignación de parámetros del comando SQL a variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Flujo de Turismos\Origen turismo.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Conexion Excel Turismo]"
+                  connectionManagerRefId="Package.ConnectionManagers[Conexion Excel Turismo]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de origen de Excel]"
+                  name="Salida de origen de Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de origen de Excel].Columns[AÑO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de origen de Excel].ExternalColumns[AÑO]"
+                      length="255"
+                      lineageId="Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de origen de Excel].Columns[AÑO]"
+                      name="AÑO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de origen de Excel].Columns[MES]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de origen de Excel].ExternalColumns[MES]"
+                      length="255"
+                      lineageId="Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de origen de Excel].Columns[MES]"
+                      name="MES"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de origen de Excel].Columns[AMBITO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de origen de Excel].ExternalColumns[AMBITO]"
+                      length="255"
+                      lineageId="Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de origen de Excel].Columns[AMBITO]"
+                      name="AMBITO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de origen de Excel].Columns[Producción de Turismos# ]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de origen de Excel].ExternalColumns[Producción de Turismos# ]"
+                      lineageId="Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de origen de Excel].Columns[Producción de Turismos# ]"
+                      name="Producción de Turismos# "
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de origen de Excel].ExternalColumns[AÑO]"
+                      dataType="wstr"
+                      length="255"
+                      name="AÑO" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de origen de Excel].ExternalColumns[MES]"
+                      dataType="wstr"
+                      length="255"
+                      name="MES" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de origen de Excel].ExternalColumns[AMBITO]"
+                      dataType="wstr"
+                      length="255"
+                      name="AMBITO" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de origen de Excel].ExternalColumns[INDICE GENERAL DE PRECIOS INDUSTRIALES (IPRI)#]"
+                      dataType="wstr"
+                      length="255"
+                      name="INDICE GENERAL DE PRECIOS INDUSTRIALES (IPRI)#" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de origen de Excel].ExternalColumns[Producción de Turismos# ]"
+                      dataType="r8"
+                      name="Producción de Turismos# " />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de origen de Excel].ExternalColumns[Exportac]"
+                      dataType="r8"
+                      name="Exportac" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de origen de Excel].ExternalColumns[Indicador sintético consumo]"
+                      dataType="wstr"
+                      length="255"
+                      name="Indicador sintético consumo" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de origen de Excel].ExternalColumns[ICM General a constantes#]"
+                      dataType="wstr"
+                      length="255"
+                      name="ICM General a constantes#" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de origen de Excel].ExternalColumns[Matriculaciones turismos]"
+                      dataType="r8"
+                      name="Matriculaciones turismos" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de error de origen de Excel]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de error de origen de Excel].Columns[AÑO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de error de origen de Excel].Columns[AÑO]"
+                      name="AÑO" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de error de origen de Excel].Columns[MES]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de error de origen de Excel].Columns[MES]"
+                      name="MES" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de error de origen de Excel].Columns[AMBITO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de error de origen de Excel].Columns[AMBITO]"
+                      name="AMBITO" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de error de origen de Excel].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de error de origen de Excel].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de error de origen de Excel].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de error de origen de Excel].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de error de origen de Excel].Columns[Producción de Turismos# ]"
+                      dataType="r8"
+                      lineageId="Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de error de origen de Excel].Columns[Producción de Turismos# ]"
+                      name="Producción de Turismos# " />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de Turismos\update Turismos"
+              componentClassID="{93FFEC66-CBC8-4C7F-9C6A-CB1C17A7567D}"
+              contactInfo="Comando de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Ejecuta una instrucción SQL para cada fila de un flujo de datos. Por ejemplo, se usa para llamar al procedimiento almacenado de configuración de nuevo empleado para cada fila de la tabla de nuevos empleados. Nota: la ejecución de una instrucción SQL para cada fila de un flujo de datos de gran tamaño puede tardar mucho tiempo."
+              name="update Turismos"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">UPDATE [turismos].[TPRODTURISMOSD]
+   SET [NTURISMOS] = ?
+ WHERE [ANNO] = ?
+      and [MES] = ?
+      and [AMBITO] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Flujo de Turismos\update Turismos.Connections[OleDbConnection]"
+                  connectionManagerID="{4006B7E9-9DFB-4184-862D-B28541684AB4}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DWH_Economicos]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Tarea Flujo de Turismos\update Turismos.Inputs[Entrada de comando de OLE DB]"
+                  errorOrTruncationOperation="Ejecución de comando"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de comando de OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\update Turismos.Inputs[Entrada de comando de OLE DB].Columns[NAÑO]"
+                      cachedDataType="i4"
+                      cachedName="NAÑO"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Tarea Flujo de Turismos\update Turismos.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_1]"
+                      lineageId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[NAÑO]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\update Turismos.Inputs[Entrada de comando de OLE DB].Columns[NMES]"
+                      cachedDataType="i4"
+                      cachedName="NMES"
+                      cachedSortKeyPosition="2"
+                      externalMetadataColumnId="Package\Tarea Flujo de Turismos\update Turismos.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_2]"
+                      lineageId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[NMES]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\update Turismos.Inputs[Entrada de comando de OLE DB].Columns[SAMBITO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="SAMBITO"
+                      cachedSortKeyPosition="3"
+                      externalMetadataColumnId="Package\Tarea Flujo de Turismos\update Turismos.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_3]"
+                      lineageId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[SAMBITO]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de Turismos\update Turismos.Inputs[Entrada de comando de OLE DB].Columns[FTURISMOS]"
+                      cachedDataType="r8"
+                      cachedName="FTURISMOS"
+                      externalMetadataColumnId="Package\Tarea Flujo de Turismos\update Turismos.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_0]"
+                      lineageId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[FTURISMOS]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de Turismos\update Turismos.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_0]"
+                      dataType="r8"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Información de parámetros. Coincide con los valores de DBPARAMFLAGSENUM de OLE DB."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de Turismos\update Turismos.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_1]"
+                      dataType="i4"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Información de parámetros. Coincide con los valores de DBPARAMFLAGSENUM de OLE DB."
+                          name="DBParamInfoFlags">17</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de Turismos\update Turismos.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_2]"
+                      dataType="i4"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Información de parámetros. Coincide con los valores de DBPARAMFLAGSENUM de OLE DB."
+                          name="DBParamInfoFlags">17</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de Turismos\update Turismos.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_3]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Información de parámetros. Coincide con los valores de DBPARAMFLAGSENUM de OLE DB."
+                          name="DBParamInfoFlags">1</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de Turismos\update Turismos.Outputs[Salida de comando de OLE DB]"
+                  exclusionGroup="1"
+                  name="Salida de comando de OLE DB"
+                  synchronousInputId="Package\Tarea Flujo de Turismos\update Turismos.Inputs[Entrada de comando de OLE DB]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tarea Flujo de Turismos\update Turismos.Outputs[Salida de error de comando de OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de comando de OLE DB"
+                  synchronousInputId="Package\Tarea Flujo de Turismos\update Turismos.Inputs[Entrada de comando de OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\update Turismos.Outputs[Salida de error de comando de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de Turismos\update Turismos.Outputs[Salida de error de comando de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de Turismos\update Turismos.Outputs[Salida de error de comando de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de Turismos\update Turismos.Outputs[Salida de error de comando de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Tarea Flujo de Turismos.Paths[Insert]"
+              endId="Package\Tarea Flujo de Turismos\Destino Turismos.Inputs[Entrada de destino de OLE DB]"
+              name="Insert"
+              startId="Package\Tarea Flujo de Turismos\InserOrUpdate.Outputs[Insert]" />
+            <path
+              refId="Package\Tarea Flujo de Turismos.Paths[Salida de columna derivada]"
+              endId="Package\Tarea Flujo de Turismos\Ordenar excel turismos.Inputs[Entrada de ordenación]"
+              name="Salida de columna derivada"
+              startId="Package\Tarea Flujo de Turismos\null turismo.Outputs[Salida de columna derivada]" />
+            <path
+              refId="Package\Tarea Flujo de Turismos.Paths[Salida de columna derivada1]"
+              endId="Package\Tarea Flujo de Turismos\Ordenar Turismos.Inputs[Entrada de ordenación]"
+              name="Salida de columna derivada"
+              startId="Package\Tarea Flujo de Turismos\FTURISMO null.Outputs[Salida de columna derivada]" />
+            <path
+              refId="Package\Tarea Flujo de Turismos.Paths[Salida de combinación de mezcla]"
+              endId="Package\Tarea Flujo de Turismos\InserOrUpdate.Inputs[Entrada de división condicional]"
+              name="Salida de combinación de mezcla"
+              startId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Outputs[Salida de combinación de mezcla]" />
+            <path
+              refId="Package\Tarea Flujo de Turismos.Paths[Salida de conversión de datos]"
+              endId="Package\Tarea Flujo de Turismos\null turismo.Inputs[Entrada de columna derivada]"
+              name="Salida de conversión de datos"
+              startId="Package\Tarea Flujo de Turismos\Conversión de datos.Outputs[Salida de conversión de datos]" />
+            <path
+              refId="Package\Tarea Flujo de Turismos.Paths[Salida de ordenación]"
+              endId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla]"
+              name="Salida de ordenación"
+              startId="Package\Tarea Flujo de Turismos\Ordenar excel turismos.Outputs[Salida de ordenación]" />
+            <path
+              refId="Package\Tarea Flujo de Turismos.Paths[Salida de ordenación1]"
+              endId="Package\Tarea Flujo de Turismos\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla]"
+              name="Salida de ordenación"
+              startId="Package\Tarea Flujo de Turismos\Ordenar Turismos.Outputs[Salida de ordenación]" />
+            <path
+              refId="Package\Tarea Flujo de Turismos.Paths[Salida de origen de Excel]"
+              endId="Package\Tarea Flujo de Turismos\Conversión de datos.Inputs[Entrada de conversión de datos]"
+              name="Salida de origen de Excel"
+              startId="Package\Tarea Flujo de Turismos\Origen turismo.Outputs[Salida de origen de Excel]" />
+            <path
+              refId="Package\Tarea Flujo de Turismos.Paths[Salida de origen de OLE DB]"
+              endId="Package\Tarea Flujo de Turismos\FTURISMO null.Inputs[Entrada de columna derivada]"
+              name="Salida de origen de OLE DB"
+              startId="Package\Tarea Flujo de Turismos\DB TURISMOS.Outputs[Salida de origen de OLE DB]" />
+            <path
+              refId="Package\Tarea Flujo de Turismos.Paths[Update]"
+              endId="Package\Tarea Flujo de Turismos\División condicional.Inputs[Entrada de división condicional]"
+              name="Update"
+              startId="Package\Tarea Flujo de Turismos\InserOrUpdate.Outputs[Update]" />
+            <path
+              refId="Package\Tarea Flujo de Turismos.Paths[Update1]"
+              endId="Package\Tarea Flujo de Turismos\update Turismos.Inputs[Entrada de comando de OLE DB]"
+              name="Update"
+              startId="Package\Tarea Flujo de Turismos\División condicional.Outputs[Update]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="sql11">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="193,42"
+          Id="Package\Tarea Flujo de Turismos"
+          TopLeft="180,122" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Tarea Flujo de Turismos">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Tarea Flujo de Turismos\División condicional"
+          TopLeft="405,442" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Tarea Flujo de Turismos\Conversión de datos"
+          TopLeft="172,141" />
+        <NodeLayout
+          Size="149,42"
+          Id="Package\Tarea Flujo de Turismos\Origen turismo"
+          TopLeft="167,53" />
+        <NodeLayout
+          Size="148,42"
+          Id="Package\Tarea Flujo de Turismos\InserOrUpdate"
+          TopLeft="100,408" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\Tarea Flujo de Turismos\update Turismos"
+          TopLeft="459,519" />
+        <NodeLayout
+          Size="147,42"
+          Id="Package\Tarea Flujo de Turismos\DB TURISMOS"
+          TopLeft="414,57" />
+        <NodeLayout
+          Size="188,42"
+          Id="Package\Tarea Flujo de Turismos\Ordenar excel turismos"
+          TopLeft="125,278" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Tarea Flujo de Turismos\FTURISMO null"
+          TopLeft="441,142" />
+        <NodeLayout
+          Size="134,42"
+          Id="Package\Tarea Flujo de Turismos\null turismo"
+          TopLeft="58,198" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Tarea Flujo de Turismos\Ordenar Turismos"
+          TopLeft="378,258" />
+        <NodeLayout
+          Size="160,42"
+          Id="Package\Tarea Flujo de Turismos\Destino Turismos"
+          TopLeft="61,517" />
+        <NodeLayout
+          Size="190,42"
+          Id="Package\Tarea Flujo de Turismos\Combinación de mezcla"
+          TopLeft="244,355" />
+        <EdgeLayout
+          Id="Package\Tarea Flujo de Turismos.Paths[Salida de combinación de mezcla]"
+          TopLeft="244,376">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-70,32"
+              Start="0,0"
+              End="-70,24.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-66,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-66,0"
+                    Point2="-70,0"
+                    Point3="-70,4" />
+                  <mssgle:LineSegment
+                    End="-70,24.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tarea Flujo de Turismos.Paths[Salida de columna derivada1]"
+          TopLeft="516,184">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-56.5,74"
+              Start="0,0"
+              End="-56.5,66.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,33"
+                    Point2="0,37"
+                    Point3="-4,37" />
+                  <mssgle:LineSegment
+                    End="-52.5,37" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-52.5,37"
+                    Point2="-56.5,37"
+                    Point3="-56.5,41" />
+                  <mssgle:LineSegment
+                    End="-56.5,66.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tarea Flujo de Turismos.Paths[Salida de columna derivada]"
+          TopLeft="125,240">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="94,38"
+              Start="0,0"
+              End="94,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15"
+                    Point2="0,19"
+                    Point3="4,19" />
+                  <mssgle:LineSegment
+                    End="90,19" />
+                  <mssgle:CubicBezierSegment
+                    Point1="90,19"
+                    Point2="94,19"
+                    Point3="94,23" />
+                  <mssgle:LineSegment
+                    End="94,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tarea Flujo de Turismos.Paths[Insert]"
+          TopLeft="174,450">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-33,67"
+              Start="0,0"
+              End="-33,59.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,29.5"
+                    Point2="0,33.5"
+                    Point3="-4,33.5" />
+                  <mssgle:LineSegment
+                    End="-29,33.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-29,33.5"
+                    Point2="-33,33.5"
+                    Point3="-33,37.5" />
+                  <mssgle:LineSegment
+                    End="-33,59.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-30.25298828125,38.5,27.5059765625,9.40234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tarea Flujo de Turismos.Paths[Update1]"
+          TopLeft="490.5,484">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="47.5,35"
+              Start="0,0"
+              End="47.5,27.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.5"
+                    Point2="0,17.5"
+                    Point3="4,17.5" />
+                  <mssgle:LineSegment
+                    End="43.5,17.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="43.5,17.5"
+                    Point2="47.5,17.5"
+                    Point3="47.5,21.5" />
+                  <mssgle:LineSegment
+                    End="47.5,27.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="7.46970703125,22.5,32.5605859375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tarea Flujo de Turismos.Paths[Update]"
+          TopLeft="248,429">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="157,34"
+              Start="0,0"
+              End="149.5,34">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="74.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="74.5,0"
+                    Point2="78.5,0"
+                    Point3="78.5,4" />
+                  <mssgle:LineSegment
+                    End="78.5,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="78.5,30"
+                    Point2="78.5,34"
+                    Point3="82.5,34" />
+                  <mssgle:LineSegment
+                    End="149.5,34" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="62.21970703125,-17.609375,32.5605859375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tarea Flujo de Turismos.Paths[Salida de origen de OLE DB]"
+          TopLeft="487.5,99">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="28.5,43"
+              Start="0,0"
+              End="28.5,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.5"
+                    Point2="0,21.5"
+                    Point3="4,21.5" />
+                  <mssgle:LineSegment
+                    End="24.5,21.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="24.5,21.5"
+                    Point2="28.5,21.5"
+                    Point3="28.5,25.5" />
+                  <mssgle:LineSegment
+                    End="28.5,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tarea Flujo de Turismos.Paths[Salida de origen de Excel]"
+          TopLeft="241.5,95">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="18,46"
+              Start="0,0"
+              End="18,38.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19"
+                    Point2="0,23"
+                    Point3="4,23" />
+                  <mssgle:LineSegment
+                    End="14,23" />
+                  <mssgle:CubicBezierSegment
+                    Point1="14,23"
+                    Point2="18,23"
+                    Point3="18,27" />
+                  <mssgle:LineSegment
+                    End="18,38.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tarea Flujo de Turismos.Paths[Salida de ordenación1]"
+          TopLeft="459.5,300">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-90.1666666666667,55"
+              Start="0,0"
+              End="-90.1666666666667,47.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.7244258872651" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.7244258872651"
+                    Point2="0,32.7244258872651"
+                    Point3="-4,32.7244258872651" />
+                  <mssgle:LineSegment
+                    End="-86.1666666666667,32.7244258872651" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-86.1666666666667,32.7244258872651"
+                    Point2="-90.1666666666667,32.7244258872651"
+                    Point3="-90.1666666666667,36.7244258872651" />
+                  <mssgle:LineSegment
+                    End="-90.1666666666667,47.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tarea Flujo de Turismos.Paths[Salida de ordenación]"
+          TopLeft="219,320">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="89.6666666666667,35"
+              Start="0,0"
+              End="89.6666666666667,27.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.8246346555324" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.8246346555324"
+                    Point2="0,20.8246346555324"
+                    Point3="4,20.8246346555324" />
+                  <mssgle:LineSegment
+                    End="85.6666666666667,20.8246346555324" />
+                  <mssgle:CubicBezierSegment
+                    Point1="85.6666666666667,20.8246346555324"
+                    Point2="89.6666666666667,20.8246346555324"
+                    Point3="89.6666666666667,24.8246346555324" />
+                  <mssgle:LineSegment
+                    End="89.6666666666667,27.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tarea Flujo de Turismos.Paths[Salida de conversión de datos]"
+          TopLeft="172,162">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-47,36"
+              Start="0,0"
+              End="-47,28.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-43,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-43,0"
+                    Point2="-47,0"
+                    Point3="-47,4" />
+                  <mssgle:LineSegment
+                    End="-47,28.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Flujo de Turismos\Destino Turismos">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Flujo de Turismos\Origen turismo">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Flujo de Turismos\DB TURISMOS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

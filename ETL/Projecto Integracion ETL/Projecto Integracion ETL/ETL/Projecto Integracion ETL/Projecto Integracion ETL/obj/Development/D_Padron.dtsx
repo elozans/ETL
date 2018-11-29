@@ -1,0 +1,1849 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/4/2018 4:42:58 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DESKTOP-JEJ8I8L"
+  DTS:CreatorName="DESKTOP-JEJ8I8L\usuario"
+  DTS:DTSID="{1F104734-0929-48FF-9796-0B8BAC76AA51}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.6020.0"
+  DTS:LocaleID="3082"
+  DTS:ObjectName="D_Padron"
+  DTS:PackageType="5"
+  DTS:VersionBuild="140"
+  DTS:VersionGUID="{BD94865A-C2DF-4006-AF5F-A983B31DBD63}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[conexion_padron]"
+      DTS:CreationName="FLATFILE"
+      DTS:Description="carga ficheros padron"
+      DTS:DTSID="{3F24203E-CF41-4B09-85DE-1F373104A5B5}"
+      DTS:ObjectName="conexion_padron">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::FicheroProcesar]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="RaggedRight"
+          DTS:LocaleID="3082"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter="_x000D__x000A_"
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:AlwaysCheckForRowDelimiters="False">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="8"
+              DTS:MaximumWidth="8"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="NORD"
+              DTS:DTSID="{CACC7DB7-7DC5-4BF4-923F-582042E0EBB0}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="2"
+              DTS:DataType="18"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CPRO"
+              DTS:DTSID="{F8F43F0C-D42D-4795-B4E9-7CA98C1D38FD}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="3"
+              DTS:DataType="18"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CMUN"
+              DTS:DTSID="{FFD67E68-1C14-4C45-A9E0-390CA77F5328}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="2"
+              DTS:DataType="18"
+              DTS:TextQualified="True"
+              DTS:ObjectName="DIST"
+              DTS:DTSID="{2A31D00D-1F5E-4EBF-BD9F-ECDD88BAB511}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="4"
+              DTS:MaximumWidth="4"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SECC"
+              DTS:DTSID="{CCC87538-2F8A-41FA-8B2B-9C5678E0A88D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="2"
+              DTS:DataType="18"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CENTCO"
+              DTS:DTSID="{0EC88A45-2B7A-4E93-9688-55D9A264EE3A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="2"
+              DTS:DataType="18"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CENTSI"
+              DTS:DTSID="{8DBBB3B9-0FF8-4AF6-9C75-F7C864C21ECE}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="2"
+              DTS:DataType="18"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CNUCLE"
+              DTS:DTSID="{5793CAC6-EED8-4F05-AC2E-C7FEAABCD46F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="1"
+              DTS:DataType="18"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TLOC"
+              DTS:DTSID="{BE9F8336-C583-407E-A8EE-94C716FE5602}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="1"
+              DTS:DataType="18"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SEXO"
+              DTS:DTSID="{964D38AD-9F4F-4132-BC27-EDE17277C8BD}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="2"
+              DTS:DataType="18"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CPRON"
+              DTS:DTSID="{3E76FFE2-1EAF-4F4B-932B-CA5721852DBD}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="3"
+              DTS:DataType="18"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CMUNN"
+              DTS:DTSID="{BDEE0A84-B05C-4D23-842C-C2D2FFCA603F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="4"
+              DTS:DataType="18"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ANNO"
+              DTS:DTSID="{BE49C601-F3FF-4FC3-895C-46093D289841}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="2"
+              DTS:DataType="18"
+              DTS:TextQualified="True"
+              DTS:ObjectName="MES"
+              DTS:DTSID="{21BD2B8B-2F46-429E-B9DB-95D500A6F4DE}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="2"
+              DTS:DataType="18"
+              DTS:TextQualified="True"
+              DTS:ObjectName="DIA"
+              DTS:DTSID="{6CA0C4F4-EB71-4A22-A58A-F8E201B80A23}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="1"
+              DTS:DataType="18"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CNES"
+              DTS:DTSID="{69868F99-7AEA-49AE-99DB-9B9A45BCF1CB}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="3"
+              DTS:DataType="18"
+              DTS:TextQualified="True"
+              DTS:ObjectName="NACI"
+              DTS:DTSID="{E3CC5D70-9007-45CD-ACE5-F5E95FFB9E58}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="3"
+              DTS:DataType="18"
+              DTS:TextQualified="True"
+              DTS:ObjectName="EDAD"
+              DTS:DTSID="{2DAD865C-E668-4D0A-8D79-01A9F0C6EBA9}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="2"
+              DTS:DataType="21"
+              DTS:TextQualified="True"
+              DTS:ObjectName="AUTO"
+              DTS:DTSID="{C1A5C413-F918-4FAA-A09C-36060A197AFD}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="2"
+              DTS:DataType="18"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TAMU"
+              DTS:DTSID="{CA5C34CD-387E-4B32-8EFA-633B07C7B573}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="2"
+              DTS:DataType="18"
+              DTS:TextQualified="True"
+              DTS:ObjectName="AUTONACI"
+              DTS:DTSID="{ECB6614F-62C5-42D3-A381-CFEEC68946AF}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="1"
+              DTS:DataType="18"
+              DTS:ObjectName="NACINB"
+              DTS:DTSID="{1B72052F-6060-4B88-A55A-8B9EE79D4A7D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="fin"
+              DTS:DTSID="{7D9690B6-EC08-44DA-89ED-240B5001799B}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{95F84476-818E-43B0-A800-0843F0B9153D}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FicheroProcesar">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{45575EFB-F86D-4BFD-90EC-DACF21269188}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="REPLACE( @[User::FicheroProcesar]  ,&quot;.txt&quot;, &quot;&quot; )"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Renombrar">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Bucle leer ficheros"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Contenedor de bucles Foreach"
+      DTS:DTSID="{FB5EEA9E-2FC8-4000-AF24-868133A5F435}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Bucle leer ficheros">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="DTS.ForEachFileEnumerator.3"
+        DTS:DTSID="{70787F3F-7C1D-4382-A945-7FFEAA623595}"
+        DTS:ObjectName="{70787F3F-7C1D-4382-A945-7FFEAA623595}">
+        <DTS:PropertyExpression
+          DTS:Name="Directory">@[$Project::PathFicheros]</DTS:PropertyExpression>
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="C:\Proyectos\Navarra\Ficheros\" />
+            <FEFEProperty
+              FileSpec="*.txt" />
+            <FEFEProperty
+              FileNameRetrievalType="0" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Bucle leer ficheros\Importar datos demografia"
+          DTS:CreationName="SSIS.Pipeline.3"
+          DTS:Description="Tarea Flujo de datos"
+          DTS:DTSID="{45604809-FFF4-404F-8303-F9C1C1EBEE2A}"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Importar datos demografia">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Bucle leer ficheros\Importar datos demografia\Columna derivada"
+                  componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+                  contactInfo="Columna derivada;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+                  description="Crea nuevos valores de columna aplicando expresiones a las columnas de entrada de la transformación. Crea nuevas columnas o sobrescribe las columnas existentes. Por ejemplo, se concatenan los valores de las columnas 'nombre' y 'apellidos' para crear una columna 'nombre completo'."
+                  name="Columna derivada"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Bucle leer ficheros\Importar datos demografia\Columna derivada.Inputs[Entrada de columna derivada]"
+                      description="Entrada en la transformación Columna derivada"
+                      name="Entrada de columna derivada">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Bucle leer ficheros\Importar datos demografia\Columna derivada.Outputs[Salida de columna derivada]"
+                      description="Salida predeterminada de la transformación Columna derivada"
+                      exclusionGroup="1"
+                      name="Salida de columna derivada"
+                      synchronousInputId="Package\Bucle leer ficheros\Importar datos demografia\Columna derivada.Inputs[Entrada de columna derivada]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Columna derivada.Outputs[Salida de columna derivada].Columns[ANNOP]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Cálculo"
+                          errorRowDisposition="RedirectRow"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Columna derivada.Outputs[Salida de columna derivada].Columns[ANNOP]"
+                          name="ANNOP"
+                          truncationRowDisposition="RedirectRow">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expresión de columna derivada"
+                              name="Expression">[SUBSTRING](@[User::FicheroProcesar],[FINDSTRING](@[User::FicheroProcesar],".",1) - 4,4)</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expresión descriptiva de columna derivada"
+                              expressionType="Notify"
+                              name="FriendlyExpression">SUBSTRING(@[User::FicheroProcesar],FINDSTRING(@[User::FicheroProcesar],".",1) - 4,4)</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Bucle leer ficheros\Importar datos demografia\Columna derivada.Outputs[Salida de error de columna derivada]"
+                      description="Salida de error de la transformación Columna derivada"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Salida de error de columna derivada"
+                      synchronousInputId="Package\Bucle leer ficheros\Importar datos demografia\Columna derivada.Inputs[Entrada de columna derivada]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Columna derivada.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Columna derivada.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Columna derivada.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Columna derivada.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Bucle leer ficheros\Importar datos demografia\Data Conversion"
+                  componentClassID="{62B1106C-7DB8-4EC8-ADD6-4C664DFFC54A}"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Data Conversion"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Bucle leer ficheros\Importar datos demografia\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Data Conversion.Inputs[Data Conversion Input].Columns[ANNOP]"
+                          cachedDataType="wstr"
+                          cachedName="ANNOP"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Columna derivada.Outputs[Salida de columna derivada].Columns[ANNOP]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Bucle leer ficheros\Importar datos demografia\Data Conversion.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\Bucle leer ficheros\Importar datos demografia\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Data Conversion.Outputs[Data Conversion Output].Columns[ANNOP_INI]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Data Conversion.Outputs[Data Conversion Output].Columns[ANNOP_INI]"
+                          name="ANNOP_INI"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Bucle leer ficheros\Importar datos demografia\Columna derivada.Outputs[Salida de columna derivada].Columns[ANNOP]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Bucle leer ficheros\Importar datos demografia\Data Conversion.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\Bucle leer ficheros\Importar datos demografia\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB"
+                  componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+                  contactInfo="Destino de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+                  description="Destino de OLE DB"
+                  name="Destino de OLE DB"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                      name="OpenRowset">[Padron].[TPADROND]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="Comando SQL para ejecutar."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir caracteres."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica si los valores proporcionados para columnas de identidad se van a copiar al destino. Si es False, los valores de las columnas de identidad se generan automáticamente en el destino. Sólo se aplica si está activada la carga rápida."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica si las columnas que contienen NULL tendrán NULL insertado en el destino. Si es False, las columnas que contienen NULL tendrán sus valores predeterminados insertados en el destino. Sólo se aplica si está activada la carga rápida."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica opciones para usar con la carga rápida. Sólo se aplica si está activada la carga rápida."
+                      name="FastLoadOptions">TABLOCK</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica cuándo se emiten confirmaciones durante la inserción de datos. El valor 0 especifica que se emitirá una confirmación al final de la inserción de datos. Sólo se aplica si está activada la carga rápida."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Connections[OleDbConnection]"
+                      connectionManagerID="{FAA9E788-56D4-4B12-A030-382A01E93DC4}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[sa]"
+                      description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]"
+                      errorOrTruncationOperation="Insertar"
+                      errorRowDisposition="RedirectRow"
+                      hasSideEffects="true"
+                      name="Entrada de destino de OLE DB">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[NORD]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="8"
+                          cachedName="NORD"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[NU_NORD]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[NORD]" />
+                        <inputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[CPRO]"
+                          cachedDataType="ui2"
+                          cachedName="CPRO"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[ID_PRO]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[CPRO]" />
+                        <inputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[CMUN]"
+                          cachedDataType="ui2"
+                          cachedName="CMUN"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[ID_MUN]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[CMUN]" />
+                        <inputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[DIST]"
+                          cachedDataType="ui2"
+                          cachedName="DIST"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[NU_DIST]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[DIST]" />
+                        <inputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[SECC]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="4"
+                          cachedName="SECC"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[CH_SECC]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[SECC]" />
+                        <inputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[CENTCO]"
+                          cachedDataType="ui2"
+                          cachedName="CENTCO"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[CO_ENTCO]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[CENTCO]" />
+                        <inputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[CENTSI]"
+                          cachedDataType="ui2"
+                          cachedName="CENTSI"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[CO_ENTSI]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[CENTSI]" />
+                        <inputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[CNUCLE]"
+                          cachedDataType="ui2"
+                          cachedName="CNUCLE"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[CO_NUCLE]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[CNUCLE]" />
+                        <inputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[TLOC]"
+                          cachedDataType="ui2"
+                          cachedName="TLOC"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[ID_TLOC]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[TLOC]" />
+                        <inputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[SEXO]"
+                          cachedDataType="ui2"
+                          cachedName="SEXO"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[ID_SEXO]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[SEXO]" />
+                        <inputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[CPRON]"
+                          cachedDataType="ui2"
+                          cachedName="CPRON"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[ID_PRON]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[CPRON]" />
+                        <inputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[CMUNN]"
+                          cachedDataType="ui2"
+                          cachedName="CMUNN"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[ID_MUNN]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[CMUNN]" />
+                        <inputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[ANNO]"
+                          cachedDataType="ui2"
+                          cachedName="ANNO"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[NU_ANON]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[ANNO]" />
+                        <inputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[MES]"
+                          cachedDataType="ui2"
+                          cachedName="MES"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[NU_MESN]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[MES]" />
+                        <inputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[DIA]"
+                          cachedDataType="ui2"
+                          cachedName="DIA"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[NU_DIAN]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[DIA]" />
+                        <inputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[CNES]"
+                          cachedDataType="ui2"
+                          cachedName="CNES"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[ID_EST]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[CNES]" />
+                        <inputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[NACI]"
+                          cachedDataType="ui2"
+                          cachedName="NACI"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[CO_NACI]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[NACI]" />
+                        <inputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[EDAD]"
+                          cachedDataType="ui2"
+                          cachedName="EDAD"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[NU_EDAD]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[EDAD]" />
+                        <inputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[AUTO]"
+                          cachedDataType="ui8"
+                          cachedName="AUTO"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[ID_CCAA]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[AUTO]" />
+                        <inputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[TAMU]"
+                          cachedDataType="ui2"
+                          cachedName="TAMU"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[NU_TAMU]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[TAMU]" />
+                        <inputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[AUTONACI]"
+                          cachedDataType="ui2"
+                          cachedName="AUTONACI"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[ID_CCAAN]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[AUTONACI]" />
+                        <inputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[NACINB]"
+                          cachedDataType="ui2"
+                          cachedName="NACINB"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[ID_NACINB]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[NACINB]" />
+                        <inputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[ANNOP_INI]"
+                          cachedDataType="i4"
+                          cachedName="ANNOP_INI"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[NU_ANNOP]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Data Conversion.Outputs[Data Conversion Output].Columns[ANNOP_INI]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[NU_ANNOP]"
+                          dataType="i4"
+                          name="NU_ANNOP" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[NU_NORD]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="NU_NORD" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[ID_PRO]"
+                          dataType="i4"
+                          name="ID_PRO" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[ID_MUN]"
+                          dataType="i4"
+                          name="ID_MUN" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[NU_DIST]"
+                          dataType="i4"
+                          name="NU_DIST" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[CH_SECC]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4"
+                          name="CH_SECC" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[CO_ENTCO]"
+                          dataType="i4"
+                          name="CO_ENTCO" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[CO_ENTSI]"
+                          dataType="i4"
+                          name="CO_ENTSI" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[CO_NUCLE]"
+                          dataType="i4"
+                          name="CO_NUCLE" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[ID_TLOC]"
+                          dataType="i4"
+                          name="ID_TLOC" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[ID_SEXO]"
+                          dataType="i4"
+                          name="ID_SEXO" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[ID_PRON]"
+                          dataType="i4"
+                          name="ID_PRON" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[ID_MUNN]"
+                          dataType="i4"
+                          name="ID_MUNN" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[NU_ANON]"
+                          dataType="i4"
+                          name="NU_ANON" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[NU_MESN]"
+                          dataType="i4"
+                          name="NU_MESN" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[NU_DIAN]"
+                          dataType="i4"
+                          name="NU_DIAN" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[ID_EST]"
+                          dataType="i4"
+                          name="ID_EST" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[CO_NACI]"
+                          dataType="i4"
+                          name="CO_NACI" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[NU_EDAD]"
+                          dataType="i4"
+                          name="NU_EDAD" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[ID_CCAA]"
+                          dataType="i4"
+                          name="ID_CCAA" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[NU_TAMU]"
+                          dataType="i4"
+                          name="NU_TAMU" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[ID_CCAAN]"
+                          dataType="i4"
+                          name="ID_CCAAN" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[ID_NACINB]"
+                          dataType="i4"
+                          name="ID_NACINB" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Salida de error de destino de OLE DB"
+                      synchronousInputId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Bucle leer ficheros\Importar datos demografia\Eliminar dato padron"
+                  componentClassID="{93FFEC66-CBC8-4C7F-9C6A-CB1C17A7567D}"
+                  contactInfo="Comando de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+                  description="Ejecuta una instrucción SQL para cada fila de un flujo de datos. Por ejemplo, se usa para llamar al procedimiento almacenado de configuración de nuevo empleado para cada fila de la tabla de nuevos empleados. Nota: la ejecución de una instrucción SQL para cada fila de un flujo de datos de gran tamaño puede tardar mucho tiempo."
+                  name="Eliminar dato padron"
+                  usesDispositions="true"
+                  version="2">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Comando SQL para ejecutar."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">delete from [Padron].[TPADROND] where [NU_ANNOP]=?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                      name="DefaultCodePage">1252</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Bucle leer ficheros\Importar datos demografia\Eliminar dato padron.Connections[OleDbConnection]"
+                      connectionManagerID="{FAA9E788-56D4-4B12-A030-382A01E93DC4}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[sa]"
+                      description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Bucle leer ficheros\Importar datos demografia\Eliminar dato padron.Inputs[Entrada de comando de OLE DB]"
+                      errorOrTruncationOperation="Ejecución de comando"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="Entrada de comando de OLE DB">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Eliminar dato padron.Inputs[Entrada de comando de OLE DB].Columns[ANNOP_INI]"
+                          cachedDataType="i4"
+                          cachedName="ANNOP_INI"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Eliminar dato padron.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_0]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Data Conversion.Outputs[Data Conversion Output].Columns[ANNOP_INI]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Eliminar dato padron.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_0]"
+                          dataType="i4"
+                          name="Param_0">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Información de parámetros. Coincide con los valores de DBPARAMFLAGSENUM de OLE DB."
+                              name="DBParamInfoFlags">81</property>
+                          </properties>
+                        </externalMetadataColumn>
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Bucle leer ficheros\Importar datos demografia\Eliminar dato padron.Outputs[Salida de comando de OLE DB]"
+                      exclusionGroup="1"
+                      name="Salida de comando de OLE DB"
+                      synchronousInputId="Package\Bucle leer ficheros\Importar datos demografia\Eliminar dato padron.Inputs[Entrada de comando de OLE DB]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Bucle leer ficheros\Importar datos demografia\Eliminar dato padron.Outputs[Salida de error de comando de OLE DB]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Salida de error de comando de OLE DB"
+                      synchronousInputId="Package\Bucle leer ficheros\Importar datos demografia\Eliminar dato padron.Inputs[Entrada de comando de OLE DB]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Eliminar dato padron.Outputs[Salida de error de comando de OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Eliminar dato padron.Outputs[Salida de error de comando de OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Eliminar dato padron.Outputs[Salida de error de comando de OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Eliminar dato padron.Outputs[Salida de error de comando de OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano"
+                  componentClassID="{D23FD76B-F51D-420F-BBCB-19CBF6AC1AB4}"
+                  contactInfo="Origen de archivo plano;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+                  description="Origen de archivo plano"
+                  localeId="3082"
+                  name="Origen de archivo plano"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Especifica si las columnas de longitud cero se tratan como NULL."
+                      name="RetainNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica el nombre de una columna de salida que contiene el nombre de archivo. Si no se especifica ningún nombre, no se genera ninguna columna de salida con el nombre de archivo."
+                      name="FileNameColumnName">NombreArchivoF</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[conexion_padron]"
+                      connectionManagerRefId="Package.ConnectionManagers[conexion_padron]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano]"
+                      name="Salida de origen de archivo plano">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[NORD]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="RedirectRow"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[NORD]"
+                          length="8"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[NORD]"
+                          name="NORD"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si los datos están en formato binario."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[CPRO]"
+                          dataType="ui2"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="RedirectRow"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[CPRO]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[CPRO]"
+                          name="CPRO"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si los datos están en formato binario."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[CMUN]"
+                          dataType="ui2"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="RedirectRow"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[CMUN]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[CMUN]"
+                          name="CMUN"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si los datos están en formato binario."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[DIST]"
+                          dataType="ui2"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="RedirectRow"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[DIST]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[DIST]"
+                          name="DIST"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si los datos están en formato binario."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[SECC]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="RedirectRow"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[SECC]"
+                          length="4"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[SECC]"
+                          name="SECC"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si los datos están en formato binario."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[CENTCO]"
+                          dataType="ui2"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="RedirectRow"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[CENTCO]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[CENTCO]"
+                          name="CENTCO"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si los datos están en formato binario."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[CENTSI]"
+                          dataType="ui2"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="RedirectRow"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[CENTSI]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[CENTSI]"
+                          name="CENTSI"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si los datos están en formato binario."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[CNUCLE]"
+                          dataType="ui2"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="RedirectRow"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[CNUCLE]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[CNUCLE]"
+                          name="CNUCLE"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si los datos están en formato binario."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[TLOC]"
+                          dataType="ui2"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[TLOC]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[TLOC]"
+                          name="TLOC"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si los datos están en formato binario."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[SEXO]"
+                          dataType="ui2"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="RedirectRow"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[SEXO]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[SEXO]"
+                          name="SEXO"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si los datos están en formato binario."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[CPRON]"
+                          dataType="ui2"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="RedirectRow"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[CPRON]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[CPRON]"
+                          name="CPRON"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si los datos están en formato binario."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[CMUNN]"
+                          dataType="ui2"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="RedirectRow"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[CMUNN]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[CMUNN]"
+                          name="CMUNN"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si los datos están en formato binario."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[ANNO]"
+                          dataType="ui2"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="RedirectRow"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[ANNO]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[ANNO]"
+                          name="ANNO"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si los datos están en formato binario."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[MES]"
+                          dataType="ui2"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="RedirectRow"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[MES]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[MES]"
+                          name="MES"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si los datos están en formato binario."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[DIA]"
+                          dataType="ui2"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="RedirectRow"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[DIA]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[DIA]"
+                          name="DIA"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si los datos están en formato binario."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[CNES]"
+                          dataType="ui2"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="RedirectRow"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[CNES]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[CNES]"
+                          name="CNES"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si los datos están en formato binario."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[NACI]"
+                          dataType="ui2"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="RedirectRow"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[NACI]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[NACI]"
+                          name="NACI"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si los datos están en formato binario."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[EDAD]"
+                          dataType="ui2"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="RedirectRow"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[EDAD]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[EDAD]"
+                          name="EDAD"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si los datos están en formato binario."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[AUTO]"
+                          dataType="ui8"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="RedirectRow"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[AUTO]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[AUTO]"
+                          name="AUTO"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si los datos están en formato binario."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[TAMU]"
+                          dataType="ui2"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="RedirectRow"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[TAMU]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[TAMU]"
+                          name="TAMU"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si los datos están en formato binario."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[AUTONACI]"
+                          dataType="ui2"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="RedirectRow"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[AUTONACI]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[AUTONACI]"
+                          name="AUTONACI"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si los datos están en formato binario."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[NACINB]"
+                          dataType="ui2"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="RedirectRow"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[NACINB]"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[NACINB]"
+                          name="NACINB"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si los datos están en formato binario."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[NombreArchivoF]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="RedirectRow"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[NombreArchivoF]"
+                          length="260"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[NombreArchivoF]"
+                          name="NombreArchivoF"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si los datos están en formato binario."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[fin]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="IgnoreFailure"
+                          externalMetadataColumnId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[fin]"
+                          length="255"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[fin]"
+                          name="fin"
+                          truncationRowDisposition="IgnoreFailure">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si los datos están en formato binario."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[NORD]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="NORD" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[CPRO]"
+                          dataType="ui2"
+                          name="CPRO" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[CMUN]"
+                          dataType="ui2"
+                          name="CMUN" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[DIST]"
+                          dataType="ui2"
+                          name="DIST" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[SECC]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4"
+                          name="SECC" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[CENTCO]"
+                          dataType="ui2"
+                          name="CENTCO" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[CENTSI]"
+                          dataType="ui2"
+                          name="CENTSI" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[CNUCLE]"
+                          dataType="ui2"
+                          name="CNUCLE" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[TLOC]"
+                          dataType="ui2"
+                          name="TLOC" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[SEXO]"
+                          dataType="ui2"
+                          name="SEXO" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[CPRON]"
+                          dataType="ui2"
+                          name="CPRON" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[CMUNN]"
+                          dataType="ui2"
+                          name="CMUNN" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[ANNO]"
+                          dataType="ui2"
+                          name="ANNO" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[MES]"
+                          dataType="ui2"
+                          name="MES" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[DIA]"
+                          dataType="ui2"
+                          name="DIA" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[CNES]"
+                          dataType="ui2"
+                          name="CNES" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[NACI]"
+                          dataType="ui2"
+                          name="NACI" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[EDAD]"
+                          dataType="ui2"
+                          name="EDAD" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[AUTO]"
+                          dataType="ui8"
+                          name="AUTO" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[TAMU]"
+                          dataType="ui2"
+                          name="TAMU" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[AUTONACI]"
+                          dataType="ui2"
+                          name="AUTONACI" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[NACINB]"
+                          dataType="ui2"
+                          name="NACINB" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[NombreArchivoF]"
+                          dataType="wstr"
+                          length="260"
+                          name="NombreArchivoF" />
+                        <externalMetadataColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[fin]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="fin" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de error de origen de archivo plano]"
+                      isErrorOut="true"
+                      name="Salida de error de origen de archivo plano">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de error de origen de archivo plano].Columns[Columna de salida de error de origen de archivo plano]"
+                          codePage="1252"
+                          dataType="text"
+                          description="Columna de salida de error de origen de archivo plano"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de error de origen de archivo plano].Columns[Columna de salida de error de origen de archivo plano]"
+                          name="Columna de salida de error de origen de archivo plano" />
+                        <outputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de error de origen de archivo plano].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de error de origen de archivo plano].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de error de origen de archivo plano].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de error de origen de archivo plano].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                        <outputColumn
+                          refId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de error de origen de archivo plano].Columns[NombreArchivoF]"
+                          dataType="wstr"
+                          length="260"
+                          lineageId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de error de origen de archivo plano].Columns[NombreArchivoF]"
+                          name="NombreArchivoF" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Bucle leer ficheros\Importar datos demografia.Paths[Data Conversion Output]"
+                  endId="Package\Bucle leer ficheros\Importar datos demografia\Eliminar dato padron.Inputs[Entrada de comando de OLE DB]"
+                  name="Data Conversion Output"
+                  startId="Package\Bucle leer ficheros\Importar datos demografia\Data Conversion.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\Bucle leer ficheros\Importar datos demografia.Paths[Salida de columna derivada]"
+                  endId="Package\Bucle leer ficheros\Importar datos demografia\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Salida de columna derivada"
+                  startId="Package\Bucle leer ficheros\Importar datos demografia\Columna derivada.Outputs[Salida de columna derivada]" />
+                <path
+                  refId="Package\Bucle leer ficheros\Importar datos demografia.Paths[Salida de comando de OLE DB]"
+                  endId="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]"
+                  name="Salida de comando de OLE DB"
+                  startId="Package\Bucle leer ficheros\Importar datos demografia\Eliminar dato padron.Outputs[Salida de comando de OLE DB]" />
+                <path
+                  refId="Package\Bucle leer ficheros\Importar datos demografia.Paths[Salida de origen de archivo plano]"
+                  endId="Package\Bucle leer ficheros\Importar datos demografia\Columna derivada.Inputs[Entrada de columna derivada]"
+                  name="Salida de origen de archivo plano"
+                  startId="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano.Outputs[Salida de origen de archivo plano]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Bucle leer ficheros\Tarea Sistema de archivos"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:DelayValidation="True"
+          DTS:Description="Tarea Sistema de archivos"
+          DTS:DTSID="{95F72CE4-8474-4C08-A779-2ED93DB870CF}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Tarea Sistema de archivos"
+          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskOperationType="RenameFile"
+              TaskOverwriteDestFile="True"
+              TaskSourcePath="User::FicheroProcesar"
+              TaskIsSourceVariable="True"
+              TaskDestinationPath="User::Renombrar"
+              TaskIsDestinationVariable="True" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Bucle leer ficheros.PrecedenceConstraints[Restricción]"
+          DTS:CreationName=""
+          DTS:DTSID="{AB0C7F12-6BE3-4A37-BAE4-0F1E92D1B983}"
+          DTS:From="Package\Bucle leer ficheros\Importar datos demografia"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Restricción"
+          DTS:To="Package\Bucle leer ficheros\Tarea Sistema de archivos" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{AD54A109-C15E-470C-96AE-FFA427361476}"
+          DTS:ObjectName="{AD54A109-C15E-470C-96AE-FFA427361476}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::FicheroProcesar" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{2D9FD6C5-81D0-403F-B65B-EA9F64014B27}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="La propiedad de propagación del evento"
+          DTS:DTSID="{F897C09E-3F37-4848-BEBF-1BF13E8D5763}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables />
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="sql11">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="206,42"
+          Id="Package\Bucle leer ficheros\Importar datos demografia"
+          TopLeft="32.5,8.5" />
+        <NodeLayout
+          Size="203,42"
+          Id="Package\Bucle leer ficheros\Tarea Sistema de archivos"
+          TopLeft="32,105" />
+        <EdgeLayout
+          Id="Package\Bucle leer ficheros.PrecedenceConstraints[Restricción]"
+          TopLeft="134.5,50.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54.5"
+              Start="0,0"
+              End="0,47">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="291,202"
+          Size="291,245"
+          Id="Package\Bucle leer ficheros"
+          TopLeft="146,17" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Bucle leer ficheros\Importar datos demografia">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="177,42"
+          Id="Package\Bucle leer ficheros\Importar datos demografia\Eliminar dato padron"
+          TopLeft="193,268" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Bucle leer ficheros\Importar datos demografia\Data Conversion"
+          TopLeft="167,190" />
+        <NodeLayout
+          Size="168,42"
+          Id="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB"
+          TopLeft="155,403" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\Bucle leer ficheros\Importar datos demografia\Columna derivada"
+          TopLeft="168,115" />
+        <NodeLayout
+          Size="191,42"
+          Id="Package\Bucle leer ficheros\Importar datos demografia\Origen de archivo plano"
+          TopLeft="87.5,49.5" />
+        <EdgeLayout
+          Id="Package\Bucle leer ficheros\Importar datos demografia.Paths[Salida de origen de archivo plano]"
+          TopLeft="183,91.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="67,23.5"
+              Start="0,0"
+              End="67,16">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,7.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,7.75"
+                    Point2="0,11.75"
+                    Point3="4,11.75" />
+                  <mssgle:LineSegment
+                    End="63,11.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="63,11.75"
+                    Point2="67,11.75"
+                    Point3="67,15.75" />
+                  <mssgle:LineSegment
+                    End="67,16" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Bucle leer ficheros\Importar datos demografia.Paths[Salida de comando de OLE DB]"
+          TopLeft="281.5,310">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-42.5,93"
+              Start="0,0"
+              End="-42.5,85.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,42.5"
+                    Point2="0,46.5"
+                    Point3="-4,46.5" />
+                  <mssgle:LineSegment
+                    End="-38.5,46.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-38.5,46.5"
+                    Point2="-42.5,46.5"
+                    Point3="-42.5,50.5" />
+                  <mssgle:LineSegment
+                    End="-42.5,85.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Bucle leer ficheros\Importar datos demografia.Paths[Salida de columna derivada]"
+          TopLeft="247.5,157">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,33"
+              Start="0,0"
+              End="0,25.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Bucle leer ficheros\Importar datos demografia.Paths[Data Conversion Output]"
+          TopLeft="245,232">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="36.5,36"
+              Start="0,0"
+              End="36.5,28.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14"
+                    Point2="0,18"
+                    Point3="4,18" />
+                  <mssgle:LineSegment
+                    End="32.5,18" />
+                  <mssgle:CubicBezierSegment
+                    Point1="32.5,18"
+                    Point2="36.5,18"
+                    Point3="36.5,22" />
+                  <mssgle:LineSegment
+                    End="36.5,28.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Bucle leer ficheros\Importar datos demografia\Destino de OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

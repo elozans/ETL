@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="Conexion access defunciones"
+  DTS:DTSID="{37216ADB-1EE9-40C9-AD34-BF5DE7BE384D}"
+  DTS:CreationName="OLEDB">
+  <DTS:PropertyExpression
+    DTS:Name="ServerName">@[$Project::PathFicheros]+ @[$Project::BBDD_Defunciones]</DTS:PropertyExpression>
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=C:\Proyectos\Navarra\Ficheros\DEFUNCIONES_HISTORICOPBI.mdb;Provider=Microsoft.ACE.OLEDB.12.0;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
